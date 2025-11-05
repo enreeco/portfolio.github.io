@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CartaNova Markdown — Live Editor & Preview</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- External parser styles (already on your machine) -->
+  <link rel="stylesheet" href="../cartanova-markdown.css">
+
+  <!-- In-page editor styles (scoped to this SPA only) -->
+  <style>
+    :root {
+      --border: #e5e7eb;
+      --panel-bg: #ffffff;
+      --panel-alt: #fafafa;
+      --text: #111827;
+      --muted: #6b7280;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: #fff;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .app {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      height: 100%;
+    }
+
+    .app-header {
+      display: flex; align-items: center; gap: 1rem;
+      padding: .75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel-alt);
+    }
+    .app-title { margin: 0; font-size: 1rem; font-weight: 600; }
+    .hint { color: var(--muted); font-size: .9rem; }
+
+    .panes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 0; /* allow children to shrink */
+    }
+    @media (max-width: 900px) {
+      .panes { grid-template-columns: 1fr; grid-auto-rows: minmax(40vh, auto); }
+    }
+
+    .pane {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .pane + .pane { border-left: 1px solid var(--border); }
+    @media (max-width: 900px) {
+      .pane + .pane { border-left: none; border-top: 1px solid var(--border); }
+    }
+
+    .pane-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .6rem .9rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel-bg);
+      position: sticky; top: 0; z-index: 1;
+    }
+    .pane-title { margin: 0; font-size: .95rem; font-weight: 600; color: #374151; }
+
+    .editor {
+      width: 100%;
+      height: 100%;
+      resize: none;
+      border: 0;
+      padding: 1rem;
+      font: 14px/1.5 "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+      color: #0f172a;
+      background: #fcfcfc;
+      tab-size: 2;
+      outline: none;
+    }
+    .editor:focus { background: #f8fafc; }
+
+    .preview {
+      overflow: auto;
+      padding: 1rem;
+      background: var(--panel-bg);
+    }
+
+    /* Make the preview panel visually distinct but clean */
+    .preview .mdlite { padding: 0; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1 class="app-title">CartaNova Markdown — Editor & Preview</h1>
+      <div class="hint">Type on the left, see the result on the right. Uses your external <code>cartanova-markdown.js</code> + <code>cartanova-markdown.css</code>. · <a href="https://github.com/enreeco/cartanova-markdown-js" target="_blank" rel="noopener noreferrer">GitHub repo</a></div>
+	  <br><small style="font-size:xx-small">Generated with ChatGPT and Cursor</small>
+    </header>
+
+    <main class="panes" aria-label="Markdown editor and preview">
+      <!-- Editor pane -->
+      <section class="pane" aria-label="Editor panel">
+        <div class="pane-header">
+          <h2 class="pane-title">Markdown</h2>
+          <div class="hint">Ctrl/Cmd+Enter to re-render</div>
+        </div>
+        <textarea id="editor" class="editor" aria-label="Markdown input" spellcheck="false"></textarea>
+      </section>
+
+      <!-- Preview pane -->
+      <section class="pane" aria-label="Preview panel">
+        <div class="pane-header">
+          <h2 class="pane-title">Preview</h2>
+          <div class="hint">Rendered with CartaNova Markdown</div>
+        </div>
+        <div id="preview" class="preview">
+          <!-- The .mdlite namespace is from your external stylesheet -->
+          <div id="preview-inner" class="mdlite"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- External parser script (already on your machine) -->
+  <script src="../cartanova-markdown.js"></script>
+
+  <!-- In-page app logic (kept entirely within this file) -->
+  <script>
+    // Same "complex example" as provided earlier
+    const markdownExample = `
+# MarkdownLite Torture Test
+
+Welcome to the **MarkdownLite** demo — a single file of chaos.  
+This paragraph deliberately has a manual line break on the previous line.
+
+Second paragraph with mixed inline formatting:
+**bold**, *italic*, ++underline++, ~~strikethrough~~, ==highlight==, H~2~O with ~subscript~, x^2^ with ^superscript^.  
+Inline code like \`const x = 42;\` and an autolink <https://example.com> plus a regular [link with title](https://example.org "Example Org").
+
+---
+
+## Blockquote
+
+> “Programs must be written for people to read,  
+> and only incidentally for machines to execute.”  
+> — *Abelson & Sussman*
+
+---
+
+## Lists
+
+### Unordered
+- Item one
+- Item two with a second line that is indented to stay with the item
+  and shows how line wrapping behaves.
+- Item three with **bold** and \`inline code\`
+
+### Ordered
+1. First thing
+2. Second thing
+3. Third thing with a wrapped
+   continuation line
+
+### Task List
+- [x] Build tiny parser
+- [ ] Add more tests
+- [ ] Ship v1.0
+
+### Definition List (single-line)
+Term: A word or phrase used as a name.
+API: Application Programming Interface.
+Idempotent: Applying an operation multiple times has the same effect as applying it once.
+
+---
+
+## Code
+
+Inline \`console.log("hello");\` already shown above.  
+Fenced (language hint intentionally ignored):
+
+\`\`\`
+# Fenced block — language ignored by design
+function fib(n){
+  if(n < 2) return n;
+  return fib(n-1) + fib(n-2);
+}
+console.log(fib(10));
+\`\`\`
+
+Another one with backticks in content:
+
+\`\`\`
+Usage:
+  Run with \\\`node file.js\\\`
+Notes:
+  Backticks inside code are escaped in Markdown source.
+\`\`\`
+
+---
+
+## Images
+
+Here is an image with alt text and title:
+
+![Placeholder cat](https://via.placeholder.com/300x140 "A rectangular placeholder")
+
+And another that’s just a different size:
+
+![Small square](https://via.placeholder.com/120)
+
+---
+
+## Tables
+
+| Feature           | Supported | Notes                                   |
+| :---------------- | :-------: | --------------------------------------- |
+| Headings          |    ✅     | \`#\` to \`######\`                         |
+| Paragraphs        |    ✅     | Single newline → line break             |
+| Bold/Italic/etc.  |    ✅     | **bold**, *italic*, ++u++, ~~del~~, ==mark==, ^sup^, ~sub~ |
+| Lists             |    ✅     | UL, OL, and task lists                  |
+| Definition Lists  |    ✅     | \`Term: Definition\` on consecutive lines |
+| Links & Images    |    ✅     | With optional "title"                   |
+| Code (inline/fenced) |  ✅   | Triple backticks; language ignored      |
+| Blockquotes       |    ✅     | \`>\` prefix                              |
+| Horizontal Rules  |    ✅     | \`---\`, \`***\`, or \`___\`                  |
+| Tables            |    ✅     | Alignment via \`:---\`, \`:---:\`, \`---:\`   |
+
+---
+
+## Mixed Content Section
+
+### H3 Heading
+Paragraph with mixed inline styles: *emphasis* and **strong** inside the same ++sentence++ with ==highlight==, and mathish bits like E=mc^2^ and CO~2~.
+
+- Bullet with an embedded table right after:
+
+| Col A | Col B | Col C |
+| ----: | :---: | ---: |
+|  123  |  abc  | pota pota pota pota |
+|   9   |  xyz  | aj aj aj aj |
+
+- Bullet with an image:
+  ![Tiny](https://via.placeholder.com/80 "Tiny placeholder")
+
+- Bullet with a quote:
+  > Indented quote under a list item (appears as a separate block).
+
+---
+
+## Horizontal Rules Sampler
+
+***
+___
+---
+
+End of document.
+`;
+
+    // --- App wiring ---
+    const $editor = document.getElementById('editor');
+    const $previewInner = document.getElementById('preview-inner');
+
+    // Simple render with a tiny debounce for smoother typing
+    let tid = null;
+    function renderNow() {
+      $previewInner.innerHTML = MarkdownLite.parse($editor.value);
+    }
+    function scheduleRender() {
+      if (tid) cancelAnimationFrame(tid);
+      tid = requestAnimationFrame(renderNow);
+    }
+
+    // Insert tabs inside the editor (instead of focusing the next element)
+    $editor.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const start = $editor.selectionStart;
+        const end = $editor.selectionEnd;
+        const before = $editor.value.slice(0, start);
+        const after = $editor.value.slice(end);
+        $editor.value = before + "\t" + after;
+        $editor.selectionStart = $editor.selectionEnd = start + 1;
+        scheduleRender();
+      } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'enter') {
+        e.preventDefault();
+        renderNow();
+      }
+    });
+
+    $editor.addEventListener('input', scheduleRender);
+
+    // Initial load with complex example
+    $editor.value = markdownExample.trimStart();
+    renderNow();
+  </script>
+</body>
+</html>

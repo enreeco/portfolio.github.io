@@ -1,0 +1,133 @@
+/* CartaNova MarkdownLite default styles (scoped to .mdlite) */
+
+.mdlite {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #222;
+  background: #fff;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* Headings */
+.mdlite h1, .mdlite h2, .mdlite h3, .mdlite h4, .mdlite h5, .mdlite h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 1.2em 0 0.6em;
+}
+.mdlite h1 { font-size: 1.8em; border-bottom: 2px solid #eee; padding-bottom: .3em; }
+.mdlite h2 { font-size: 1.5em; border-bottom: 1px solid #eee; padding-bottom: .2em; }
+.mdlite h3 { font-size: 1.3em; }
+.mdlite h4 { font-size: 1.1em; }
+.mdlite h5, .mdlite h6 { font-size: 1em; text-transform: uppercase; color: #666; }
+
+/* Paragraphs & text formatting */
+.mdlite p {
+  margin: 0.8em 0;
+}
+.mdlite strong { font-weight: 600; }
+.mdlite em { font-style: italic; }
+.mdlite u { text-decoration: underline; }
+.mdlite del { text-decoration: line-through; color: #777; }
+.mdlite mark { background: #fff59d; }
+.mdlite sup, .mdlite sub { font-size: 0.8em; }
+
+/* Links */
+.mdlite a {
+  color: #0066cc;
+  text-decoration: none;
+}
+.mdlite a:hover {
+  text-decoration: underline;
+}
+
+/* Blockquotes */
+.mdlite blockquote {
+  margin: 1em 0;
+  padding: 0.6em 1em;
+  border-left: 4px solid #ccc;
+  color: #555;
+  background: #f9f9f9;
+}
+
+/* Lists */
+.mdlite ul, .mdlite ol {
+  margin: 0.8em 0 0.8em 2em;
+}
+.mdlite li {
+  margin: 0.3em 0;
+}
+.mdlite li.task {
+  list-style: none;
+}
+.mdlite li.task input[type="checkbox"] {
+  margin-right: 0.4em;
+}
+
+/* Definition lists */
+.mdlite dl {
+  margin: 1em 0;
+}
+.mdlite dt {
+  font-weight: 600;
+}
+.mdlite dd {
+  margin: 0 0 0.5em 1em;
+}
+
+/* Code & preformatted blocks */
+.mdlite code {
+  background: #f5f5f5;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.95em;
+}
+.mdlite pre {
+  background: #f5f5f5;
+  padding: 0.8em 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: "SFMono-Regular", Consolas, monospace;
+}
+.mdlite pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Tables */
+.mdlite table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+.mdlite th, .mdlite td {
+  border: 1px solid #ddd;
+  padding: 0.5em 0.7em;
+}
+.mdlite th {
+  background: #f2f2f2;
+  text-align: left;
+}
+.mdlite tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* Horizontal rule */
+.mdlite hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 1.5em 0;
+}
+
+/* Images */
+.mdlite img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.8em auto;
+}
+
+/* Inline spacing cleanup */
+.mdlite p > :first-child { margin-top: 0; }
+.mdlite p > :last-child { margin-bottom: 0; }
