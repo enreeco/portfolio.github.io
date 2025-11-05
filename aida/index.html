@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIDA - AI: Do Anything!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
+    <link rel="icon" href="./images/icon.png">
+    <style> 
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+            color: #0f172a;
+            background: #fff;
+            line-height: 1.6;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .extension-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            background: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .extension-icon img {
+            width: 80px;
+            height: 80px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+        }
+        
+        /* Main Content */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            width: 100%;
+        }
+        
+        .section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        .feature-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        /* Screenshots Section */
+        .screenshot-feature {
+            margin-bottom: 3rem;
+        }
+        
+        .screenshot-main {
+            position: relative;
+            background: #f8fafc;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .screenshot-image-large {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            background: #f8fafc;
+            display: block;
+        }
+        
+        .screenshot-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .screenshot-overlay .screenshot-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .screenshot-overlay .screenshot-description {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .screenshot-item {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .screenshot-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .screenshot-image {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .screenshot-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            color: #1e293b;
+        }
+        
+        .screenshot-description {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border: 2px dashed #0ea5e9;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            color: #0369a1;
+            font-weight: 500;
+        }
+        
+        /* Legal Sections */
+        .legal-section {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .legal-section h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .legal-section p {
+            margin-bottom: 1rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+        
+        .legal-section ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .legal-section li {
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .footer-tagline {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #0ea5e9;
+        }
+        
+        .powered-by {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            color: #94a3b8;
+        }
+        
+        .powered-by a {
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .powered-by a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+    
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .screenshot-image-large {
+                max-height: 400px;
+            }
+            
+            .screenshot-overlay {
+                padding: 1.5rem;
+            }
+            
+            .screenshot-overlay .screenshot-title {
+                font-size: 1.3rem;
+            }
+            
+            main {
+                padding: 2rem 1rem;
+            }
+            
+            .header-content {
+                padding: 0 1rem;
+            }
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Navigation */
+        .nav-links {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav-link {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: static;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+        }
+    
+        /* Benefits Grid */
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .benefit-item {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        border: 1px solid #bae6fd;
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .benefit-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .benefit-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+    }
+    
+    .benefit-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .benefit-item h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #1e293b;
+    }
+    
+    .benefit-item p {
+        color: #475569;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+    
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#benefits" class="nav-link">Benefits</a>
+        <a href="#screenshots" class="nav-link">Screenshots</a>
+        <a href="#privacy" class="nav-link">Privacy</a>
+        <a href="#eula" class="nav-link">EULA</a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="extension-icon">
+                <img src="./images/icon.png" alt="AIDA Extension">
+            </div>
+            <h1>AIDA</h1>
+            <p class="tagline">AI: Do Anything!</p>
+            <p style="margin-top: 1rem; font-size: 1.1rem; opacity: 0.9;">
+                <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+                Advanced AI-Powered Browser Extension with Image Analysis, Context Menus, and Multi-Provider Support
+            </p>
+            <br/>
+            <hr>
+            <br/>
+            <div class="cta-buttons">
+                <a href="https://chromewebstore.google.com/detail/briefly-another-ai-powere/hijdfpfkdkkclkakhhpfjohnfjidppbp" class="btn btn-primary">
+                    <i class="bi bi-download"></i>
+                    Install from Chrome Web Store
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    <i class="bi bi-info-circle"></i>
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <h2 class="section-title">✨ Powerful Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Summarization</h3>
+                    <p class="feature-description">
+                        Extract and summarize the main content of any webpage with intelligent content filtering. 
+                        Get concise, accurate summaries while filtering out navigation, ads, and non-essential elements.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-translate"></i>
+                    </div>
+                    <h3 class="feature-title">Multi-language Translation</h3>
+                    <p class="feature-description">
+                        Translate webpage content to any language with a smart language picker. 
+                        Support for 100+ languages with context-aware translations.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-question-circle"></i>
+                    </div>
+                    <h3 class="feature-title">Ask Anything</h3>
+                    <p class="feature-description">
+                        Get AI-powered answers to specific questions about the current page content. 
+                        Perfect for research, learning, and understanding complex information.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-chat-dots"></i>
+                    </div>
+                    <h3 class="feature-title">Free Chat</h3>
+                    <p class="feature-description">
+                        Start open conversations with AI without being tied to a specific webpage. 
+                        Perfect for brainstorming, writing assistance, or general AI conversations.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-image"></i>
+                    </div>
+                    <h3 class="feature-title">AI Image Analysis</h3>
+                    <p class="feature-description">
+                        Right-click on any image to get detailed AI-powered analysis and insights. 
+                        Support for vision models across OpenAI, Claude, and Gemini for comprehensive image understanding.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-mouse"></i>
+                    </div>
+                    <h3 class="feature-title">Context Menu Integration</h3>
+                    <p class="feature-description">
+                        Right-click on selected text or images for instant AI analysis. 
+                        Quick access to summarization, sentiment analysis, and image analysis without opening the extension popup.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-emoji-expressionless"></i>
+                    </div>
+                    <h3 class="feature-title">Sentiment & Bias Detection</h3>
+                    <p class="feature-description">
+                        Analyze the emotional tone, sentiment, and potential bias in selected text. 
+                        Get comprehensive analysis with motivation explanations and visual indicators for clear understanding.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Notifications</h3>
+                    <p class="feature-description">
+                        Visual notification badges show when AI tasks are completed. 
+                        Stay informed about your background processing jobs with elegant visual feedback.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-download"></i>
+                    </div>
+                    <h3 class="feature-title">Export & Download</h3>
+                    <p class="feature-description">
+                        Export your AI-generated content as Markdown files. Download chat conversations, 
+                        summaries, and translations for offline use or sharing.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-description">
+                        All processing happens locally in your browser. Your data never leaves your device 
+                        except when sent to your chosen AI provider for processing.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-database"></i>
+                    </div>
+                    <h3 class="feature-title">Local Storage</h3>
+                    <p class="feature-description">
+                        All results are saved locally in IndexedDB for privacy and offline access. 
+                        Your data stays with you and is never shared with third parties.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-gear"></i>
+                    </div>
+                    <h3 class="feature-title">Multiple AI Providers</h3>
+                    <p class="feature-description">
+                        Support for OpenAI GPT-5/4.1, Anthropic Claude 4.1/3.7, and Google Gemini 2.5/2.0. 
+                        Choose your preferred provider and switch between them seamlessly.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <h3 class="feature-title">Knowledge Base Integration</h3>
+                    <p class="feature-description">
+                        Link knowledge base files directly to API configurations for enhanced AI responses. 
+                        Automatic semantic search retrieves relevant context from your knowledge base before each LLM call (Google & OpenAI), 
+                        with similarity-based filtering for accurate, context-aware answers.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+                    <h3 class="feature-title">Task Management</h3>
+                    <p class="feature-description">
+                        Background processing with real-time job status tracking. Monitor, cancel, and manage 
+                        all your AI tasks with comprehensive task controls and history.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-eye"></i>
+                    </div>
+                    <h3 class="feature-title">Vision Model Support</h3>
+                    <p class="feature-description">
+                        Dedicated vision models for image analysis across all supported LLM providers. 
+                        Get detailed insights, descriptions, and answers about any image content.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+                <!-- Key Benefits Section -->
+                <section id="benefits" class="section">
+                    <h2 class="section-title">🚀 Why Choose AIDA?</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="bi bi-lightning"></i>
+                            </div>
+                            <h3>Lightning Fast</h3>
+                            <p>Get AI-powered insights in seconds, not minutes. Our optimized processing ensures quick responses for all your content needs.</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="bi bi-universal-access"></i>
+                            </div>
+                            <h3>Universal Access</h3>
+                            <p>Work with any webpage content - articles, blogs, documentation, or start fresh conversations with our Free Chat feature.</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="bi bi-image"></i>
+                            </div>
+                            <h3>Visual Intelligence</h3>
+                            <p>Analyze images with AI vision models from multiple providers. Get detailed insights, descriptions, and answers about any visual content.</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="bi bi-arrow-repeat"></i>
+                            </div>
+                            <h3>Seamless Workflow</h3>
+                            <p>From reading to understanding to creating - streamline your entire content workflow in one powerful extension.</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="bi bi-mouse"></i>
+                            </div>
+                            <h3>Context-Aware</h3>
+                            <p>Right-click context menus provide instant access to AI analysis. No need to open the extension for quick text or image insights.</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                            <h3>Enterprise Ready</h3>
+                            <p>Perfect for professionals, researchers, students, and teams who need reliable, secure AI assistance with comprehensive task management.</p>
+                        </div>
+                    </div>
+                </section>
+
+
+
+        <!-- Screenshots Section -->
+        <section id="screenshots" class="section">
+            <h2 class="section-title">📱 Screenshots</h2>
+            
+            <!-- Main Interface - Large Feature -->
+            <div class="screenshot-feature">
+                <div class="screenshot-main">
+                    <img src="./images/screen1.png" alt="Main Extension Popup Interface" class="screenshot-image-large">
+                    <div class="screenshot-overlay">
+                        <h4 class="screenshot-title">Main Interface</h4>
+                        <p class="screenshot-description">
+                            Clean, modern popup with action buttons and language selection
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Secondary Screenshots Grid -->
+
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <img src="./images/screen2.png" alt="Results Management Tab" class="screenshot-image">
+                    <h4 class="screenshot-title">Results Tab</h4>
+                    <p class="screenshot-description">
+                        View, copy, and manage all your saved AI-generated content
+                    </p>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="./images/screen5.png" alt="Free Chat Interface" class="screenshot-image">
+                    <h4 class="screenshot-title">Free Chat</h4>
+                    <p class="screenshot-description">
+                        Open AI conversations with chat history and export functionality
+                    </p>
+                </div>
+                
+                <div class="screenshot-item">
+                    <img src="./images/screen3a.png" alt="Settings & Configuration" class="screenshot-image">
+                    <h4 class="screenshot-title">Settings Page</h4>
+                    <p class="screenshot-description">
+                        Configure API keys, select AI providers, and customize preferences
+                    </p>
+                </div>
+                
+                <div class="screenshot-item">
+                    <img src="./images/screen4.png" alt="Content Modal View" class="screenshot-image">
+                    <h4 class="screenshot-title">Content View</h4>
+                    <p class="screenshot-description">
+                        Full-screen modal for viewing detailed AI-generated content
+                    </p>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="./images/screen6.png" alt="Context Menu Integration" class="screenshot-image">
+                    <h4 class="screenshot-title">Context Menu</h4>
+                    <p class="screenshot-description">
+                        Right-click on text or images for instant AI analysis and summarization
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Policy Section -->
+        <section id="privacy" class="section">
+            <h2 class="section-title">🔒 Privacy Policy</h2>
+            <div class="legal-section">
+                <h3>Your Privacy Matters</h3>
+                <p>
+                    AIDA is designed with privacy as a core principle. We believe you should have complete control 
+                    over your data and how it's used.
+                </p>
+                
+                <h3>What We Collect</h3>
+                <ul>
+                    <li><strong>Extension Settings:</strong> Your preferences and configuration settings (stored locally only)</li>
+                    <li><strong>User Input:</strong> Text and prompts you enter when using AI features (stored locally only)</li>
+                    <li><strong>API Keys:</strong> Your AI service API keys (encrypted and stored locally only)</li>
+                </ul>
+                
+                <h3>What We DON'T Collect</h3>
+                <ul>
+                    <li>Personal identifiable information (names, emails, addresses)</li>
+                    <li>Browsing history or web activity</li>
+                    <li>Personal files or documents</li>
+                    <li>Location data or device information</li>
+                </ul>
+                
+                <h3>Data Storage &amp; Security</h3>
+                <ul>
+                    <li><strong>Local Storage Only:</strong> All data is stored locally in your browser's IndexedDB</li>
+                    <li><strong>No Cloud Sync:</strong> We don't store any data on external servers</li>
+                    <li><strong>Your Control:</strong> You can delete all data at any time through the extension</li>
+                </ul>
+                
+                <h3>Third-Party Services</h3>
+                <p>
+                    When you use AI features, your content is sent directly to your chosen AI provider 
+                    (OpenAI, Anthropic, or Google). We don't proxy, store, or access this data.
+                </p>
+                
+                <p style="margin-top: 2rem; padding: 1rem; background: #f0f9ff; border-radius: 8px; border-left: 4px solid #0ea5e9;">
+                    <strong>Key Point:</strong> Since all your data remains within your extension, 
+                    you have complete privacy by default. We cannot access, retrieve, or recover any information stored in your extension.
+                </p>
+            </div>
+        </section>
+
+        <!-- EULA Section -->
+        <section id="eula" class="section">
+            <h2 class="section-title">📋 End User License Agreement</h2>
+            <div class="legal-section">
+                <h3>License Terms</h3>
+                <p>
+                    By using the AIDA Chrome extension, you agree to be bound by the terms and conditions 
+                    of this End User License Agreement.
+                </p>
+                
+                <h3>What You Can Do</h3>
+                <ul>
+                    <li>Install and use the extension on compatible Chrome browsers</li>
+                    <li>Use the extension for personal, non-commercial purposes</li>
+                    <li>Access and use all features and functionality provided</li>
+                    <li>Store and manage your data locally within the extension</li>
+                </ul>
+                
+                <h3>What You Cannot Do</h3>
+                <ul>
+                    <li>Copy, modify, or create derivative works of the extension</li>
+                    <li>Reverse engineer, decompile, or disassemble the extension</li>
+                    <li>Remove or alter copyright, trademark, or proprietary notices</li>
+                    <li>Use the extension for illegal or unauthorized purposes</li>
+                    <li>Distribute, sublicense, or transfer the extension to third parties</li>
+                </ul>
+                
+                <h3>Your Responsibilities</h3>
+                <ul>
+                    <li><strong>API Key Security:</strong> You are responsible for the security of your AI service API keys</li>
+                    <li><strong>Content Responsibility:</strong> You are responsible for reviewing and verifying AI-generated content</li>
+                    <li><strong>Data Management:</strong> You are solely responsible for all data stored within the extension</li>
+                    <li><strong>Compliance:</strong> Ensure your use complies with applicable laws and AI service terms</li>
+                </ul>
+                
+                <h3>Data Ownership</h3>
+                <p>
+                    All content, conversations, and data generated or stored within the extension belong to you 
+                    and remain under your complete control. We have no access to or control over any information 
+                    you store or generate.
+                </p>
+                
+                <p style="margin-top: 2rem; padding: 1rem; background: #fef3c7; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <strong>Important:</strong> This is proprietary software. Commercial use requires written permission. 
+                    For licensing inquiries, contact: apps@organizer.solutions
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">AIDA</div>
+            <p class="footer-tagline">
+                Empowering your browsing experience with AI intelligence
+            </p>
+            
+            <div class="footer-links">
+                <a href="#features">Features</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#screenshots">Screenshots</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#eula">EULA</a>
+                <a href="mailto:apps@organizer.solutions">Contact</a>
+            </div>
+            
+            <div class="powered-by">
+                <p>
+                    Powered by <a href="https://organizer.solutions" target="_blank" rel="noopener">organizer.solutions</a>
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">
+                    © <span id="current-year"></span> AIDA. All rights reserved. Proprietary software.
+                    <script>
+                        document.getElementById('current-year').textContent = new Date().getFullYear();
+                    </script>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
