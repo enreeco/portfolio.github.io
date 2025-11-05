@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabDeck - Organize Your Browser Tabs Like Never Before</title>
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+
+            .nav-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 2rem;
+
+                .logo {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    color: #667eea;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 8px;
+                    }
+                }
+
+                .nav-links {
+                    display: flex;
+                    gap: 2rem;
+                    list-style: none;
+
+                    a {
+                        text-decoration: none;
+                        color: #333;
+                        font-weight: 500;
+                        transition: color 0.3s ease;
+
+                        &:hover {
+                            color: #667eea;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Hero section */
+        .hero {
+            padding: 120px 2rem 80px;
+            text-align: center;
+            color: white;
+
+            .hero-content {
+                max-width: 800px;
+                margin: 0 auto;
+
+                h1 {
+                    font-size: 3.5rem;
+                    margin-bottom: 1.5rem;
+                    font-weight: 700;
+                    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+                    .highlight {
+                        color: #ffd700;
+                    }
+                }
+
+                p {
+                    font-size: 1.3rem;
+                    margin-bottom: 2rem;
+                    opacity: 0.9;
+                }
+
+                .cta-buttons {
+                    display: flex;
+                    gap: 1rem;
+                    justify-content: center;
+                    flex-wrap: wrap;
+
+                    .btn {
+                        padding: 1rem 2rem;
+                        border: none;
+                        border-radius: 50px;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        text-decoration: none;
+                        transition: all 0.3s ease;
+                        cursor: pointer;
+
+                        &.primary {
+                            background: #ffd700;
+                            color: #333;
+
+                            &:hover {
+                                background: #ffed4e;
+                                transform: translateY(-2px);
+                                box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+                            }
+                        }
+
+                        &.secondary {
+                            background: transparent;
+                            color: white;
+                            border: 2px solid white;
+
+                            &:hover {
+                                background: white;
+                                color: #667eea;
+                                transform: translateY(-2px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Features section */
+        .features {
+            padding: 80px 2rem;
+            background: white;
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+
+                h2 {
+                    text-align: center;
+                    font-size: 2.5rem;
+                    margin-bottom: 3rem;
+                    color: #333;
+                }
+
+                .features-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 2rem;
+
+                    .feature-card {
+                        background: #f8f9fa;
+                        padding: 2rem;
+                        border-radius: 15px;
+                        text-align: center;
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                        &:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                        }
+
+                        .feature-icon {
+                            width: 80px;
+                            height: 80px;
+                            background: linear-gradient(135deg, #667eea, #764ba2);
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 1.5rem;
+                            font-size: 2rem;
+                            color: white;
+                        }
+
+                        h3 {
+                            font-size: 1.5rem;
+                            margin-bottom: 1rem;
+                            color: #333;
+                        }
+
+                        p {
+                            color: #666;
+                            line-height: 1.6;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* How it works section */
+        .how-it-works {
+            padding: 80px 2rem;
+            background: #f8f9fa;
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+
+                h2 {
+                    text-align: center;
+                    font-size: 2.5rem;
+                    margin-bottom: 3rem;
+                    color: #333;
+                }
+
+                .steps {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 2rem;
+
+                    .step {
+                        text-align: center;
+                        position: relative;
+
+                        .step-number {
+                            width: 60px;
+                            height: 60px;
+                            background: linear-gradient(135deg, #667eea, #764ba2);
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 1.5rem;
+                            font-size: 1.5rem;
+                            font-weight: bold;
+                            color: white;
+                        }
+
+                        h3 {
+                            font-size: 1.3rem;
+                            margin-bottom: 1rem;
+                            color: #333;
+                        }
+
+                        p {
+                            color: #666;
+                            line-height: 1.6;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Screenshots section */
+        .screenshots {
+            padding: 80px 2rem;
+            background: white;
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+
+                h2 {
+                    text-align: center;
+                    font-size: 2.5rem;
+                    margin-bottom: 3rem;
+                    color: #333;
+                }
+
+                .screenshot-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 2rem;
+
+                    .screenshot {
+                        background: #f8f9fa;
+                        border-radius: 15px;
+                        overflow: hidden;
+                        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                        transition: transform 0.3s ease;
+
+                        &:hover {
+                            transform: scale(1.02);
+                        }
+
+                        .screenshot-image {
+                            width: 100%;
+                            height: auto;
+                            display: block;
+                            border-radius: 15px 15px 0 0;
+                        }
+
+                        .screenshot-caption {
+                            padding: 1.5rem;
+                            text-align: center;
+
+                            h3 {
+                                margin-bottom: 0.5rem;
+                                color: #333;
+                            }
+
+                            p {
+                                color: #666;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 2rem;
+            text-align: center;
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+
+                .footer-content {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 2rem;
+
+                    .footer-logo {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        font-size: 1.2rem;
+                        font-weight: bold;
+
+                        img {
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 6px;
+                        }
+                    }
+
+                    .footer-links {
+                        display: flex;
+                        gap: 2rem;
+                        list-style: none;
+
+                        a {
+                            color: #ccc;
+                            text-decoration: none;
+                            transition: color 0.3s ease;
+
+                            &:hover {
+                                color: #ffd700;
+                            }
+                        }
+                    }
+                }
+
+                .footer-bottom {
+                    margin-top: 2rem;
+                    padding-top: 2rem;
+                    border-top: 1px solid #555;
+                    color: #ccc;
+                }
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+
+                .nav-links {
+                    gap: 1rem;
+                }
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features .features-grid,
+            .how-it-works .steps,
+            .screenshots .screenshot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card,
+        .step,
+        .screenshot {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Legal content styling */
+        .legal-content {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            margin: 1rem 0;
+        }
+
+        .legal-content h3 {
+            color: #333;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .legal-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .legal-content h4 {
+            color: #555;
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .legal-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .legal-content ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .legal-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .read-more-btn, .read-less-btn {
+            transition: all 0.3s ease;
+        }
+
+        .read-more-btn:hover, .read-less-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .summary-view, .full-view {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="assets/icon.png" alt="TabDeck Logo">
+                <span>TabDeck</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="#eula">EULA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Organize Your <span class="highlight">Browser Tabs</span> Like Never Before</h1>
+            <p>TabDeck transforms your chaotic browser experience into an organized, efficient workspace. Group, categorize, and manage your tabs with ease.</p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn primary">Get TabDeck Free</a>
+                <a href="#how-it-works" class="btn secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Why Choose TabDeck?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>Manual Tab Grouping</h3>
+                    <p>Create custom decks by selecting specific tabs or grouping all open tabs together. You have full control over how your tabs are organized.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Quick Search</h3>
+                    <p>Find any tab instantly with our powerful search functionality that searches through titles, URLs, and content.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Privacy First</h3>
+                    <p>Your data stays private. TabDeck processes everything locally and never shares your browsing information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>How TabDeck Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install & Setup</h3>
+                    <p>Download TabDeck from the Chrome Web Store and complete a quick setup process to customize your preferences.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Create Your Decks</h3>
+                    <p>Create new decks with all open tabs or selectively choose which tabs to add to specific decks based on your workflow needs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Customize & Refine</h3>
+                    <p>Organize your decks, rename them, and arrange tabs within each deck to match your specific workflow and preferences.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Enjoy Productivity</h3>
+                    <p>Experience a cleaner, more organized browser with faster tab switching and better focus on your work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <h2>See TabDeck in Action</h2>
+            <div class="screenshot-grid">
+                <div class="screenshot">
+                    <img src="assets/screen1.png" alt="TabDeck Main Interface" class="screenshot-image">
+                    <div class="screenshot-caption">
+                        <h3>Clean Dashboard</h3>
+                        <p>Organized view of all your tab groups and categories</p>
+                    </div>
+                </div>
+                <div class="screenshot">
+                    <img src="assets/screen2.png" alt="TabDeck Manual Grouping" class="screenshot-image">
+                    <div class="screenshot-caption">
+                        <h3>Manual Grouping</h3>
+                        <p>Create custom decks by selecting specific tabs</p>
+                    </div>
+                </div>
+                <div class="screenshot">
+                    <img src="assets/screen3.png" alt="TabDeck Settings Panel" class="screenshot-image">
+                    <div class="screenshot-caption">
+                        <h3>Customization</h3>
+                        <p>Personalize your TabDeck experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="features" id="download">
+        <div class="container">
+            <h2>Ready to Transform Your Browser?</h2>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://chromewebstore.google.com/detail/tabdeck-manage-your-works/bkbhaomcanclcpmnlnbdmaechdbgkcfe" class="btn primary" style="font-size: 1.3rem; padding: 1.5rem 3rem;">
+                    🚀 Download TabDeck Now
+                </a>
+                <p style="margin-top: 1rem; color: #666;">Free • No registration required • Works with Chrome, Edge, and other Chromium browsers</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section class="features" id="privacy">
+        <div class="container">
+            <h2>Privacy Policy</h2>
+            <div class="privacy-content" style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <div class="summary-view">
+                    <h3>Information We Collect</h3>
+                    <p>TabDeck is designed with privacy in mind. We collect minimal information to provide you with the best experience:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                        <li>Extension settings and preferences</li>
+                        <li>Workspace configurations and tab organization data</li>
+                        <li>Browser tab information (URLs, titles, and metadata)</li>
+                        <li>Extension usage statistics for performance improvement</li>
+                    </ul>
+                    
+                    <h3>What We Don't Collect</h3>
+                    <p>We do NOT collect:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                        <li>Personal identification information (names, emails, addresses)</li>
+                        <li>Financial information</li>
+                        <li>Sensitive browsing data or web page content</li>
+                        <li>Passwords or authentication credentials</li>
+                    </ul>
+                    
+                    <h3>Data Storage & Security</h3>
+                    <p>All your data is stored locally on your device. We do not transmit your data to external servers, ensuring your information remains completely private and under your control.</p>
+                    
+                    <p style="margin-top: 2rem; text-align: center;">
+                        <button class="btn primary read-more-btn" onclick="togglePrivacyReadMode()">📖 Read Full Privacy Policy</button>
+                    </p>
+                </div>
+                
+                <div class="full-view" style="display: none;">
+                    <div class="legal-content">
+                        <h3>1. Introduction</h3>
+                        <p>This Privacy Policy describes how TabDeck ("we," "our," or "us") collects, uses, and protects your information when you use our Chrome browser extension. We are committed to protecting your privacy and ensuring the security of your personal information.</p>
+                        
+                        <h3>2. Information We Collect</h3>
+                        <h4>2.1 Information You Provide</h4>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Extension settings and preferences</li>
+                            <li>Workspace configurations</li>
+                            <li>Tab organization data</li>
+                        </ul>
+                        
+                        <h4>2.2 Information Collected Automatically</h4>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Browser tab information (URLs, titles, and metadata)</li>
+                            <li>Extension usage statistics</li>
+                            <li>Browser compatibility information</li>
+                            <li>Performance and error logs</li>
+                        </ul>
+                        
+                        <h4>2.3 Information We Do Not Collect</h4>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Personal identification information (names, emails, addresses)</li>
+                            <li>Financial information</li>
+                            <li>Sensitive browsing data</li>
+                            <li>Content of web pages</li>
+                            <li>Passwords or authentication credentials</li>
+                        </ul>
+                        
+                        <h3>3. How We Use Your Information</h3>
+                        <p>We use the collected information to:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Provide and maintain the TabDeck extension functionality</li>
+                            <li>Improve user experience and extension performance</li>
+                            <li>Troubleshoot technical issues</li>
+                            <li>Analyze usage patterns to enhance features</li>
+                            <li>Ensure compatibility with different browser versions</li>
+                        </ul>
+                        
+                        <h3>4. Data Storage and Security</h3>
+                        <h4>4.1 Local Storage</h4>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>All data is stored locally on your device</li>
+                            <li>We do not transmit your data to external servers</li>
+                            <li>Your information remains under your control</li>
+                        </ul>
+                        
+                        <h4>4.2 Security Measures</h4>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Data is encrypted when stored locally</li>
+                            <li>We implement industry-standard security practices</li>
+                            <li>Regular security updates and patches</li>
+                        </ul>
+                        
+                        <h3>5. Data Sharing and Disclosure</h3>
+                        <p>We do not:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Sell, trade, or rent your personal information</li>
+                            <li>Share your data with third parties</li>
+                            <li>Use your information for marketing purposes</li>
+                            <li>Access your browsing history or web content</li>
+                        </ul>
+                        
+                        <h3>6. Third-Party Services</h3>
+                        <p>TabDeck may integrate with:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Chrome Web Store (for installation and updates)</li>
+                            <li>Google Chrome browser APIs</li>
+                            <li>These services have their own privacy policies</li>
+                        </ul>
+                        
+                        <h3>7. Data Retention</h3>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Your data is stored locally and persists until you uninstall the extension</li>
+                            <li>You can clear all data through the extension's settings</li>
+                            <li>No data is retained on our servers after uninstallation</li>
+                        </ul>
+                        
+                        <h3>8. Your Rights and Choices</h3>
+                        <p>You have the right to:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Access your stored data through the extension</li>
+                            <li>Modify or delete your preferences</li>
+                            <li>Uninstall the extension and remove all data</li>
+                            <li>Contact us with privacy concerns</li>
+                        </ul>
+                        
+                        <h3>9. Children's Privacy</h3>
+                        <p>TabDeck is not intended for use by children under 13 years of age. We do not knowingly collect personal information from children under 13.</p>
+                        
+                        <h3>10. International Users</h3>
+                        <p>If you are using TabDeck from outside your country, please note that your information may be transferred to and stored in your country where our servers are located.</p>
+                        
+                        <h3>11. Changes to This Privacy Policy</h3>
+                        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Posting the new Privacy Policy on our website</li>
+                            <li>Updating the extension with a notification</li>
+                            <li>Continuing to use the extension after changes constitutes acceptance</li>
+                        </ul>
+                        
+                        <h3>12. Contact Information</h3>
+                        <p>If you have any questions about this Privacy Policy or our data practices, please contact us.</p>
+                        
+                        <h3>13. Legal Basis for Processing</h3>
+                        <p>Our processing of your information is based on:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Your consent to use the extension</li>
+                            <li>The legitimate interest of providing and improving our services</li>
+                            <li>Compliance with legal obligations</li>
+                        </ul>
+                        
+                        <h3>14. Data Protection Rights</h3>
+                        <p>If you are a resident of certain jurisdictions (such as the European Union), you may have additional rights regarding your personal data, including:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Right to access and portability</li>
+                            <li>Right to rectification</li>
+                            <li>Right to erasure</li>
+                            <li>Right to restrict processing</li>
+                            <li>Right to object to processing</li>
+                        </ul>
+                        
+                        <p style="margin-top: 2rem; font-style: italic; color: #666;">
+                            By using TabDeck, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.
+                        </p>
+                    </div>
+                    
+                    <p style="margin-top: 2rem; text-align: center;">
+                        <button class="btn secondary read-less-btn" onclick="togglePrivacyReadMode()">📄 Show Summary</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EULA Section -->
+    <section class="how-it-works" id="eula">
+        <div class="container">
+            <h2>End User License Agreement</h2>
+            <div class="eula-content" style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <div class="summary-view">
+                    <h3>License Terms</h3>
+                    <p>By using TabDeck, you agree to the following terms:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                        <li>You may install and use TabDeck on your personal devices</li>
+                        <li>Use is limited to personal, non-commercial purposes</li>
+                        <li>You may not modify, reverse engineer, or distribute the software</li>
+                        <li>You may not use the software for illegal or unauthorized purposes</li>
+                    </ul>
+                    
+                    <h3>Intellectual Property</h3>
+                    <p>TabDeck and all related intellectual property rights are owned by the developers. This agreement does not grant you any rights to trademarks, service marks, or trade names associated with the software.</p>
+                    
+                    <h3>Disclaimer</h3>
+                    <p>The software is provided "AS IS" without warranty of any kind. We are not liable for any damages arising from the use of this software.</p>
+                    
+                    <p style="margin-top: 2rem; text-align: center;">
+                        <button class="btn primary read-more-btn" onclick="toggleEulaReadMode()">📖 Read Full EULA</button>
+                    </p>
+                </div>
+                
+                <div class="full-view" style="display: none;">
+                    <div class="legal-content">
+                        <h3>1. Acceptance of Terms</h3>
+                        <p>By installing, copying, or otherwise using the TabDeck Chrome Extension ("Software"), you agree to be bound by the terms of this End User License Agreement ("Agreement"). If you do not agree to the terms of this Agreement, do not install or use the Software.</p>
+                        
+                        <h3>2. Description of Software</h3>
+                        <p>TabDeck is a Chrome browser extension that helps users manage and organize their browser tabs and workspaces more efficiently.</p>
+                        
+                        <h3>3. License Grant</h3>
+                        <p>Subject to the terms of this Agreement, you are granted a limited, non-exclusive, non-transferable license to:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Install and use the Software on your personal devices</li>
+                            <li>Use the Software solely for your personal, non-commercial purposes</li>
+                        </ul>
+                        
+                        <h3>4. Restrictions</h3>
+                        <p>You may not:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem; color: #666;">
+                            <li>Copy, modify, or create derivative works of the Software</li>
+                            <li>Reverse engineer, decompile, or disassemble the Software</li>
+                            <li>Remove or alter any proprietary notices or labels on the Software</li>
+                            <li>Use the Software for any illegal or unauthorized purpose</li>
+                            <li>Distribute, sublicense, or transfer the Software to third parties</li>
+                        </ul>
+                        
+                        <h3>5. Intellectual Property</h3>
+                        <p>The Software and all related intellectual property rights are owned by the developers of TabDeck. This Agreement does not grant you any rights to trademarks, service marks, or trade names associated with the Software.</p>
+                        
+                        <h3>6. Privacy</h3>
+                        <p>Your use of the Software is also governed by our Privacy Policy, which is incorporated by reference into this Agreement.</p>
+                        
+                        <h3>7. Disclaimer of Warranties</h3>
+                        <p>THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+                        
+                        <h3>8. Limitation of Liability</h3>
+                        <p>IN NO EVENT SHALL THE DEVELOPERS OF TABDECK BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, OR USE, INCURRED BY YOU OR ANY THIRD PARTY, WHETHER IN AN ACTION IN CONTRACT OR TORT, EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+                        
+                        <h3>9. Termination</h3>
+                        <p>This license is effective until terminated. Your rights under this license will terminate automatically without notice if you fail to comply with any of its terms and conditions.</p>
+                        
+                        <h3>10. Governing Law</h3>
+                        <p>This Agreement shall be governed by and construed in accordance with the laws of your jurisdiction, without regard to its conflict of law provisions.</p>
+                        
+                        <h3>11. Entire Agreement</h3>
+                        <p>This Agreement constitutes the entire agreement between you and the developers of TabDeck concerning the Software and supersedes all prior or contemporaneous agreements, whether written or oral.</p>
+                        
+                        <h3>12. Contact Information</h3>
+                        <p>If you have any questions about this Agreement, please contact us.</p>
+                        
+                        <p style="margin-top: 2rem; font-style: italic; color: #666;">
+                            By using TabDeck, you acknowledge that you have read this Agreement, understand it, and agree to be bound by its terms and conditions.
+                        </p>
+                    </div>
+                    
+                    <p style="margin-top: 2rem; text-align: center;">
+                        <button class="btn secondary read-less-btn" onclick="toggleEulaReadMode()">📄 Show Summary</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/icon.png" alt="TabDeck Logo">
+                    <span>TabDeck</span>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#screenshots">Screenshots</a></li>
+                    <li><a href="#download">Download</a></li>
+                    <li><a href="#privacy">Privacy</a></li>
+                    <li><a href="#eula">EULA</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="footer-year"></span> TabDeck. All rights reserved. Made with ❤️ for better browsing.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Powered by <a href="https://organizer.solutions" target="_blank" style="color: #ffd700; text-decoration: none;">ORGanizer.solutions</a></p>
+                <script>
+                    document.getElementById('footer-year').textContent = new Date().getFullYear();
+                </script>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.feature-card, .step, .screenshot').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Read mode toggle functions
+        function togglePrivacyReadMode() {
+            const summaryView = document.querySelector('#privacy .summary-view');
+            const fullView = document.querySelector('#privacy .full-view');
+            
+            if (summaryView.style.display !== 'none') {
+                summaryView.style.display = 'none';
+                fullView.style.display = 'block';
+                // Smooth scroll to top of section
+                document.getElementById('privacy').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                fullView.style.display = 'none';
+                summaryView.style.display = 'block';
+            }
+        }
+
+        function toggleEulaReadMode() {
+            const summaryView = document.querySelector('#eula .summary-view');
+            const fullView = document.querySelector('#eula .full-view');
+            
+            if (summaryView.style.display !== 'none') {
+                summaryView.style.display = 'none';
+                fullView.style.display = 'block';
+                // Smooth scroll to top of section
+                document.getElementById('eula').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                fullView.style.display = 'none';
+                summaryView.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
