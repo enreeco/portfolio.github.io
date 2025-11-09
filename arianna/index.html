@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ARIANNA — Your Intelligent Bookmark & Knowledge Companion</title>
+    <title>ARIANNA — Your Intelligent Bookmark Companion</title>
     <link rel="icon" href="./images/icon.png" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="../assets/vendor/bootstrap-icons-1.31.1/bootstrap-icons.min.css" />
@@ -20,7 +20,7 @@
           <a href="#how">How it works</a>
           <a href="#faq">FAQ</a>
           <a href="#privacy">Privacy</a>
-          <a class="cta" href="https://chromewebstore.google.com/detail/arianna-your-intelligent/lnmmdenmcbbdkibohdoppijlachgggmc"><i class="bi bi-download"></i><span>Install</span></a>
+          <a class="cta" href="#install"><i class="bi bi-download"></i><span>Install</span></a>
         </nav>
       </div>
     </header>
@@ -143,6 +143,43 @@
           <h2 class="section-heading"><i class="bi bi-shield-lock"></i><span>Privacy Policy</span></h2>
           <div class="feature">
             <p>We care about your privacy. This policy explains what data ARIANNA processes and how it is handled.</p>
+            
+            <h4>Google User Data Accessed</h4>
+            <p>When you connect your Google Account to enable Drive sync, ARIANNA accesses the following Google user data:</p>
+            <ul>
+              <li><strong>Google Drive Files</strong>: Access to create, read, update, and delete files in a dedicated app folder (<code>A.R.I.A.N.N.A._Backups</code>) in your Google Drive. This access is limited to files created by ARIANNA only.</li>
+              <li><strong>Email Address</strong>: Your Google account email address, used to identify which account is connected to the extension.</li>
+            </ul>
+            
+            <h4>How Google User Data is Used</h4>
+            <p>ARIANNA uses the Google user data it accesses as follows:</p>
+            <ul>
+              <li><strong>Google Drive Files</strong>: 
+                <ul>
+                  <li>Creates and stores bookmark backup files (JSON format) in your personal Google Drive app folder</li>
+                  <li>Reads backup files to restore your bookmarks when requested</li>
+                  <li>Manages backup versions by creating new backups and deleting old ones (up to a configurable limit)</li>
+                  <li>All file operations are restricted to the app-specific folder created by ARIANNA</li>
+                </ul>
+              </li>
+              <li><strong>Email Address</strong>: 
+                <ul>
+                  <li>Displayed in the extension interface to show which Google account is currently connected</li>
+                  <li>Used for authentication and authorization purposes only</li>
+                  <li>Not stored, shared, or used for any other purpose</li>
+                </ul>
+              </li>
+            </ul>
+            
+            <h4>Google User Data Storage and Processing</h4>
+            <ul>
+              <li>Backup files are stored directly in your Google Drive account in an app-specific folder that you control</li>
+              <li>OAuth access and refresh tokens are stored locally in your browser using Chrome's encrypted storage (AES-GCM encryption)</li>
+              <li>No Google user data is transmitted to or stored on external servers operated by ARIANNA</li>
+              <li>All data processing occurs locally in your browser or through direct API calls to Google services</li>
+              <li>You can revoke access at any time by disconnecting your Google account in the extension settings or through your Google Account settings</li>
+            </ul>
+            
             <h4>Data we access</h4>
             <ul>
               <li>Bookmarks: read and write to your browser's native bookmarks to save, restore, and organize.</li>
