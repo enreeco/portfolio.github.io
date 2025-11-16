@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINO: Links IN / Links Out – WordPress Short Link Plugin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="./assets/icon.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #1a1a1a;
+        }
+        .page-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        .cardish {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+        .navbar-brand img {
+            height: 36px;
+        }
+        .btn-primary {
+            background-color: #2563eb;
+            border-color: #2563eb;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+            border-color: #1d4ed8;
+        }
+        .hero {
+            padding: 32px;
+        }
+        .hero h1 {
+            font-weight: 700;
+            color: #1e293b;
+        }
+        .hero .tagline {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        .section {
+            padding: 28px;
+        }
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .muted {
+            color: #64748b;
+        }
+        footer {
+            margin: 18px auto 28px;
+            text-align: center;
+            background: #1e293b;
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 14px;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .badge-new {
+            background: #2563eb;
+        }
+        .feature-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .icon-large {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 24px;
+            display: block;
+        }
+    </style>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <nav class="navbar navbar-light mb-3">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <img src="./assets/icon.png" alt="LINO logo">
+                <span class="fw-bold">LINO</span>
+            </a>
+            <div class="d-none d-sm-flex align-items-center gap-2">
+                <span class="small muted">WordPress Plugin</span>
+            </div>
+        </nav>
+
+        <section class="hero cardish text-center">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-6 p-4">
+                    <img src="./assets/icon.png" alt="LINO icon" class="icon-large">
+                    <h1 class="mb-2">LINO: Links IN / Links Out</h1>
+                    <p class="lead tagline mb-3">Bitly-style short links for WordPress with advanced routing, dual redirect modes, click statistics, and seamless Gutenberg integration. No external services required.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                        <a href="#features" class="btn btn-primary btn-lg">Explore Features</a>
+                        <a href="#how" class="btn btn-outline-primary btn-lg">How it works</a>
+                    </div>
+                </div>
+                <div class="col-md-6 p-4">
+                    <div class="highlight-box text-start">
+                        <h5 class="fw-bold mb-3">Key Highlights</h5>
+                        <ul class="mb-0">
+                            <li>Custom URL routing: <code>/go/{slug}</code></li>
+                            <li>Backend & UI redirect modes</li>
+                            <li>Daily click statistics</li>
+                            <li>Gutenberg block integration</li>
+                            <li>CSV export/import</li>
+                            <li>No external APIs required</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section mt-3 cardish" id="features">
+            <h2 class="mb-4">Core Features</h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h5 class="mt-2 mb-1">Custom URL Routing</h5>
+                        <p class="mb-0 muted">Create short links in the format <code>your-domain.com/go/{slug}</code>. Auto-generate unique slugs or use custom ones. Supports alphanumeric characters and underscores.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h5 class="mt-2 mb-1">Dual Redirect Modes</h5>
+                        <p class="mb-0 muted"><strong>Backend Mode:</strong> Fast HTTP 302 redirects for API integrations and campaigns. <strong>UI Mode:</strong> Customizable countdown page with skip button or use any WordPress page as template.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h5 class="mt-2 mb-1">Click Statistics</h5>
+                        <p class="mb-0 muted">Daily aggregated statistics track total clicks, last click date, and daily counts. All data stored in dedicated database tables with automatic aggregation.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎛️</div>
+                        <h5 class="mt-2 mb-1">Admin Management</h5>
+                        <p class="mb-0 muted">Comprehensive admin interface with sortable tables, real-time search, bulk operations, and direct links to short URLs. Enable/disable links individually or in bulk.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧩</div>
+                        <h5 class="mt-2 mb-1">Gutenberg Block</h5>
+                        <p class="mb-0 muted">Insert short links directly in posts and pages with the LINO Link block. Dropdown selector of all active links with optional custom labels. Server-side rendering for optimal performance.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">📥</div>
+                        <h5 class="mt-2 mb-1">Export & Import</h5>
+                        <p class="mb-0 muted">Export all links to CSV (UTF-8 with BOM for Excel). Import with duplicate handling options. Perfect for migrating between sites or backing up your links.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section mt-3 cardish" id="how">
+            <h2 class="mb-4">How it works</h2>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="p-3 rounded h-100" style="background: #f1f5f9;">
+                        <h6 class="mb-1">1) Install</h6>
+                        <p class="mb-0 muted small">Upload and activate the plugin in WordPress admin.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-3 rounded h-100" style="background: #f1f5f9;">
+                        <h6 class="mb-1">2) Flush Permalinks</h6>
+                        <p class="mb-0 muted small">Go to Settings → Permalinks → Save Changes to register the custom route.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-3 rounded h-100" style="background: #f1f5f9;">
+                        <h6 class="mb-1">3) Create Links</h6>
+                        <p class="mb-0 muted small">Add short links via LINO → Links. Auto-generate slugs or create custom ones.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-3 rounded h-100" style="background: #f1f5f9;">
+                        <h6 class="mb-1">4) Use & Track</h6>
+                        <p class="mb-0 muted small">Share your short links and monitor click statistics in the admin interface.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section mt-3 cardish" id="technical">
+            <h2 class="mb-4">Technical Details</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5>URL Format</h5>
+                    <div class="code-block">
+https://your-domain.com/go/{slug}
+                    </div>
+                    <p class="muted small">Slug format: 1-50 alphanumeric characters (a-z, A-Z, 0-9) and underscores.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Database Tables</h5>
+                    <ul class="muted">
+                        <li><code>wp_sl_links</code> – Stores link definitions</li>
+                        <li><code>wp_sl_stats</code> – Daily aggregated click statistics</li>
+                    </ul>
+                    <p class="muted small">Both tables are created automatically on plugin activation.</p>
+                </div>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-md-6">
+                    <h5>Redirect Modes</h5>
+                    <div class="highlight-box">
+                        <strong>Backend Mode:</strong> HTTP 302 redirect, immediate server-side redirect, no UI.<br>
+                        <strong>UI Mode:</strong> Custom countdown page (default template or custom WordPress page with <code>[wp_sl_redirect]</code> shortcode).
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5>Gutenberg Block</h5>
+                    <div class="highlight-box">
+                        <strong>Block Name:</strong> LINO Link (<code>wp-sl/short-link</code>)<br>
+                        <strong>Category:</strong> Common blocks<br>
+                        <strong>Features:</strong> Dropdown selector, custom labels, server-side rendering.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section mt-3 cardish" id="use-cases">
+            <h2 class="mb-4">Use Cases</h2>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <h6 class="fw-bold">Affiliate Marketing</h6>
+                        <p class="mb-0 muted small">Track affiliate links with click statistics and manage campaigns through the admin interface.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <h6 class="fw-bold">Campaign Tracking</h6>
+                        <p class="mb-0 muted small">Create memorable short URLs for marketing campaigns and monitor their performance with daily statistics.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <h6 class="fw-bold">Content Management</h6>
+                        <p class="mb-0 muted small">Use the Gutenberg block to insert short links directly in posts and pages for seamless content creation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section mt-3 cardish">
+            <h2 class="mb-3">Requirements</h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <ul class="muted">
+                        <li><strong>WordPress:</strong> 5.0+ (for Gutenberg block support)</li>
+                        <li><strong>PHP:</strong> 7.0+</li>
+                        <li><strong>No external services:</strong> Fully self-contained</li>
+                        <li><strong>No API keys:</strong> Works out of the box</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="highlight-box">
+                        <strong>Note:</strong> After installation, you must flush permalinks (Settings → Permalinks → Save Changes) for the custom <code>/go/{slug}</code> route to work.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section mt-3 cardish">
+            <div class="muted small">
+                <h3>Security Features</h3>
+                <ul>
+                    <li>Nonce verification on all admin form submissions</li>
+                    <li>Capability checks (requires <code>manage_options</code>)</li>
+                    <li>SQL injection protection via <code>$wpdb->prepare()</code></li>
+                    <li>XSS protection with <code>esc_html()</code>, <code>esc_url()</code>, <code>esc_attr()</code></li>
+                    <li>CSRF protection with WordPress nonces</li>
+                    <li>Input sanitization before database operations</li>
+                    <li>URL validation with <code>esc_url_raw()</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            Powered by <a href="https://organizer.solutions" target="_blank" rel="noopener">ORGanizer.solutions</a> | &copy; <script>document.write(new Date().getFullYear());</script> Enrico Murru
+        </footer>
+    </div>
+</body>
+</html>
+
