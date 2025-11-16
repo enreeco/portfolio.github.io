@@ -127,7 +127,8 @@
                     <h1 class="mb-2">LINO: Links IN / Links Out</h1>
                     <p class="lead tagline mb-3">Bitly-style short links for WordPress with advanced routing, dual redirect modes, click statistics, and seamless Gutenberg integration. No external services required.</p>
                     <div class="d-flex flex-wrap justify-content-center gap-2">
-                        <a href="#features" class="btn btn-primary btn-lg">Explore Features</a>
+                        <a href="https://github.com/enreeco/lino-shortlinks-wordpress-plugin" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">View on GitHub</a>
+                        <a href="#features" class="btn btn-outline-primary btn-lg">Explore Features</a>
                         <a href="#how" class="btn btn-outline-primary btn-lg">How it works</a>
                     </div>
                 </div>
@@ -318,6 +319,33 @@ https://your-domain.com/go/{slug}
                     <li>Input sanitization before database operations</li>
                     <li>URL validation with <code>esc_url_raw()</code></li>
                 </ul>
+            </div>
+        </section>
+
+        <section class="section mt-3 cardish">
+            <h2 class="mb-3">Resources</h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <h5 class="fw-bold mb-2">📦 Source Code & Build Script</h5>
+                        <p class="mb-3 muted">The complete source code, build script, and documentation are available on GitHub.</p>
+                        <a href="https://github.com/enreeco/lino-shortlinks-wordpress-plugin" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            View Repository on GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <h5 class="fw-bold mb-2">🔧 Building the Plugin</h5>
+                        <p class="mb-2 muted small">To create the plugin ZIP file from source:</p>
+                        <ol class="muted small mb-0">
+                            <li>Navigate to the <code>build_script</code> directory</li>
+                            <li>Install dependencies: <code>npm install</code></li>
+                            <li>Run the build: <code>npm run build</code></li>
+                            <li>Find the ZIP in <code>build_script/release/</code></li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </section>
 
