@@ -45,6 +45,23 @@
 
     .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
+    /* ── Alpha flag ──────────────────────────────────────────────────────── */
+    .flag-alpha {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      line-height: 1;
+      padding: 4px 7px;
+      border-radius: 5px;
+      background: #fff4d6;
+      color: #8a5a00;
+      border: 1px solid #f3d58a;
+    }
+    .eyebrow-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
     /* ── Header (same look as the app header) ───────────────────────────── */
     .topbar {
       background: var(--surface);
@@ -444,6 +461,7 @@
       <a class="brand" href="#top" aria-label="Zibaldone home">
         <img src="./assets/logo.svg" alt="">
         <strong>Zibaldone</strong>
+        <span class="flag-alpha" title="Early release: expect rough edges">Alpha</span>
       </a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navlinks"><i class="bi bi-list"></i></button>
       <nav class="navlinks" id="navlinks" aria-label="Main navigation">
@@ -461,7 +479,10 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <span class="eyebrow"><i class="bi bi-plug"></i> MCP server • Web app</span>
+          <div class="eyebrow-row">
+            <span class="eyebrow"><i class="bi bi-plug"></i> MCP server • Web app</span>
+            <span class="flag-alpha">Alpha</span>
+          </div>
           <h1>Your AI conversations, <em>distilled</em> into a personal knowledge base.</h1>
           <p class="lead">Zibaldone lets your AI assistant publish the insights, decisions and snippets worth keeping — then find them again in any future chat with hybrid semantic search.</p>
           <div class="cta">

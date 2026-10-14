@@ -125,6 +125,21 @@
 
     .card p { margin: 0; color: var(--text-soft); font-size: 13px; }
 
+    .flag-alpha {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 6px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      line-height: 1;
+      padding: 3px 6px;
+      border-radius: 5px;
+      background: rgba(255, 196, 0, 0.16);
+      border: 1px solid rgba(255, 196, 0, 0.45);
+      color: #ffd666;
+    }
+
     .external .icon {
       display: inline-flex;
       align-items: center;
@@ -176,7 +191,7 @@
     </header>
 
     <section class="grid" aria-label="Products">
-      <!-- Alphabetical: AIDA, ARIANNA, Branch Bracon, Cartanova, InBuddy, LINO, Minimal Blog, NEXUS, Tab Deck, Zibaldone -->
+      <!-- Alphabetical: AIDA, ARIANNA, Branch Bracon, Cartanova, Cifra, InBuddy, LINO, Minimal Blog, NEXUS, Tab Deck, Zibaldone -->
       <a class="card" href="aida/">
         <span class="badge">extension</span>
         <div class="icon"><img src="aida/images/icon.png" alt="AIDA icon" /></div>
@@ -200,6 +215,12 @@
         <div class="icon"><img src="cartanova/assets/icon.png" alt="Cartanova icon" /></div>
         <h3>Cartanova</h3>
         <p>Lightweight, dependency‑free Markdown → HTML converter with safe output.</p>
+      </a>
+      <a class="card" href="cifra/">
+        <span class="badge">extension</span>
+        <div class="icon" style="background:#fff;padding:9px"><img src="cifra/assets/logo.svg" alt="Cifra icon" /></div>
+        <h3>Cifra <span class="flag-alpha">ALPHA</span></h3>
+        <p>Zero-knowledge 2FA authenticator: the TOTP code for the site you're on, synced end-to-end encrypted.</p>
       </a>
       <a class="card" href="inbuddy/">
         <span class="badge">extension</span>
@@ -234,7 +255,7 @@
       <a class="card" href="zibaldone/">
         <span class="badge">mcp server</span>
         <div class="icon"><img src="zibaldone/assets/icon.png" alt="Zibaldone icon" /></div>
-        <h3>Zibaldone</h3>
+        <h3>Zibaldone <span class="flag-alpha">ALPHA</span></h3>
         <p>Personal knowledge base for your AI assistants: MCP server plus web app with semantic search.</p>
       </a>
 
