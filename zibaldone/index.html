@@ -239,7 +239,6 @@
     .scope { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; padding: 1px 6px; border-radius: 4px; }
     .scope.read { background: #e7f0fb; color: #1f4f86; }
     .scope.write { background: var(--primary-light); color: var(--primary); }
-    .scope.local { background: #f4ecdf; color: #7a4f12; }
     .tool-detail h3 { font-size: 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .tool-detail h3 code { font-size: 16px; }
     .tool-detail > p { color: var(--text-secondary); margin: 6px 0 14px; font-size: 15px; }
@@ -353,7 +352,7 @@
     .copy-btn:hover { background: rgba(255, 255, 255, 0.16); }
 
     /* Deploy */
-    .deploy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .deploy { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .deploy .card ul { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; color: var(--text-secondary); }
     .deploy .card li { display: flex; gap: 8px; }
     .deploy .card li i { color: var(--primary); }
@@ -541,10 +540,6 @@
             <p>Deleted entries go to the bin for 30 days. Restore or purge them one by one or in bulk.</p>
           </article>
           <article class="card reveal">
-            <h3><i class="bi bi-folder2-open"></i> Bulk file ingestion</h3>
-            <p>Running locally? Index a single file or a whole folder of notes as a background job, and poll its progress.</p>
-          </article>
-          <article class="card reveal">
             <h3><i class="bi bi-arrow-left-right"></i> Import / Export JSON</h3>
             <p>Versioned, portable JSON backups. Move your knowledge between machines or storage backends.</p>
           </article>
@@ -561,7 +556,7 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div class="kicker"><i class="bi bi-tools"></i> MCP tools</div>
-          <h2>Nine tools your agent understands</h2>
+          <h2>Six tools your agent understands</h2>
           <p>Pick a tool to see an example call and response. An optional agent skill teaches assistants when to publish and when to search.</p>
         </div>
         <div class="panel tools reveal">
@@ -671,18 +666,9 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div class="kicker"><i class="bi bi-hdd-stack"></i> Deployment</div>
-          <h2>Start simple, grow without switching tools</h2>
+          <h2>Built for the cloud, private by design</h2>
         </div>
         <div class="deploy">
-          <article class="card reveal">
-            <h3><i class="bi bi-laptop"></i> Local</h3>
-            <p>Zero external services: everything runs on your machine.</p>
-            <ul>
-              <li><i class="bi bi-check2"></i> Embedded SQLite with FTS5</li>
-              <li><i class="bi bi-check2"></i> File &amp; folder ingestion</li>
-              <li><i class="bi bi-check2"></i> Streamable HTTP transport</li>
-            </ul>
-          </article>
           <article class="card reveal">
             <h3><i class="bi bi-cloud"></i> Cloud</h3>
             <p>Heroku-ready, with production hardening built in.</p>
@@ -869,16 +855,7 @@
           res: { success: true, message: 'Entry "Retry with exponential backoff" moved to bin. It can be recovered from the web UI within 30 days.' } },
         { name: 'list_categories', scope: 'read', desc: 'Discover the categories, tags and vaults available for this user.',
           req: {},
-          res: { categories: [{ name: 'decision' }, { name: 'snippet' }], tags: [{ tag: 'postgres', count: 3 }], vaults: [{ id: null, name: 'Default' }, { id: '436d…0f31', name: 'Work' }] } },
-        { name: 'ingest_file', scope: 'local', desc: 'Index a single local text file (up to 1 MB). Available when running locally.',
-          req: { file_path: '/notes/postgres-tuning.md', tags: ['postgres'] },
-          res: { id: 'f09a…11c2', file: 'postgres-tuning.md', size_kb: '4.2', message: 'File "postgres-tuning.md" successfully indexed into Zibaldone.' } },
-        { name: 'ingest_folder', scope: 'local', desc: 'Queue a whole folder for background ingestion and get a job id back immediately.',
-          req: { folder_path: '/notes', recursive: true, tags: ['notes'] },
-          res: { job_id: '5d2e…a7b0', status: 'pending', folder: '/notes', total_files: 128 } },
-        { name: 'check_ingest_job', scope: 'local', desc: 'Poll the status of an ingestion job.',
-          req: { job_id: '5d2e…a7b0' },
-          res: { status: 'completed', successful_files: 121, skipped_files: 6, failed_files: 1 } }
+          res: { categories: [{ name: 'decision' }, { name: 'snippet' }], tags: [{ tag: 'postgres', count: 3 }], vaults: [{ id: null, name: 'Default' }, { id: '436d…0f31', name: 'Work' }] } }
       ];
 
       function esc(s) {
