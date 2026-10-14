@@ -452,7 +452,7 @@
         <a href="#mcp">MCP tools</a>
         <a href="#screenshots">Screenshots</a>
         <a href="#connect">Connect</a>
-        <a class="btn-gh" href="https://github.com/enreeco/mcp-history-chat-knowledge-service-v1" target="_blank" rel="noopener"><i class="bi bi-github"></i> GitHub</a>
+        <a class="btn-gh" href="https://zibaldone.organizer.solutions" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Open app</a>
       </nav>
     </div>
   </header>
@@ -462,17 +462,17 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <span class="eyebrow"><i class="bi bi-plug"></i> MCP server • Web app • Open source</span>
+          <span class="eyebrow"><i class="bi bi-plug"></i> MCP server • Web app</span>
           <h1>Your AI conversations, <em>distilled</em> into a personal knowledge base.</h1>
           <p class="lead">Zibaldone lets your AI assistant publish the insights, decisions and snippets worth keeping — then find them again in any future chat with hybrid semantic search.</p>
           <div class="cta">
-            <a class="btn primary" href="https://github.com/enreeco/mcp-history-chat-knowledge-service-v1" target="_blank" rel="noopener"><i class="bi bi-github"></i> Get it on GitHub</a>
+            <a class="btn primary" href="https://zibaldone.organizer.solutions" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Open Zibaldone</a>
             <a class="btn ghost" href="#how"><i class="bi bi-diagram-3"></i> How it works</a>
           </div>
           <div class="hero-meta">
             <span><i class="bi bi-check2-circle"></i> Claude, ChatGPT, Cursor, Copilot</span>
             <span><i class="bi bi-check2-circle"></i> SQLite or PostgreSQL</span>
-            <span><i class="bi bi-check2-circle"></i> MIT licensed</span>
+            <span><i class="bi bi-check2-circle"></i> OAuth 2.1 sign-in</span>
           </div>
         </div>
         <div class="browser">
@@ -621,13 +621,12 @@
         <div class="section-head reveal">
           <div class="kicker"><i class="bi bi-plug"></i> Connect</div>
           <h2>Up and running in minutes</h2>
-          <p>Start the server with <code>npm start</code>, then plug it into the assistant you already use.</p>
+          <p>Point the assistant you already use to <code>https://zibaldone.organizer.solutions/mcp</code> and sign in.</p>
         </div>
         <div class="panel reveal">
           <div class="tabs" role="tablist" aria-label="Connection methods">
             <button type="button" role="tab" aria-selected="true" aria-controls="tab-oauth" id="t-oauth"><i class="bi bi-lightning-charge"></i> Claude.ai / ChatGPT</button>
             <button type="button" role="tab" aria-selected="false" aria-controls="tab-key" id="t-key"><i class="bi bi-terminal"></i> Cursor / Claude Code / Copilot</button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="tab-stdio" id="t-stdio"><i class="bi bi-pc-display"></i> Local stdio</button>
           </div>
 
           <div class="tab-panel" id="tab-oauth" role="tabpanel" aria-labelledby="t-oauth">
@@ -638,7 +637,7 @@
               <li>Sign in and approve the consent screen: the assistant registers itself (dynamic client registration + PKCE). No API key to copy.</li>
             </ol>
             <div class="code-wrap">
-              <pre class="code">https://your-zibaldone.example.com/mcp</pre>
+              <pre class="code">https://zibaldone.organizer.solutions/mcp</pre>
               <button class="copy-btn" type="button"><i class="bi bi-clipboard"></i> Copy</button>
             </div>
           </div>
@@ -654,7 +653,7 @@
               <pre class="code">{
   <span class="k">"mcpServers"</span>: {
     <span class="k">"zibaldone"</span>: {
-      <span class="k">"url"</span>: <span class="s">"http://localhost:3000/mcp"</span>,
+      <span class="k">"url"</span>: <span class="s">"https://zibaldone.organizer.solutions/mcp"</span>,
       <span class="k">"headers"</span>: { <span class="k">"X-API-Key"</span>: <span class="s">"zib_YOUR_API_KEY_HERE"</span> }
     }
   }
@@ -663,25 +662,6 @@
             </div>
           </div>
 
-          <div class="tab-panel" id="tab-stdio" role="tabpanel" aria-labelledby="t-stdio" hidden>
-            <span class="pill grey">stdio — subprocess</span>
-            <ol>
-              <li>Clone the repository and run <code>npm install</code>.</li>
-              <li>Let the client launch Zibaldone as a subprocess: data stays in a local folder.</li>
-            </ol>
-            <div class="code-wrap">
-              <pre class="code">{
-  <span class="k">"mcpServers"</span>: {
-    <span class="k">"zibaldone"</span>: {
-      <span class="k">"command"</span>: <span class="s">"node"</span>,
-      <span class="k">"args"</span>: [<span class="s">"/absolute/path/to/src/index.js"</span>],
-      <span class="k">"env"</span>: { <span class="k">"KNOWLEDGE_STORE_PATH"</span>: <span class="s">"/absolute/path/to/data"</span> }
-    }
-  }
-}</pre>
-              <button class="copy-btn" type="button"><i class="bi bi-clipboard"></i> Copy</button>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -700,7 +680,7 @@
             <ul>
               <li><i class="bi bi-check2"></i> Embedded SQLite with FTS5</li>
               <li><i class="bi bi-check2"></i> File &amp; folder ingestion</li>
-              <li><i class="bi bi-check2"></i> stdio or HTTP transport</li>
+              <li><i class="bi bi-check2"></i> Streamable HTTP transport</li>
             </ul>
           </article>
           <article class="card reveal">
@@ -731,9 +711,9 @@
         <div class="final reveal">
           <img src="./assets/icon.png" alt="Zibaldone icon">
           <h2>Start your own digital zibaldone</h2>
-          <p>Open source, MIT licensed, self-hosted. Your knowledge stays yours.</p>
+          <p>Private by design: every account sees only its own entries.</p>
           <div class="cta" style="justify-content:center;">
-            <a class="btn light" href="https://github.com/enreeco/mcp-history-chat-knowledge-service-v1" target="_blank" rel="noopener"><i class="bi bi-github"></i> View on GitHub</a>
+            <a class="btn light" href="https://zibaldone.organizer.solutions" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Open Zibaldone</a>
             <a class="btn ghost" href="#connect"><i class="bi bi-plug"></i> Connect your assistant</a>
           </div>
         </div>
@@ -743,7 +723,7 @@
 
   <footer>
     <div class="wrap">
-      © <span id="year"></span> <a href="https://organizer.solutions" target="_blank" rel="noopener">ORGanizer.solutions</a> &amp; Enrico Murru — MIT ·
+      © <span id="year"></span> <a href="https://organizer.solutions" target="_blank" rel="noopener">ORGanizer.solutions</a> &amp; Enrico Murru ·
       <a href="../">More tools</a>
     </div>
   </footer>
@@ -874,7 +854,7 @@
       var tools = [
         { name: 'publish_knowledge', scope: 'write', desc: 'Save an insight, decision or snippet worth keeping, with Markdown content, category and tags.',
           req: { title: 'Retry with exponential backoff', summary: 'Retry transient network errors with 2s, 4s, 8s, 16s delays.', category: 'snippet', tags: ['networking', 'resilience'] },
-          res: { id: 'b7c1…e42f', title: 'Retry with exponential backoff', entry_url: 'https://zibaldone.example.com/?entry=b7c1…e42f', message: 'Knowledge saved successfully.' } },
+          res: { id: 'b7c1…e42f', title: 'Retry with exponential backoff', entry_url: 'https://zibaldone.organizer.solutions/#entry/b7c1…e42f', message: 'Knowledge saved successfully.' } },
         { name: 'search_knowledge', scope: 'read', desc: 'Hybrid full-text + semantic search, with optional category, tag, vault and date filters.',
           req: { query: 'how do we rank search results?', tags: ['search'], limit: 5 },
           res: { results: [{ title: 'Decision: hybrid search with RRF + MMR', category: 'decision', tags: ['architecture', 'embeddings', 'search'], score: 0.91 }], total: 1 } },
