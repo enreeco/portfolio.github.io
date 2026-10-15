@@ -273,6 +273,10 @@
     .browsers .card { text-align: center; }
     .browsers .card i { font-size: 26px; color: var(--primary); display: block; margin-bottom: 6px; }
     .browsers .card .status { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 600; color: var(--text-secondary); background: var(--bg); border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; }
+    .browsers a.card { display: block; color: inherit; text-decoration: none; border-color: var(--primary); }
+    .browsers a.card .status { color: #fff; background: var(--primary); border-color: var(--primary); }
+    .browsers .note { grid-column: 1 / -1; text-align: center; color: var(--text-secondary); font-size: 14px; margin-top: 6px; }
+    .version { text-align: center; color: var(--text-secondary); font-size: 14px; margin-top: 18px; }
 
     /* Final CTA */
     .final {
@@ -365,7 +369,8 @@
         <a href="#security">Security</a>
         <a href="#screenshots">Screenshots</a>
         <a href="#install">Install</a>
-        <a class="btn-gh" href="https://cifra.organizer.solutions/privacy" target="_blank" rel="noopener"><i class="bi bi-shield-check"></i> Privacy</a>
+        <a href="https://cifra.organizer.solutions/privacy" target="_blank" rel="noopener">Privacy</a>
+        <a class="btn-gh" href="https://chromewebstore.google.com/detail/cifra-%E2%80%94-authenticator/bjjdjaipapabmgacbnjjhfehglpmklia" target="_blank" rel="noopener"><i class="bi bi-browser-chrome"></i> Add to Chrome</a>
       </nav>
     </div>
   </header>
@@ -382,7 +387,7 @@
           <h1>The right <em>2FA code</em>, for the site you're on.</h1>
           <p class="lead">Cifra is a zero-knowledge TOTP authenticator that lives in your browser. Open it on a sign-in page and the code for that site is already at the top: one click copies it.</p>
           <div class="cta">
-            <a class="btn primary" href="#install"><i class="bi bi-download"></i> Get Cifra</a>
+            <a class="btn primary" href="https://chromewebstore.google.com/detail/cifra-%E2%80%94-authenticator/bjjdjaipapabmgacbnjjhfehglpmklia" target="_blank" rel="noopener"><i class="bi bi-browser-chrome"></i> Add to Chrome</a>
             <a class="btn ghost" href="#security"><i class="bi bi-shield-lock"></i> How it's encrypted</a>
           </div>
           <div class="hero-meta">
@@ -451,7 +456,7 @@
           </article>
           <article class="card reveal">
             <h3><i class="bi bi-fingerprint"></i> A well-protected account</h3>
-            <p>24-word recovery key, optional 2FA with an authenticator app, passkeys or backup codes, and sign-in with Google.</p>
+            <p>Sign-up confirmed by an emailed code, a 24-word recovery key you must prove you saved, optional 2FA with an authenticator app, passkeys or backup codes, and sign-in with Google.</p>
           </article>
           <article class="card reveal">
             <h3><i class="bi bi-wifi-off"></i> Offline-first</h3>
@@ -531,10 +536,12 @@
           <p>Manifest V3 everywhere, no content scripts and no access to the pages you visit.</p>
         </div>
         <div class="browsers">
-          <article class="card reveal"><i class="bi bi-browser-chrome"></i><h3 style="justify-content:center">Chrome</h3><p>Chrome Web Store</p><span class="status">Coming soon</span></article>
+          <a class="card reveal" href="https://chromewebstore.google.com/detail/cifra-%E2%80%94-authenticator/bjjdjaipapabmgacbnjjhfehglpmklia" target="_blank" rel="noopener"><i class="bi bi-browser-chrome"></i><h3 style="justify-content:center">Chrome</h3><p>Chrome Web Store</p><span class="status"><i class="bi bi-download" style="display:inline;font-size:12px;color:inherit;margin:0"></i> Add to Chrome</span></a>
           <article class="card reveal"><i class="bi bi-browser-edge"></i><h3 style="justify-content:center">Edge</h3><p>Microsoft Edge Add-ons</p><span class="status">Coming soon</span></article>
           <article class="card reveal"><i class="bi bi-browser-firefox"></i><h3 style="justify-content:center">Firefox</h3><p>Firefox Add-ons (128+)</p><span class="status">Coming soon</span></article>
+          <p class="note reveal">On Edge you can already install it from the <a href="https://chromewebstore.google.com/detail/cifra-%E2%80%94-authenticator/bjjdjaipapabmgacbnjjhfehglpmklia" target="_blank" rel="noopener">Chrome Web Store</a> (allow extensions from other stores when Edge asks).</p>
         </div>
+        <p class="version reveal">Current version <strong>0.2.0</strong> · <a href="https://cifra.organizer.solutions" target="_blank" rel="noopener">Web app</a> · <a href="https://github.com/enreeco/cifra-totp-app" target="_blank" rel="noopener">Source code</a> (AGPL-3.0)</p>
       </div>
     </section>
 
@@ -546,6 +553,7 @@
           <h2>Stop reaching for your phone <span class="flag-alpha">Alpha</span></h2>
           <p>Your 2FA codes, encrypted with a key only you know, right next to the address bar.</p>
           <div class="cta" style="justify-content:center;">
+            <a class="btn ghost" href="https://chromewebstore.google.com/detail/cifra-%E2%80%94-authenticator/bjjdjaipapabmgacbnjjhfehglpmklia" target="_blank" rel="noopener"><i class="bi bi-browser-chrome"></i> Add to Chrome</a>
             <a class="btn ghost" href="https://cifra.organizer.solutions/privacy" target="_blank" rel="noopener"><i class="bi bi-shield-check"></i> Privacy policy</a>
             <a class="btn ghost" href="#security"><i class="bi bi-shield-lock"></i> Security model</a>
           </div>
