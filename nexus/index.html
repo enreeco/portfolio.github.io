@@ -3,300 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXUS - Innovation Command Center</title>
-  <meta name="description" content="NEXUS helps you manage tasks and innovation workflows with dashboard, list, and kanban views plus optional Google Drive backup.">
-  <link rel="stylesheet" href="../assets/vendor/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
-  <style>
-    :root {
-      --bg: #0f1221;
-      --card: #171b2f;
-      --muted: #9aa4bf;
-      --text: #f2f5ff;
-      --primary: #7f8cff;
-      --primary-2: #9c67ff;
-      --border: #2a3152;
-      --ok: #2ecc71;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: linear-gradient(180deg, #0f1221 0%, #131936 100%);
-      color: var(--text);
-      line-height: 1.5;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -20vmax;
-      background:
-        radial-gradient(circle at 12% 18%, rgba(127, 140, 255, 0.16), transparent 34%),
-        radial-gradient(circle at 85% 8%, rgba(156, 103, 255, 0.14), transparent 30%),
-        radial-gradient(circle at 50% 80%, rgba(79, 146, 255, 0.11), transparent 36%);
-      animation: bgFloat 16s ease-in-out infinite alternate;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    @keyframes bgFloat {
-      from { transform: translate3d(0, 0, 0) scale(1); }
-      to { transform: translate3d(1.2%, -1%, 0) scale(1.04); }
-    }
-
-    .container {
-      width: min(1100px, 92%);
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(11, 14, 28, 0.88);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .topbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.9rem 0;
-      gap: 1rem;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .brand img {
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 0 1px var(--border);
-    }
-
-    .navlinks {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .navlinks a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-
-    .navlinks a:hover { color: var(--text); }
-
-    .hero {
-      padding: 4rem 0 2.5rem;
-    }
-
-    .hero-wrap {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 1.5rem;
-      align-items: stretch;
-    }
-
-    .card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%), var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem;
-      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(280px circle at var(--mx, -30%) var(--my, -30%), rgba(255, 255, 255, 0.1), transparent 45%);
-      opacity: 0;
-      transition: opacity 220ms ease;
-      pointer-events: none;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: #3b4470;
-      box-shadow: 0 12px 36px rgba(6, 9, 24, 0.35);
-    }
-
-    .card:hover::after { opacity: 1; }
-
-    h1, h2, h3 { margin-top: 0; }
-
-    h1 {
-      font-size: clamp(1.8rem, 3.3vw, 2.8rem);
-      line-height: 1.15;
-      margin-bottom: 0.7rem;
-    }
-
-    .sub {
-      color: var(--muted);
-      max-width: 62ch;
-      margin: 0 0 1.2rem;
-    }
-
-    .cta-row {
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-radius: 10px;
-      padding: 0.72rem 1rem;
-      text-decoration: none;
-      font-weight: 600;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      box-shadow: 0 10px 24px rgba(127, 140, 255, 0.26);
-    }
-
-    .btn-ghost {
-      color: var(--text);
-      border-color: var(--border);
-      background: transparent;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      transition: transform 180ms ease;
-    }
-
-    .mini-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 0.65rem;
-    }
-
-    .mini-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: #dbe3ff;
-      font-size: 0.98rem;
-    }
-
-    .mini-list i { color: var(--ok); }
-
-    section {
-      padding: 1.5rem 0 1.2rem;
-    }
-
-    .section-head {
-      margin-bottom: 0.9rem;
-    }
-
-    .section-head p {
-      margin: 0.4rem 0 0;
-      color: var(--muted);
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.9rem;
-    }
-
-    .feature h3 {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      margin-bottom: 0.45rem;
-      font-size: 1.03rem;
-    }
-
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .feature i {
-      color: #c8d0ff;
-      font-size: 1.05rem;
-    }
-
-    .legal h3 {
-      font-size: 1.05rem;
-      margin-bottom: 0.45rem;
-    }
-
-    .legal p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 540ms ease, transform 540ms ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    footer {
-      padding: 2.2rem 0 2.5rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 900px) {
-      .hero-wrap { grid-template-columns: 1fr; }
-      .grid-3 { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 620px) {
-      .grid-3 { grid-template-columns: 1fr; }
-      .topbar .container {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-  </style>
+  <title>NEXUS · Local-first desktop task manager</title>
+  <meta name="description" content="NEXUS is a free, local-first desktop task manager for Windows, macOS and Linux: dashboard, calendar, task list, kanban and a desk for your projects, with your data in a SQLite file on your computer and a CLI for scripts and AI agents.">
+  <meta property="og:title" content="NEXUS · Local-first desktop task manager">
+  <meta property="og:description" content="Dashboard, calendar, task list, kanban and a desk for your projects. Your data stays on your computer. Windows, macOS and Linux.">
+  <meta property="og:image" content="https://portfolio.organizer.solutions/nexus/assets/screens/kanban.webp">
+  <link rel="icon" href="./assets/icon.png">
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-icons-1.31.1/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./assets/nexus.css">
 </head>
 <body>
   <header class="topbar">
     <div class="container">
       <a class="brand" href="#top" aria-label="NEXUS home">
-        <img src="./assets/icon.png" alt="NEXUS icon">
+        <img src="./assets/icon.png" alt="">
         <span>NEXUS</span>
       </a>
       <nav class="navlinks" aria-label="Main navigation">
         <a href="#features">Features</a>
+        <a href="#tour">Tour</a>
+        <a href="#cli">CLI &amp; AI</a>
+        <a href="#data">Your data</a>
         <a href="#download">Download</a>
-        <a href="./privacy-policy.html">Privacy Policy</a>
+        <a href="./releases/">Releases</a>
+        <a href="./privacy-policy.html">Privacy</a>
       </nav>
     </div>
   </header>
@@ -304,117 +34,284 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-wrap">
-        <article class="card reveal">
-          <h1>NEXUS - Innovation Command Center</h1>
+        <div class="reveal">
+          <div class="kicker"><i class="bi bi-display"></i> Desktop app · Windows · macOS · Linux</div>
+          <h1>Your tasks, projects and ideas.<br><span class="grad">On your desktop.</span></h1>
           <p class="sub">
-            NEXUS helps you organize tasks, projects, and ideas in one focused workspace.
-            Move fast with visual views, smart filtering, and optional cloud backup.
+            NEXUS is a local-first task manager: a dashboard, a calendar, a task list, a kanban
+            board and a desk where your projects lie as folders. Everything is stored in a
+            SQLite file on your computer. No account, no cloud, no tracking.
           </p>
-          <div class="cta-row" id="download">
-            <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/nexus-%C2%B7-innovation-comman/jlmebcofgkblocknnlnpjflmbhadmglh" target="_blank" rel="noopener noreferrer">
+          <div class="cta-row">
+            <a class="btn btn-primary" id="heroDownload" href="#download">
               <i class="bi bi-download"></i>
-              Download on Chrome Web Store
+              <span id="heroDownloadText">Download NEXUS</span>
             </a>
-            <a class="btn btn-ghost" href="#features">
-              <i class="bi bi-stars"></i>
-              Explore Features
+            <a class="btn btn-ghost" href="./releases/">
+              <i class="bi bi-clock-history"></i>
+              All releases
             </a>
           </div>
-        </article>
-
-        <aside class="card reveal" aria-label="Quick highlights">
-          <h2 style="font-size:1.15rem;">Why teams choose NEXUS</h2>
-          <ul class="mini-list">
-            <li><i class="bi bi-check-circle-fill"></i> Dashboard, List, and Kanban in one app</li>
-            <li><i class="bi bi-check-circle-fill"></i> Rich task metadata and deep filtering</li>
-            <li><i class="bi bi-check-circle-fill"></i> Optional Google Drive backup and restore</li>
-            <li><i class="bi bi-check-circle-fill"></i> Dark, Light, and System theme support</li>
-            <li><i class="bi bi-check-circle-fill"></i> Works offline with local persistent data</li>
-          </ul>
-        </aside>
+          <div class="meta-row">
+            <span class="badge-free">Free</span>
+            <span id="heroVersion"><i class="bi bi-tag"></i> Latest version</span>
+            <span><i class="bi bi-wifi-off"></i> Works offline</span>
+            <span><i class="bi bi-terminal"></i> CLI included</span>
+          </div>
+        </div>
+        <figure class="shot reveal">
+          <div class="bar"><span></span><span></span><span></span></div>
+          <img src="./assets/screens/kanban.webp" width="1440" height="880" alt="NEXUS kanban board with tasks grouped by status">
+        </figure>
       </div>
     </section>
 
     <section id="features">
       <div class="container">
-        <div class="section-head">
-          <h2>All Core Features</h2>
-          <p>Everything you need to plan, prioritize, track, and deliver your initiatives.</p>
+        <div class="section-head reveal">
+          <div class="kicker"><i class="bi bi-stars"></i> Features</div>
+          <h2>Everything to plan, track and deliver</h2>
+          <p>One window, many ways to look at the same work. Switch views in a click, keep several filtered tabs open, and save the pages you come back to.</p>
         </div>
-
         <div class="grid-3">
           <article class="card feature reveal">
-            <h3><i class="bi bi-speedometer2"></i> Dashboard Analytics</h3>
-            <p>Visual stats, charts, timelines, and reorderable widgets for instant project visibility.</p>
+            <h3><i class="bi bi-grid-1x2-fill"></i> Dashboard &amp; widgets</h3>
+            <p>Status, priority and area at a glance, a monthly timeline, and your own charts: group, stack, count or sum any field.</p>
           </article>
           <article class="card feature reveal">
-            <h3><i class="bi bi-list-check"></i> Advanced List View</h3>
-            <p>Sortable and filterable task table with column controls and bulk actions.</p>
+            <h3><i class="bi bi-kanban"></i> Task list &amp; kanban</h3>
+            <p>A sortable table with the columns you pick, and a drag-and-drop board grouped by status, priority, project or any field.</p>
           </article>
           <article class="card feature reveal">
-            <h3><i class="bi bi-columns-gap"></i> Kanban Workflow</h3>
-            <p>Drag-and-drop board with status-based flow and color-coded task context.</p>
-          </article>
-
-          <article class="card feature reveal">
-            <h3><i class="bi bi-funnel"></i> Smart Filters & Search</h3>
-            <p>Multi-dimension filters, date ranges, global search, and reusable filter presets.</p>
+            <h3><i class="bi bi-calendar3"></i> Calendar</h3>
+            <p>Today, week and month views of what is due, overdue tasks first; drag a task to another day of the week to reschedule it.</p>
           </article>
           <article class="card feature reveal">
-            <h3><i class="bi bi-ui-checks-grid"></i> Rich Task Details</h3>
-            <p>Descriptions, tags, priorities, attachments, links, relations, and threaded notes.</p>
+            <h3><i class="bi bi-easel"></i> The desk</h3>
+            <p>Projects lie as folders on a desk you pan and zoom. Open one, take tasks out to focus on them, add sticky notes, save the desk by name.</p>
           </article>
           <article class="card feature reveal">
-            <h3><i class="bi bi-pie-chart"></i> Custom Widgets</h3>
-            <p>Build personalized dashboard charts with selected dimensions, stacks, and filters.</p>
-          </article>
-
-          <article class="card feature reveal">
-            <h3><i class="bi bi-cloud-arrow-up"></i> Google Drive Backup</h3>
-            <p>Optional OAuth-based sync with automatic backups, restore, and revision history.</p>
+            <h3><i class="bi bi-layout-sidebar-inset-reverse"></i> A task sheet that edits in place</h3>
+            <p>Properties, Markdown notes and comments, relations (blocks, depends, related) with a graph, files and links. Undo any change.</p>
           </article>
           <article class="card feature reveal">
-            <h3><i class="bi bi-shield-lock"></i> Local-First Data</h3>
-            <p>Data stays in your browser by default with persistent IndexedDB storage.</p>
+            <h3><i class="bi bi-sliders"></i> Fields you shape</h3>
+            <p>Projects and sections, your own values for status, priority and area, custom fields (choice, number, currency, Markdown…), contacts.</p>
           </article>
           <article class="card feature reveal">
-            <h3><i class="bi bi-moon-stars"></i> Theme & Personalization</h3>
-            <p>Dark/Light/System modes and customizable dimensions, icons, and colors.</p>
+            <h3><i class="bi bi-funnel"></i> Filters, presets, favorites</h3>
+            <p>Filter by any field, with NOT. Save presets, open filtered views in tabs, go back and forth, and keep favorite pages one click away.</p>
+          </article>
+          <article class="card feature reveal">
+            <h3><i class="bi bi-person-badge"></i> Profiles</h3>
+            <p>One database per profile — work, home, a client — switched from the header. Start a new profile from another one's setup.</p>
+          </article>
+          <article class="card feature reveal">
+            <h3><i class="bi bi-moon-stars"></i> Made for long days</h3>
+            <p>Dark, light or system theme, keyboard shortcuts, and a fast search across titles, notes, tags and people, in a tab of its own.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <section id="tour">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker"><i class="bi bi-images"></i> Tour</div>
+          <h2>A look inside</h2>
+          <p>Click a picture to see it full size.</p>
+        </div>
+        <div class="grid-2">
+          <a class="shot-link reveal" href="./assets/screens/dashboard.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="./assets/screens/dashboard.webp" width="1440" height="880" loading="lazy" alt="Dashboard with totals, a monthly timeline and charts by status, priority and area">
+              <figcaption><strong>Dashboard.</strong> Totals, a timeline and charts by any field.</figcaption>
+            </figure>
+          </a>
+          <a class="shot-link reveal" href="./assets/screens/desktop.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="./assets/screens/desktop.webp" width="1440" height="880" loading="lazy" alt="The desk: project folders, one open into columns of tasks by section">
+              <figcaption><strong>The desk.</strong> Projects as folders that open into their sections.</figcaption>
+            </figure>
+          </a>
+          <a class="shot-link reveal" href="./assets/screens/task.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="./assets/screens/task.webp" width="1440" height="880" loading="lazy" alt="Task sheet with notes, relations, files and the properties sidebar">
+              <figcaption><strong>Task sheet.</strong> Notes, relations, files and properties, edited in place.</figcaption>
+            </figure>
+          </a>
+          <a class="shot-link reveal" href="./assets/screens/calendar.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="./assets/screens/calendar.webp" width="1440" height="880" loading="lazy" alt="Month calendar with the tasks due each day">
+              <figcaption><strong>Calendar.</strong> Today, week and month, with drag-and-drop rescheduling.</figcaption>
+            </figure>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="cli">
+      <div class="container grid-2">
+        <div class="reveal">
+          <div class="kicker"><i class="bi bi-terminal"></i> CLI &amp; AI agents</div>
+          <h2>A command line, built in</h2>
+          <p class="muted">
+            The <code>nexus</code> command ships with the app and works on the same database:
+            add, find, update and complete tasks, manage projects, fields and backups, with
+            readable tables or JSON. No Node.js needed.
+          </p>
+          <ul class="check-list">
+            <li><i class="bi bi-check-circle-fill"></i> Script your routines: bulk-create tasks from a file, export, report.</li>
+            <li><i class="bi bi-check-circle-fill"></i> Let an AI agent (Claude Code, the Claude Agent SDK, others) plan your week from your real tasks — ready-made agent skills included.</li>
+            <li><i class="bi bi-check-circle-fill"></i> Changes made from the command line show up in the app as they happen.</li>
+          </ul>
+        </div>
+        <pre class="code reveal" aria-label="Command line examples"><span class="c"># what is in progress, as JSON</span>
+<span class="p">$</span> nexus task list --status <span class="s">"In Progress"</span> --json
+
+<span class="c"># a new task in a project, due Friday</span>
+<span class="p">$</span> nexus task add --title <span class="s">"Draft the Q4 objectives"</span> \
+    --project <span class="s">"Q4 planning"</span> --priority High --due 2026-10-30
+
+<span class="c"># done</span>
+<span class="p">$</span> nexus task complete TASK-00042
+
+<span class="c"># a snapshot into your cloud folder, now</span>
+<span class="p">$</span> nexus snapshot create</pre>
+      </div>
+    </section>
+
+    <section id="data">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker"><i class="bi bi-shield-lock"></i> Your data</div>
+          <h2>Local-first, and safe to sync</h2>
+          <p>Your tasks are a file on your computer — not on our servers, because there are none.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature reveal">
+            <h3><i class="bi bi-hdd"></i> A SQLite database you own</h3>
+            <p>Each profile is one SQLite file on your disk. No account, no sign-in, no telemetry; NEXUS works fully offline.</p>
+          </article>
+          <article class="card feature reveal">
+            <h3><i class="bi bi-cloud-arrow-up"></i> Backups to your cloud folder</h3>
+            <p>Point NEXUS at Dropbox, OneDrive or iCloud: it publishes point-in-time snapshots there, and offers the newest one from your other computer.</p>
+          </article>
+          <article class="card feature reveal">
+            <h3><i class="bi bi-arrow-left-right"></i> Export everything</h3>
+            <p>Full JSON export and import — tasks, comments, relations and attached files — plus a configuration export to start new profiles. No lock-in.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="download">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker"><i class="bi bi-download"></i> Download</div>
+          <h2>Get NEXUS <span id="dlVersion"></span></h2>
+          <p id="dlIntro">Free for Windows, macOS and Linux. Older versions and checksums are on the <a href="./releases/">releases page</a>.</p>
+        </div>
+        <div class="dl-grid" id="dlGrid">
+          <p class="dl-status">Loading the latest version…</p>
+        </div>
+        <div class="note reveal">
+          <i class="bi bi-info-circle-fill"></i>
+          <div>
+            The installers are not code-signed yet, so your system asks before the first launch.
+            <strong>Windows</strong>: <em>More info</em> → <em>Run anyway</em>.
+            <strong>macOS</strong>: right-click NEXUS in Applications → <em>Open</em>, or run <code>xattr -cr /Applications/Nexus.app</code>.
+            <strong>Linux</strong>: make the AppImage executable (<code>chmod +x</code>), or install the <code>.deb</code>.
+            The Windows installer and the <code>.deb</code> also put the <code>nexus</code> command on your PATH; no administrator rights are needed on Windows.
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="container">
-      <span><i class="bi bi-c-circle"></i> <span id="year"></span> NEXUS - Innovation Command Center. All rights reserved. Powered by <a href="https://organizer.solutions" target="_blank" rel="noopener noreferrer">organizer.solutions</a>.</span>
+      <span><i class="bi bi-c-circle"></i> <span id="year"></span> NEXUS. Made by <a href="https://organizer.solutions" target="_blank" rel="noopener noreferrer">ORGanizer.solutions</a>.</span>
+      <span><a href="./releases/">Releases</a> · <a href="./privacy-policy.html">Privacy Policy</a> · <a href="../">All products</a></span>
     </div>
   </footer>
+
+  <script src="./assets/releases.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-    document.querySelectorAll('.card').forEach((card) => {
-      card.addEventListener('mousemove', (ev) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((ev.clientX - rect.left) / rect.width) * 100;
-        const y = ((ev.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mx', x + '%');
-        card.style.setProperty('--my', y + '%');
+    document.querySelectorAll('.card').forEach(function (card) {
+      card.addEventListener('mousemove', function (ev) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((ev.clientX - rect.left) / rect.width) * 100 + '%');
+        card.style.setProperty('--my', ((ev.clientY - rect.top) / rect.height) * 100 + '%');
       });
     });
+
+    // Downloads: the latest release from releases/releases.json.
+    (function () {
+      var R = window.NexusReleases;
+      var grid = document.getElementById('dlGrid');
+      var mine = R.detectOS();
+      var NOTES = {
+        windows: 'Windows 10 or later, 64-bit.',
+        macos: 'Apple Silicon Macs (M1 or later), macOS 12 or later.',
+        linux: '64-bit; AppImage runs anywhere, .deb for Debian / Ubuntu.'
+      };
+
+      function fileLink(a) {
+        return '<a class="dl-file" href="' + R.escapeHtml(a.url) + '" download>'
+          + '<i class="bi bi-download"></i><span>' + R.escapeHtml(a.label) + '</span>'
+          + '<span class="size">' + R.formatSize(a.size) + '</span></a>';
+      }
+
+      function render(m) {
+        var latest = m.releases.filter(function (r) { return r.version === m.latest; })[0] || m.releases[0];
+        if (!latest) {
+          grid.innerHTML = '<p class="dl-status">The first desktop release is on its way. Check the <a href="./releases/">releases page</a> soon.</p>';
+          return;
+        }
+        document.getElementById('dlVersion').textContent = latest.version;
+        document.getElementById('heroVersion').innerHTML = '<i class="bi bi-tag"></i> Version ' + R.escapeHtml(latest.version)
+          + (latest.date ? ' · ' + R.formatDate(latest.date) : '');
+        var order = ['windows', 'macos', 'linux'];
+        if (mine) order = [mine].concat(order.filter(function (p) { return p !== mine; }));
+        grid.innerHTML = order.map(function (p) {
+          var files = latest.assets.filter(function (a) { return a.platform === p; });
+          var meta = R.PLATFORMS[p];
+          return '<article class="card dl-card' + (p === mine ? ' mine' : '') + '">'
+            + '<h3><i class="bi ' + meta.icon + '"></i> ' + meta.name + (p === mine ? '<span class="you">Your system</span>' : '') + '</h3>'
+            + '<div class="dl-files">' + (files.length ? files.map(fileLink).join('') : '<span class="dl-status">Not available for this version.</span>') + '</div>'
+            + '<p class="dl-note">' + NOTES[p] + '</p>'
+            + '</article>';
+        }).join('');
+        var main = mine && R.primaryAsset(latest, mine);
+        if (main) {
+          var btn = document.getElementById('heroDownload');
+          btn.href = main.url;
+          btn.setAttribute('download', '');
+          document.getElementById('heroDownloadText').textContent = 'Download for ' + R.PLATFORMS[mine].name;
+        }
+      }
+
+      R.load('./releases/releases.json').then(render).catch(function () {
+        grid.innerHTML = '<p class="dl-status">The download list could not be loaded. See the <a href="./releases/">releases page</a>.</p>';
+      });
+    })();
   </script>
 </body>
 </html>
