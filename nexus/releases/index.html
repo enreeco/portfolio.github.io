@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS · Releases</title>
+  <meta name="description" content="Every NEXUS release for Windows, macOS and Linux, with release notes, file sizes and SHA-256 checksums.">
+  <link rel="icon" href="../assets/icon.png">
+  <link rel="stylesheet" href="../../assets/vendor/bootstrap-icons-1.31.1/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/nexus.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../" aria-label="NEXUS home">
+        <img src="../assets/icon.png" alt="">
+        <span>NEXUS</span>
+      </a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="../#features">Features</a>
+        <a href="../#download">Download</a>
+        <a href="./" class="on">Releases</a>
+        <a href="../privacy-policy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker"><i class="bi bi-clock-history"></i> Releases</div>
+          <h1>Every version of NEXUS</h1>
+          <p>Installers for Windows, macOS (Apple Silicon) and Linux, newest first. Compare a download with its SHA-256 checksum (click to copy) — e.g. <code>certutil -hashfile &lt;file&gt; SHA256</code> on Windows, <code>shasum -a 256 &lt;file&gt;</code> on macOS and Linux.</p>
+        </div>
+        <div id="releases">
+          <p class="dl-status">Loading the releases…</p>
+        </div>
+        <noscript><p class="dl-status">The release list needs JavaScript. The files are also on <a href="https://github.com/enreeco/portfolio.github.io/releases">GitHub</a>.</p></noscript>
+        <div class="note">
+          <i class="bi bi-info-circle-fill"></i>
+          <div>
+            The installers are not code-signed yet, so your system asks before the first launch.
+            <strong>Windows</strong>: <em>More info</em> → <em>Run anyway</em>.
+            <strong>macOS</strong>: right-click NEXUS in Applications → <em>Open</em>, or run <code>xattr -cr /Applications/Nexus.app</code>.
+            <strong>Linux</strong>: make the AppImage executable (<code>chmod +x</code>), or install the <code>.deb</code>.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span><i class="bi bi-c-circle"></i> <span id="year"></span> NEXUS. Made by <a href="https://organizer.solutions" target="_blank" rel="noopener noreferrer">ORGanizer.solutions</a>.</span>
+      <span><a href="../">NEXUS</a> · <a href="../privacy-policy.html">Privacy Policy</a> · <a href="../../">All products</a></span>
+    </div>
+  </footer>
+
+  <script src="../assets/releases.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function () {
+      var R = window.NexusReleases;
+      var box = document.getElementById('releases');
+
+      function row(a) {
+        var p = R.PLATFORMS[a.platform] || { name: a.platform, icon: 'bi-box' };
+        return '<tr>'
+          + '<td class="plat"><i class="bi ' + p.icon + '"></i>' + R.escapeHtml(p.name) + '</td>'
+          + '<td><a class="file" href="' + R.escapeHtml(a.url) + '" download>' + R.escapeHtml(a.name) + '</a>'
+          + '<div class="muted" style="font-size:0.8rem">' + R.escapeHtml(a.label) + '</div></td>'
+          + '<td class="num">' + R.formatSize(a.size) + '</td>'
+          + '<td class="hide-sm">' + (a.sha256 ? '<button type="button" class="sha" data-sha="' + R.escapeHtml(a.sha256) + '" title="' + R.escapeHtml(a.sha256) + ' — click to copy">' + R.escapeHtml(a.sha256.slice(0, 12)) + '…</button>' : '') + '</td>'
+          + '</tr>';
+      }
+
+      function render(m) {
+        if (!m.releases.length) {
+          box.innerHTML = '<div class="card empty"><i class="bi bi-hourglass-split"></i><p>The first desktop release is on its way. Check back soon.</p></div>';
+          return;
+        }
+        box.innerHTML = m.releases.map(function (r) {
+          var id = 'v' + r.version;
+          return '<article class="card release" id="' + R.escapeHtml(id) + '">'
+            + '<div class="release-head"><h2><a href="#' + R.escapeHtml(id) + '">NEXUS ' + R.escapeHtml(r.version) + '</a></h2>'
+            + (r.version === m.latest ? '<span class="tag-latest">Latest</span>' : '')
+            + '<span class="date">' + R.formatDate(r.date) + '</span></div>'
+            + (r.notes ? '<p class="release-notes">' + R.escapeHtml(r.notes) + '</p>' : '')
+            + '<table class="assets"><thead><tr><th>Platform</th><th>File</th><th>Size</th><th class="hide-sm">SHA-256</th></tr></thead>'
+            + '<tbody>' + (r.assets || []).map(row).join('') + '</tbody></table>'
+            + '</article>';
+        }).join('');
+        // A link to one version (…/releases/#v0.4.2) lands on it once the list is drawn.
+        if (location.hash) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
+      }
+
+      box.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-sha]');
+        if (!b || !navigator.clipboard) return;
+        navigator.clipboard.writeText(b.dataset.sha).then(function () {
+          var t = b.textContent;
+          b.textContent = 'copied';
+          setTimeout(function () { b.textContent = t; }, 1200);
+        });
+      });
+
+      R.load('./releases.json').then(render).catch(function () {
+        box.innerHTML = '<p class="dl-status">The release list could not be loaded. The files are also on <a href="https://github.com/enreeco/portfolio.github.io/releases">GitHub</a>.</p>';
+      });
+    })();
+  </script>
+</body>
+</html>

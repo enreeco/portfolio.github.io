@@ -3,237 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXUS - Privacy Policy</title>
-  <meta name="description" content="Privacy Policy for NEXUS - Innovation Command Center Chrome extension.">
-  <link rel="stylesheet" href="../assets/vendor/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
-  <style>
-    :root {
-      --bg: #0f1221;
-      --card: #171b2f;
-      --muted: #9aa4bf;
-      --text: #f2f5ff;
-      --primary: #7f8cff;
-      --primary-2: #9c67ff;
-      --border: #2a3152;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: linear-gradient(180deg, #0f1221 0%, #131936 100%);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -20vmax;
-      background:
-        radial-gradient(circle at 12% 18%, rgba(127, 140, 255, 0.16), transparent 34%),
-        radial-gradient(circle at 85% 8%, rgba(156, 103, 255, 0.14), transparent 30%),
-        radial-gradient(circle at 50% 80%, rgba(79, 146, 255, 0.11), transparent 36%);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .container {
-      width: min(900px, 92%);
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(11, 14, 28, 0.88);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .topbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.9rem 0;
-      gap: 1rem;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .brand img {
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 0 1px var(--border);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-radius: 10px;
-      padding: 0.65rem 0.95rem;
-      text-decoration: none;
-      font-weight: 600;
-      border: 1px solid var(--border);
-      color: var(--text);
-      background: transparent;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    main {
-      padding: 2rem 0 2.5rem;
-    }
-
-    .card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%), var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem;
-    }
-
-    h1 {
-      font-size: clamp(1.6rem, 3.3vw, 2.4rem);
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-      line-height: 1.2;
-    }
-
-    h2 {
-      margin-top: 1.4rem;
-      margin-bottom: 0.45rem;
-      font-size: 1.12rem;
-    }
-
-    p, li {
-      color: #dde4ff;
-      font-size: 0.98rem;
-    }
-
-    .muted {
-      margin: 0 0 1rem;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    a { color: #b8c3ff; }
-
-    footer {
-      padding: 1.5rem 0 2.3rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-  </style>
+  <title>NEXUS · Privacy Policy</title>
+  <meta name="description" content="How the NEXUS desktop app handles your data: everything stays on your computer.">
+  <link rel="icon" href="./assets/icon.png">
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-icons-1.31.1/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./assets/nexus.css">
 </head>
 <body>
   <header class="topbar">
     <div class="container">
-      <a class="brand" href="./index.html" aria-label="NEXUS home">
-        <img src="./assets/icon.png" alt="NEXUS icon">
+      <a class="brand" href="./" aria-label="NEXUS home">
+        <img src="./assets/icon.png" alt="">
         <span>NEXUS</span>
       </a>
-      <a class="btn" href="./index.html">
-        <i class="bi bi-arrow-left"></i>
-        Back to Home
-      </a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="./#features">Features</a>
+        <a href="./#download">Download</a>
+        <a href="./releases/">Releases</a>
+        <a href="./privacy-policy.html" class="on">Privacy</a>
+      </nav>
     </div>
   </header>
 
   <main>
-    <div class="container">
-      <article class="card">
-        <h1>Privacy Policy</h1>
-        <p class="muted">
-          Last updated: February 28, 2026
-        </p>
+    <section>
+      <div class="container">
+        <article class="card legal">
+          <h1>Privacy Policy</h1>
+          <p class="muted">Last updated: October 26, 2026</p>
+          <p>
+            This policy explains how the NEXUS desktop application for Windows, macOS and Linux
+            ("NEXUS", "the app"), including its <code>nexus</code> command-line tool, handles your
+            information. In short: your data stays on your computer, and we never receive it.
+          </p>
 
-        <p>
-          This Privacy Policy explains how NEXUS (the "Extension") handles information when you use it.
-          NEXUS is designed with a local-first approach and does not sell your personal data.
-        </p>
+          <h2>1. What NEXUS stores</h2>
+          <p>
+            NEXUS stores what you enter — tasks, projects and sections, comments, relations,
+            contacts, custom fields, attached files, settings — in SQLite database files on your
+            computer, one per profile, inside the app's data folder or a location you choose.
+            A small <code>config.json</code> in the same data folder lists your profiles and app
+            settings, such as the name your comments are signed with.
+          </p>
 
-        <h2>1. Information We Process</h2>
-        <p>
-          NEXUS stores task and project data you create directly in your browser's local storage/IndexedDB.
-          This can include task titles, descriptions, tags, statuses, priorities, and metadata you choose to enter.
-        </p>
+          <h2>2. No servers, no account, no tracking</h2>
+          <p>
+            NEXUS has no account and no sign-in. It does not send your data, usage statistics,
+            crash reports or any other information to us or to third parties, and it does not
+            contact the internet to work. We do not operate servers that receive data from the app.
+          </p>
 
-        <h2>2. Local-First Storage</h2>
-        <p>
-          By default, your data remains on your device. We do not operate our own servers for routine data storage
-          or processing of your extension content.
-        </p>
+          <h2>3. Backups you choose</h2>
+          <p>
+            If you set a snapshot folder, NEXUS writes copies of your database into it. When that
+            folder is synchronised by a service such as Dropbox, OneDrive or iCloud Drive, the
+            copies are uploaded by that service, under its own terms and privacy policy. NEXUS does
+            not talk to those services itself, and you can turn snapshots off at any time.
+          </p>
 
-        <h2>3. Optional Google Drive Backup</h2>
-        <p>
-          If you enable backup/sync, the Extension connects to Google APIs via OAuth to read and write your backup data
-          in your Google Drive account. This connection is optional and only used when you explicitly authorize it.
-        </p>
+          <h2>4. Links you open</h2>
+          <p>
+            Links you add to tasks open in your web browser when you click them; what happens there
+            is governed by the site you visit.
+          </p>
 
-        <h2>4. Data Sharing</h2>
-        <p>
-          We do not sell or rent personal data. Data may be transmitted only to third-party services required for
-          user-requested functionality, such as Google authentication and Google Drive API operations.
-        </p>
+          <h2>5. Downloads</h2>
+          <p>
+            The installers are hosted on GitHub. Downloading them from this site is subject to
+            <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub's privacy statement</a>.
+            This website does not use cookies or analytics.
+          </p>
 
-        <h2>5. Permissions</h2>
-        <p>
-          Extension permissions are requested only to provide core features such as task management, storage,
-          and optional cloud backup integrations.
-        </p>
+          <h2>6. Keeping and deleting your data</h2>
+          <p>
+            Your data stays until you delete it: remove tasks or profiles in the app, use
+            Settings → Database Tools → Reset Database, or delete the database files and the app's
+            data folder. Uninstalling the app does not delete your databases, so you do not lose
+            them by accident. Snapshot copies in your cloud folder are yours to keep or delete.
+          </p>
 
-        <h2>6. Data Retention and Deletion</h2>
-        <p>
-          Locally stored data remains until you delete it, clear browser storage, or uninstall the extension.
-          Cloud backup data in Google Drive remains under your control and can be deleted from your account at any time.
-        </p>
+          <h2>7. Security</h2>
+          <p>
+            Your data is as safe as your computer and your accounts: keep your system up to date,
+            protect your user account, and be careful where you share exports, which contain your
+            data in plain text.
+          </p>
 
-        <h2>7. Security</h2>
-        <p>
-          We take reasonable measures to reduce risk, but no method of storage or transmission is 100% secure.
-          You are responsible for maintaining the security of your browser profile and Google account credentials.
-        </p>
+          <h2>8. Children</h2>
+          <p>NEXUS is not directed to children under 13, and we do not knowingly collect information from anyone.</p>
 
-        <h2>8. Children's Privacy</h2>
-        <p>
-          NEXUS is not directed to children under 13, and we do not knowingly collect personal information from children.
-        </p>
+          <h2>9. Changes</h2>
+          <p>
+            We may update this policy. The new version will be posted on this page with a new
+            "Last updated" date.
+          </p>
 
-        <h2>9. Changes to This Policy</h2>
-        <p>
-          We may update this Privacy Policy from time to time. Updated versions will be posted on this page with
-          a revised "Last updated" date.
-        </p>
-
-        <h2>10. Contact</h2>
-        <p>
-          For privacy-related questions, contact: <a href="mailto:privacy@organizer.solutions">privacy@organizer.solutions</a>
-        </p>
-      </article>
-    </div>
+          <h2>10. Contact</h2>
+          <p>
+            Questions about privacy: <a href="mailto:privacy@organizer.solutions">privacy@organizer.solutions</a>
+          </p>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="container">
-      <span><i class="bi bi-c-circle"></i> <span id="year"></span> NEXUS - Innovation Command Center. All rights reserved.</span>
+      <span><i class="bi bi-c-circle"></i> <span id="year"></span> NEXUS. Made by <a href="https://organizer.solutions" target="_blank" rel="noopener noreferrer">ORGanizer.solutions</a>.</span>
+      <span><a href="./">NEXUS</a> · <a href="./releases/">Releases</a> · <a href="../">All products</a></span>
     </div>
   </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
