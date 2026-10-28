@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InBuddy – LinkedIn Notifications & Fancy Text Editor</title>
+    <title>InBuddy – Your LinkedIn Assistant: Notifications, Fancy Text & Drafts</title>
+    <meta name="description" content="InBuddy is a free Chrome extension for LinkedIn: unread notifications on the toolbar, 20+ Unicode styles and live Markdown in posts and comments, and Draft Studio to write posts offline and drop them, text and images, into LinkedIn's composer.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="./assets/icon.png">
     <style>
@@ -112,8 +113,8 @@
         <section class="hero cardish text-center">
             <div class="row g-4 align-items-center">
                 <div class="col-md-6 p-4">
-                    <h1 class="mb-2">LinkedIn Notifications, at a Glance</h1>
-                    <p class="lead muted mb-3">Stay on top of your LinkedIn notifications and craft eye‑catching posts with a built‑in fancy text editor.</p>
+                    <h1 class="mb-2">Your LinkedIn Assistant</h1>
+                    <p class="lead muted mb-3">See your unread notifications at a glance, style posts and comments with 20+ Unicode styles and live Markdown, and keep every draft — text and images — one click away in LinkedIn's post composer.</p>
                     <div class="d-flex flex-wrap justify-content-center gap-2">
                         <a href="https://chromewebstore.google.com/detail/linkedin-notifications-ba/lkpfbeflfakhnabfckfeoldegkicmbph" class="btn btn-primary btn-lg" onclick="trackInstallClick()">Add to Chrome</a>
                         <a href="#how" class="btn btn-outline-primary btn-lg">How it works</a>
@@ -121,7 +122,7 @@
                     <p class="small mt-3">After 1.2.1, LinkedIn Notification Badge is rebranded <strong>In</strong>Buddy</p>
                 </div>
                 <div class="col-md-6 p-4">
-                    <img src="./assets/screenshot2.png" alt="Extension popup and editor preview" class="screenshot">
+                    <img src="./assets/gallery-fancy-toolbar.webp" alt="InBuddy Fancy Text Toolbar formatting a post in LinkedIn's composer" class="screenshot">
                 </div>
             </div>
         </section>
@@ -168,7 +169,7 @@
                     <div class="p-3 border rounded h-100">
                         <div class="feature-icon">📝</div>
                         <h5 class="mt-2 mb-1">Drafts Button</h5>
-                        <p class="mb-0 muted">Quick access to your drafts directly in LinkedIn's post composer with context-aware filtering by page/profile.</p>
+                        <p class="mb-0 muted">Open your drafts right from LinkedIn's post composer, filtered by profile or company page, and copy them in with one click — line breaks, empty lines and images included.</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -181,7 +182,7 @@
                 <div class="col-md-6">
                     <div class="p-3 border rounded h-100">
                         <div class="feature-icon">🤖</div>
-                        <h5 class="mt-2 mb-1">AI Post Creation</h5>
+                        <h5 class="mt-2 mb-1">AI Post Creation <span class="badge bg-warning text-dark align-middle" style="font-size: 0.65rem;">Experimental</span></h5>
                         <p class="mb-0 muted">Integrate with AIDA extension for AI-powered LinkedIn post generation. Configure knowledge base settings in AIDA's API configuration to enhance AI-generated content with your custom data.</p>
                     </div>
                 </div>
@@ -266,48 +267,70 @@
             <h2 class="mb-3">Gallery</h2>
             <div class="row g-3">
                 <div class="col-md-6">
-                    <video class="gallery-video" controls>
+                    <a href="./assets/gallery-fancy-toolbar.webp" target="_blank" rel="noopener noreferrer">
+                        <img src="./assets/gallery-fancy-toolbar.webp" class="gallery-img" alt="Fancy Text Toolbar and live Markdown in the post composer" loading="lazy">
+                    </a>
+                    <p class="small muted mt-1">Fancy Text Toolbar – type <code>**bold**</code>, <code>_italic_</code> or <code>~~strike~~</code> and see it converted live, or pick one of 20+ Unicode styles for the selected text</p>
+                </div>
+                <div class="col-md-6">
+                    <a href="./assets/gallery-drafts-panel.webp" target="_blank" rel="noopener noreferrer">
+                        <img src="./assets/gallery-drafts-panel.webp" class="gallery-img" alt="Drafts panel opened from the post composer" loading="lazy">
+                    </a>
+                    <p class="small muted mt-1">Drafts button – your drafts, filtered by profile or company page, right inside LinkedIn's post composer</p>
+                </div>
+                <div class="col-md-6">
+                    <a href="./assets/gallery-draft-details.webp" target="_blank" rel="noopener noreferrer">
+                        <img src="./assets/gallery-draft-details.webp" class="gallery-img" alt="Draft details with text and media" loading="lazy">
+                    </a>
+                    <p class="small muted mt-1">Draft preview – check text and media, then copy it to the post (and optionally mark it as published)</p>
+                </div>
+                <div class="col-md-6">
+                    <a href="./assets/gallery-draft-copied.webp" target="_blank" rel="noopener noreferrer">
+                        <img src="./assets/gallery-draft-copied.webp" class="gallery-img" alt="Draft copied into the composer with line breaks and image" loading="lazy">
+                    </a>
+                    <p class="small muted mt-1">One click later – the draft is in the composer with every line break, and its images are already attached</p>
+                </div>
+                <div class="col-md-6">
+                    <a href="./assets/gallery-draft-studio.webp" target="_blank" rel="noopener noreferrer">
+                        <img src="./assets/gallery-draft-studio.webp" class="gallery-img" alt="Draft Studio drafts table" loading="lazy">
+                    </a>
+                    <p class="small muted mt-1">Draft Studio – write, organize and track drafts and published posts for your profile and your company pages, stored locally in your browser</p>
+                </div>
+                <div class="col-md-6">
+                    <a href="./assets/gallery-options.webp" target="_blank" rel="noopener noreferrer">
+                        <img src="./assets/gallery-options.webp" class="gallery-img" alt="InBuddy Options page" loading="lazy">
+                    </a>
+                    <p class="small muted mt-1">Options – turn features on or off, grouped in General, AI, Storage and Advanced tabs</p>
+                </div>
+                <div class="col-md-6">
+                    <video class="gallery-video" controls preload="metadata">
                         <source src="./assets/fancyeditor.mov" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <p class="small muted mt-1">Fancy Text Editor: global switch pill & draggable toolbar for posts and comments on LinkedIn</p>
+                    <p class="small muted mt-1">Video: global switch pill and draggable Fancy Text Toolbar for posts and comments</p>
                 </div>
-                
                 <div class="col-md-6">
-                    <video class="gallery-video" controls>
+                    <video class="gallery-video" controls preload="metadata">
                         <source src="./assets/markdown_comments.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <p class="small muted mt-1">Editor styles preview: Markdown and Unicode styles in action right within the post editor and the comments editor</p>
+                    <p class="small muted mt-1">Video: Markdown and Unicode styles in action in the post editor and in comments</p>
                 </div>
                 <div class="col-md-6">
-                    <a href="./assets/options2.png" target="_blank" rel="noopener noreferrer">
-                        <img src="./assets/options2.png" class="gallery-img" alt="Options page screenshot">
-                    </a>
-                    <p class="small muted mt-1">Options page – enable or disable features globally</p>
-                </div>
-                
-                <div class="col-md-6">
-                    <a href="./assets/notification.png" target="_blank" rel="noopener noreferrer">
-                        <img style="width:50% !important"  src="./assets/notification.png" class="gallery-img" alt="Notification badge on toolbar">
-                    </a>
-                    <p class="small muted mt-1">Browser's toolbar badge – see unread LinkedIn notifications at a glance</p>
-                </div>
-                <div class="col-md-6">
-                    <a href="./assets/draftstudio.webp" target="_blank" rel="noopener noreferrer">
-                        <img src="./assets/draftstudio.webp" class="gallery-img" alt="Draft Studio – Manage posts, pages, and media locally">
-                    </a>
-                    <p class="small muted mt-1">Draft Studio interface for creating and organizing LinkedIn posts</p>
-                </div>
-                <div class="col-md-6">
-                    <video class="gallery-video" controls>
+                    <video class="gallery-video" controls preload="metadata">
                         <source src="./assets/drafts_button.mov" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <p class="small muted mt-1">Drafts button appears in the post composer toolbar with context-aware filtering</p>
+                    <p class="small muted mt-1">Video: the Drafts button in the post composer</p>
                 </div>
-                
+                <div class="col-md-6">
+                    <a href="./assets/notification.png" target="_blank" rel="noopener noreferrer">
+                        <img style="width:50% !important" src="./assets/notification.png" class="gallery-img" alt="Notification badge on toolbar">
+                    </a>
+                    <p class="small muted mt-1">Browser's toolbar badge – see unread LinkedIn notifications at a glance</p>
+                </div>
             </div>
+            <p class="small muted mt-3 mb-0">Screenshots show sample content with the page background blurred; names, pages and posts are fictional.</p>
         </section>
 
         <section class="section mt-3 cardish faq" id="faq">
@@ -361,7 +384,7 @@
         </section>
 
         <footer>
-            Powered by <a href="https://organizer.solutions" target="_blank" rel="noopener">ORGaniazer.solutions</a> | &copy; <script>document.write(new Date().getFullYear());</script>
+            Powered by <a href="https://organizer.solutions" target="_blank" rel="noopener">ORGanizer.solutions</a> | &copy; <script>document.write(new Date().getFullYear());</script>
         </footer>
     </div>
 </body>
