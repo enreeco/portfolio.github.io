@@ -267,6 +267,47 @@ a.shot-link { text-decoration: none; color: inherit; display: block; }
   font-size: 0.9rem;
 }
 .note i { color: var(--warn); margin-top: 0.15rem; }
+.note-top { margin: 0 0 1.5rem; }
+
+/* Hero hint: an icon button whose tooltip opens on hover, keyboard focus or tap */
+.hint { position: relative; display: inline-block; }
+.hint-btn {
+  font: inherit;
+  color: var(--warn);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: help;
+}
+.hint-btn:focus-visible { outline: 2px solid var(--warn); outline-offset: 3px; border-radius: 4px; }
+.hint-tip {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.5rem);
+  z-index: 10;
+  width: min(20rem, 80vw);
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(245, 184, 74, 0.35);
+  background: var(--card-2);
+  color: #e9dcc0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+}
+.hint-tip a { color: var(--cyan); }
+.hint:hover .hint-tip,
+.hint:focus-within .hint-tip { opacity: 1; visibility: visible; transform: none; }
+@media (prefers-reduced-motion: reduce) { .hint-tip { transition: none; } }
+@media (max-width: 600px) {
+  .meta-row { position: relative; }
+  .hint { position: static; }
+  .hint-tip { left: 0; right: 0; width: auto; }
+}
 
 /* Release list */
 .release { margin-bottom: 1rem; }
