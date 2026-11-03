@@ -1,7 +1,50 @@
 {
   "product": "Nexus",
-  "latest": "0.6.0",
+  "latest": "0.6.1",
   "releases": [
+    {
+      "version": "0.6.1",
+      "date": "2026-11-03T09:47:47.562Z",
+      "notes": "",
+      "assets": [
+        {
+          "name": "Nexus.Setup.0.6.1.exe",
+          "platform": "windows",
+          "label": "Windows installer (.exe)",
+          "arch": "x64",
+          "size": 112419011,
+          "sha256": "91399d83bc1cb4e4487b1587dd28059c1d222a569308085d0b7e178dc7b15399",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.6.1/Nexus.Setup.0.6.1.exe"
+        },
+        {
+          "name": "Nexus-0.6.1-arm64.dmg",
+          "platform": "macos",
+          "label": "macOS, Apple Silicon (.dmg)",
+          "arch": "arm64",
+          "size": 124331736,
+          "sha256": "5aecc627d7c31c7e662da542b809a4a6f7dc0c97b4ba98326d1338ec966c0f9e",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.6.1/Nexus-0.6.1-arm64.dmg"
+        },
+        {
+          "name": "Nexus-0.6.1.AppImage",
+          "platform": "linux",
+          "label": "Linux AppImage",
+          "arch": "x64",
+          "size": 129832058,
+          "sha256": "80a7e6ea1b46e97e74fa5f59651984646d01229ad7673b421dc4e6af0a836868",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.6.1/Nexus-0.6.1.AppImage"
+        },
+        {
+          "name": "nexus-desktop_0.6.1_amd64.deb",
+          "platform": "linux",
+          "label": "Debian / Ubuntu (.deb)",
+          "arch": "x64",
+          "size": 101228320,
+          "sha256": "c278f737ce2f123f68e0190ff44872da6aeb651126694bea8612263615adbace",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.6.1/nexus-desktop_0.6.1_amd64.deb"
+        }
+      ]
+    },
     {
       "version": "0.6.0",
       "date": "2026-11-02T17:22:08.846Z",
