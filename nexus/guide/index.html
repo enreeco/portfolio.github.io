@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS · User guide</title>
+  <meta name="description" content="The NEXUS user guide, chapter by chapter: tasks and the task sheet, the views, filters and tabs, the desk, routines, your own fields, profiles, backups and the nexus command line for scripts and AI agents.">
+  <!-- Draft: not linked from nexus/ yet. Remove this line once the guide is approved and linked. -->
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="NEXUS · User guide">
+  <meta property="og:description" content="Everything NEXUS does, chapter by chapter: tasks, views, the desk, routines, fields, profiles, backups and the CLI.">
+  <meta property="og:image" content="https://portfolio.organizer.solutions/nexus/assets/screens/task.webp">
+  <link rel="icon" href="../assets/icon.png">
+  <link rel="stylesheet" href="../../assets/vendor/bootstrap-icons-1.31.1/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/nexus.css">
+  <style>
+    /* Guide layout: a sticky table of contents beside the chapters. */
+    .guide-hero { padding: 3.2rem 0 1rem; }
+    .guide-hero .sub { max-width: 68ch; }
+    .guide-meta { display: flex; gap: 0.9rem; flex-wrap: wrap; color: var(--muted); font-size: 0.9rem; }
+    .guide-meta i { margin-right: 0.25rem; color: var(--cyan); }
+    .guide-hero code { font-family: var(--mono); font-size: 0.92em; color: var(--text); }
+    .chapters { min-width: 0; }
+
+    .guide { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 2.4rem; align-items: start; padding-bottom: 2rem; }
+
+    .toc { position: sticky; top: 4.6rem; max-height: calc(100vh - 5.6rem); overflow-y: auto; padding: 1rem 0.4rem 1rem 0; }
+    .toc summary { list-style: none; cursor: default; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+    .toc summary::-webkit-details-marker { display: none; }
+    .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.1rem; }
+    .toc a { display: flex; gap: 0.6rem; align-items: baseline; padding: 0.38rem 0.6rem; border-radius: 8px; color: var(--muted); text-decoration: none; font-size: 0.92rem; border-left: 2px solid transparent; }
+    .toc a .n { font-family: var(--mono); font-size: 0.78rem; color: #6c7699; min-width: 1.4rem; }
+    .toc a:hover { color: var(--text); background: rgba(255, 255, 255, 0.03); }
+    .toc a.on { color: var(--text); background: rgba(0, 212, 255, 0.07); border-left-color: var(--cyan); }
+    .toc a.on .n { color: var(--cyan); }
+
+    .chapter { padding: 1.6rem 0 2.2rem; border-bottom: 1px solid var(--border); scroll-margin-top: 4.8rem; }
+    .chapter:last-child { border-bottom: none; }
+    .chapter > .kicker .num { font-family: var(--mono); }
+    .chapter h2 { margin-bottom: 0.5rem; }
+    .chapter h3 { font-size: 1.1rem; margin: 1.6rem 0 0.5rem; display: flex; align-items: center; gap: 0.5rem; scroll-margin-top: 4.8rem; }
+    .chapter h3 i { color: var(--cyan); font-size: 1rem; }
+    .chapter p, .chapter li { color: #ccd4ee; }
+    .chapter p { margin: 0 0 0.8rem; max-width: 74ch; }
+    .chapter .lead { font-size: 1.05rem; color: var(--muted); }
+    .chapter ul.plain { margin: 0 0 0.9rem; padding-left: 1.2rem; max-width: 74ch; }
+    .chapter ul.plain li { margin-bottom: 0.35rem; }
+    .chapter strong { color: var(--text); }
+    .chapter code, .tbl code { font-family: var(--mono); font-size: 0.82rem; background: #0b0e18; border: 1px solid var(--border); padding: 0.05rem 0.35rem; border-radius: 5px; color: #d5ddff; }
+    .chapter .shot { margin: 1.1rem 0 1.3rem; }
+    .chapter .code { margin: 0.6rem 0 1rem; }
+    .chapter .check-list { margin: 0.4rem 0 1rem; }
+
+    kbd { font-family: var(--mono); font-size: 0.78rem; padding: 0.08rem 0.4rem; border-radius: 5px; border: 1px solid var(--border-2); border-bottom-width: 2px; background: var(--card-2); color: var(--text); white-space: nowrap; }
+
+    .tip { display: flex; gap: 0.7rem; align-items: flex-start; margin: 0.4rem 0 1rem; padding: 0.8rem 1rem; border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.25); background: rgba(0, 212, 255, 0.05); font-size: 0.93rem; color: #cfe9f5; max-width: 74ch; }
+    .tip i { color: var(--cyan); margin-top: 0.15rem; }
+    .tip.warn { border-color: rgba(245, 184, 74, 0.28); background: rgba(245, 184, 74, 0.06); color: #e9dcc0; }
+    .tip.warn i { color: var(--warn); }
+
+    .mini-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; margin: 0.6rem 0 1rem; }
+    .mini-grid .card { padding: 1rem 1.05rem; }
+    .mini-grid h4 { margin: 0 0 0.35rem; font-size: 0.98rem; display: flex; align-items: center; gap: 0.5rem; }
+    .mini-grid h4 i { color: var(--cyan); }
+    .mini-grid p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 0.4rem 0 1rem; display: grid; gap: 0.55rem; max-width: 74ch; }
+    .steps li { counter-increment: step; display: flex; gap: 0.75rem; align-items: flex-start; }
+    .steps li::before { content: counter(step); flex-shrink: 0; display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: rgba(0, 212, 255, 0.12); color: var(--cyan); font-family: var(--mono); font-size: 0.8rem; font-weight: 700; margin-top: 0.05rem; }
+
+    .tbl-wrap { overflow-x: auto; margin: 0.5rem 0 1.1rem; border: 1px solid var(--border); border-radius: 12px; }
+    .tbl { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    .tbl th { text-align: left; color: var(--muted); font-weight: 600; font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border); background: rgba(255, 255, 255, 0.015); }
+    .tbl td { padding: 0.55rem 0.8rem; border-bottom: 1px solid rgba(38, 45, 71, 0.6); vertical-align: top; color: #ccd4ee; }
+    .tbl tr:last-child td { border-bottom: none; }
+    .tbl td:first-child { white-space: nowrap; color: var(--text); }
+
+    .next { display: flex; justify-content: flex-end; margin-top: 0.6rem; }
+    .next a { font-size: 0.9rem; color: var(--muted); text-decoration: none; }
+    .next a:hover { color: var(--cyan); }
+
+    @media (max-width: 960px) {
+      .guide { grid-template-columns: minmax(0, 1fr); gap: 0; }
+      .toc { position: static; max-height: none; padding: 0.9rem 1rem; margin-bottom: 0.6rem; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
+      .toc summary { cursor: pointer; margin: 0; display: flex; justify-content: space-between; align-items: center; }
+      .toc summary::after { content: "\F282"; font-family: "bootstrap-icons"; font-size: 0.9rem; transition: transform 160ms ease; }
+      .toc[open] summary { margin-bottom: 0.6rem; }
+      .toc[open] summary::after { transform: rotate(180deg); }
+    }
+    @media (max-width: 640px) {
+      .mini-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="../" aria-label="NEXUS home">
+        <img src="../assets/icon.png" alt="">
+        <span>NEXUS</span>
+      </a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="../#features">Features</a>
+        <a href="./" class="on">Guide</a>
+        <a href="../#download">Download</a>
+        <a href="../releases/">Releases</a>
+        <a href="../privacy-policy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="guide-hero">
+      <div class="container">
+        <div class="kicker"><i class="bi bi-book"></i> User guide</div>
+        <h1>Getting the most out of <span class="grad">NEXUS</span></h1>
+        <p class="sub">
+          A tour of the app in thirteen short chapters: from your first profile to the desk,
+          routines, your own fields, backups and the <code>nexus</code> command line.
+          Read it in order, or jump to the chapter you need.
+        </p>
+        <div class="guide-meta">
+          <span><i class="bi bi-display"></i> Windows · macOS · Linux</span>
+          <span><i class="bi bi-wifi-off"></i> Everything works offline</span>
+          <span><i class="bi bi-clock"></i> About 20 minutes to read</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container guide">
+      <details class="toc" id="toc" open>
+        <summary>Chapters</summary>
+        <ol>
+          <li><a href="#start"><span class="n">01</span> Getting started</a></li>
+          <li><a href="#tasks"><span class="n">02</span> Tasks and the task sheet</a></li>
+          <li><a href="#views"><span class="n">03</span> One work, many views</a></li>
+          <li><a href="#dashboard"><span class="n">04</span> Dashboard and widgets</a></li>
+          <li><a href="#filters"><span class="n">05</span> Filters, tabs and favorites</a></li>
+          <li><a href="#bulk"><span class="n">06</span> Many tasks at once</a></li>
+          <li><a href="#desk"><span class="n">07</span> The desk</a></li>
+          <li><a href="#routines"><span class="n">08</span> Routines</a></li>
+          <li><a href="#fields"><span class="n">09</span> Fields you shape</a></li>
+          <li><a href="#profiles"><span class="n">10</span> Profiles</a></li>
+          <li><a href="#data"><span class="n">11</span> Your data and backups</a></li>
+          <li><a href="#cli"><span class="n">12</span> Command line and AI agents</a></li>
+          <li><a href="#settings"><span class="n">13</span> Settings and shortcuts</a></li>
+        </ol>
+      </details>
+
+      <div class="chapters">
+
+        <!-- 01 -->
+        <article class="chapter" id="start">
+          <div class="kicker"><span class="num">01</span> · Getting started</div>
+          <h2>Install, create a profile, find your way</h2>
+          <p class="lead">NEXUS is a desktop app: no account, no sign-in, no server. Your tasks live in a database file on your computer, and the app opens straight onto them.</p>
+
+          <h3><i class="bi bi-download"></i> Install</h3>
+          <p>Download the installer for your system from the <a href="../#download">download section</a>. The installers carry everything they need — you do not need Node.js or anything else.</p>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>System</th><th>Installer</th><th>The <code>nexus</code> command</th></tr></thead>
+              <tbody>
+                <tr><td>Windows</td><td><code>.exe</code> — no administrator rights needed</td><td>Added to your PATH by the installer (open a new terminal)</td></tr>
+                <tr><td>macOS</td><td><code>.dmg</code> — drag NEXUS to Applications</td><td>Settings → CLI &amp; Agents → Command line → <strong>Install <code>nexus</code> command</strong></td></tr>
+                <tr><td>Linux</td><td><code>.deb</code> for Debian / Ubuntu, or the AppImage</td><td>Installed with the <code>.deb</code>; not available with the AppImage</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tip warn"><i class="bi bi-shield-exclamation"></i><div>The installers are not code-signed yet, so your system asks before the first launch. <strong>Windows</strong>: <em>More info</em> → <em>Run anyway</em>. <strong>macOS</strong>: right-click NEXUS in Applications → <em>Open</em>. <strong>Linux</strong>: make the AppImage executable (<code>chmod +x</code>).</div></div>
+
+          <h3><i class="bi bi-person-plus"></i> Your first profile</h3>
+          <ol class="steps">
+            <li><span>The app opens with no profile. Click the profile switcher at the top right → <strong>Create Profile</strong>.</span></li>
+            <li><span>Give it a name — <em>Work</em>, <em>Home</em>, a client — and create it. The database file is created for you, on your computer.</span></li>
+            <li><span>Click <strong>New Task</strong> and start writing. Or bring in what you already have: Settings → Data → Export &amp; import → <strong>Import JSON</strong>.</span></li>
+            <li><span>Optional, but recommended: choose a backup folder in Settings → Profiles → Backups (<a href="#data">chapter 11</a>).</span></li>
+          </ol>
+
+          <h3><i class="bi bi-window"></i> The window at a glance</h3>
+          <div class="mini-grid">
+            <div class="card"><h4><i class="bi bi-layout-text-window"></i> Header</h4><p>Search, the profile switcher, <strong>New Task</strong>, ↻ to reload, and ⚙ Settings. Settings opens as a tab of its own, beside <em>Tasks</em>.</p></div>
+            <div class="card"><h4><i class="bi bi-layout-sidebar"></i> Sidebar</h4><p>The <strong>Views</strong> button switches between the pages of the app; under it, the filters of the view you are on.</p></div>
+            <div class="card"><h4><i class="bi bi-arrow-left-right"></i> View bar</h4><p>← / → walk back and forth through the views you visited; <strong>+</strong> opens the current view in a new tab; then Favorites, Presets, Group and the view's own tools.</p></div>
+            <div class="card"><h4><i class="bi bi-window-stack"></i> Tabs</h4><p>Under <em>Tasks</em>, a strip of task tabs appears as soon as you open one: a project, a preset, a search, a filtered view.</p></div>
+          </div>
+          <div class="next"><a href="#tasks">Next: Tasks and the task sheet <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 02 -->
+        <article class="chapter" id="tasks">
+          <div class="kicker"><span class="num">02</span> · Tasks</div>
+          <h2>Tasks and the task sheet</h2>
+          <p class="lead">Every task opens in the same sheet, whether you are reading it, editing it or creating it: a header, the description and its tabs in the middle, the properties on the right.</p>
+
+          <a class="shot-link" href="../assets/screens/task.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/task.webp" width="1440" height="880" loading="lazy" alt="Task sheet with notes, relations, files and the properties sidebar">
+              <figcaption><strong>The task sheet.</strong> Header, description, Notes / Relations / Files &amp; links, and the Properties on the right.</figcaption>
+            </figure>
+          </a>
+
+          <h3><i class="bi bi-card-text"></i> What a task holds</h3>
+          <ul class="plain">
+            <li><strong>Title and description</strong> — the description is Markdown, and links in it open in your browser.</li>
+            <li><strong>Project and section</strong>, a <strong>due date</strong> (with <em>Today</em>, <em>Tomorrow</em> and <em>Next week</em> buttons), <strong>status</strong>, <strong>priority</strong>, <strong>area</strong> and <strong>activity type</strong>.</li>
+            <li><strong>Tags</strong>, <strong>people</strong> (picked from your contacts) and your own <strong>custom fields</strong> (<a href="#fields">chapter 9</a>).</li>
+            <li><strong>Notes</strong>: comments signed with your name, which you can edit and delete.</li>
+            <li><strong>Relations</strong> to other tasks — <em>blocks</em>, <em>depends on</em>, <em>related</em> — as a list or a graph.</li>
+            <li><strong>Files &amp; links</strong>: attach files to the task, and keep links to the resources it needs.</li>
+          </ul>
+          <p>Each task gets a short code such as <code>TASK-00042</code>. A child task shows its parents at the top of the sheet, with their status, so you always know where it belongs.</p>
+
+          <h3><i class="bi bi-pencil"></i> Edit in place</h3>
+          <p>You rarely need an edit form. In the sheet, click a property to change it in a small popup, click the title or the description to rewrite them, add a file or a relation straight from its tab. Each change is saved at once, and a message offers <strong>Undo</strong>.</p>
+          <ul class="check-list">
+            <li><i class="bi bi-check-circle-fill"></i> The status menu and the <strong>Complete</strong> / <strong>Reopen</strong> button sit in the header.</li>
+            <li><i class="bi bi-check-circle-fill"></i> <strong>Copy link</strong> gives a <code>nexus://</code> link that opens the task again from anywhere.</li>
+            <li><i class="bi bi-check-circle-fill"></i> ⋯ → <strong>Duplicate</strong> copies a task into a new one; ⋯ → <strong>Delete</strong> removes it.</li>
+            <li><i class="bi bi-check-circle-fill"></i> Long pick lists filter as you type: start typing a value, press <kbd>Enter</kbd> to pick it.</li>
+          </ul>
+
+          <h3><i class="bi bi-plus-square"></i> New tasks start in the right place</h3>
+          <p><strong>New Task</strong> fills in what the view you are on already says: if you are looking at one project's tasks with status <em>To do</em>, the new task starts in that project, as <em>To do</em>, and shows up right where you created it. In a grouped list, each group has its own <strong>+ New Task</strong>, and in the Calendar each day has a <strong>+</strong> that sets the due date. Tick <strong>Create another</strong> to save and start the next task in the same project and section.</p>
+          <div class="tip"><i class="bi bi-keyboard"></i><div>In the sheet: <kbd>E</kbd> edits, <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>Enter</kbd> saves the form, <kbd>Esc</kbd> closes the innermost thing open, and <kbd>1</kbd>–<kbd>9</kbd> pick a value in an open menu. If you close a form with unsaved changes, NEXUS asks first.</div></div>
+          <div class="next"><a href="#views">Next: One work, many views <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 03 -->
+        <article class="chapter" id="views">
+          <div class="kicker"><span class="num">03</span> · Views</div>
+          <h2>One work, many views</h2>
+          <p class="lead">The same tasks, looked at the way the moment needs. Pick a view from the sidebar's <strong>Views</strong> button; the filters follow you between the task views.</p>
+
+          <a class="shot-link" href="../assets/screens/kanban.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/kanban.webp" width="1440" height="880" loading="lazy" alt="Kanban board with tasks grouped by status">
+              <figcaption><strong>Kanban.</strong> One lane per status — or per priority, project or any field you group by.</figcaption>
+            </figure>
+          </a>
+
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>View</th><th>What it is for</th></tr></thead>
+              <tbody>
+                <tr><td><i class="bi bi-grid-1x2-fill"></i> Dashboard</td><td>Totals, a monthly timeline and charts by any field — plus your own widgets (<a href="#dashboard">chapter 4</a>).</td></tr>
+                <tr><td><i class="bi bi-calendar3"></i> Calendar</td><td>What is due: overdue first, then today, tomorrow and the days after, or a month grid. Drag a task to another day to reschedule it.</td></tr>
+                <tr><td><i class="bi bi-arrow-repeat"></i> Routines</td><td>Your recurring checklists and their history (<a href="#routines">chapter 8</a>).</td></tr>
+                <tr><td><i class="bi bi-list-ul"></i> Task List</td><td>A sortable table with the columns you choose (drag a header to move it), grouped by any field, with selection and bulk edits.</td></tr>
+                <tr><td><i class="bi bi-kanban"></i> Kanban</td><td>A board with one lane per value of status, priority, project or any field; a task with several tags or people shows in each of their lanes.</td></tr>
+                <tr><td><i class="bi bi-easel"></i> Desktop</td><td>Projects as folders on a desk you pan and zoom (<a href="#desk">chapter 7</a>).</td></tr>
+                <tr><td><i class="bi bi-folder"></i> Projects</td><td>Create projects and their sections; each shows how many tasks it has, one click from a tab with them.</td></tr>
+                <tr><td><i class="bi bi-people"></i> Contacts</td><td>The people you work with: name, company, email, role, and their tasks.</td></tr>
+                <tr><td><i class="bi bi-paperclip"></i> Attachments</td><td>Every file of the profile with its task: search, download, delete.</td></tr>
+                <tr><td><i class="bi bi-info-circle"></i> Fields reference</td><td>Every field of the profile and its values, at a glance.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3><i class="bi bi-calendar-check"></i> The Calendar in detail</h3>
+          <a class="shot-link" href="../assets/screens/calendar.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/calendar.webp" width="1440" height="880" loading="lazy" alt="Month calendar with the tasks due each day">
+              <figcaption><strong>Calendar.</strong> In the month grid, <em>+N more</em> lists a busy day's tasks.</figcaption>
+            </figure>
+          </a>
+          <ul class="plain">
+            <li><strong>Overdue</strong> is always relative to today, in red, with how many days late each task is.</li>
+            <li>Within a day, tasks are ordered by priority, as your priority list orders them.</li>
+            <li>The Calendar item in the Views list carries a red badge: how many open tasks are overdue or due today.</li>
+            <li>Days a routine falls on carry a ↻ icon; today's open routines are listed among today's tasks, outlined in green.</li>
+          </ul>
+
+          <h3><i class="bi bi-check2-square"></i> Completed tasks</h3>
+          <p>The Task List and the Kanban hide completed tasks, so they show what is left to do. Turn on <strong>Show completed</strong> in the toolbar to see them, or filter by a completed status. The Dashboard always counts them.</p>
+          <div class="next"><a href="#dashboard">Next: Dashboard and widgets <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 04 -->
+        <article class="chapter" id="dashboard">
+          <div class="kicker"><span class="num">04</span> · Dashboard</div>
+          <h2>Dashboard and widgets</h2>
+          <p class="lead">Where you stand, in one page: totals, a timeline by month and charts by status, priority and area — all following the filters of the sidebar.</p>
+
+          <a class="shot-link" href="../assets/screens/dashboard.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/dashboard.webp" width="1440" height="880" loading="lazy" alt="Dashboard with totals, a monthly timeline and charts by status, priority and area">
+              <figcaption><strong>Dashboard.</strong> Built-in charts and your own widgets, side by side.</figcaption>
+            </figure>
+          </a>
+
+          <h3><i class="bi bi-bar-chart-steps"></i> Build your own widgets</h3>
+          <p>The <strong>Widget Builder</strong> makes the chart you need, and <strong>Add Widget</strong> puts it on the dashboard:</p>
+          <ul class="check-list">
+            <li><i class="bi bi-check-circle-fill"></i> <strong>Group</strong> by any filterable field, or by month.</li>
+            <li><i class="bi bi-check-circle-fill"></i> <strong>Stack</strong> by a second field — e.g. tasks per project, stacked by status.</li>
+            <li><i class="bi bi-check-circle-fill"></i> <strong>Count</strong> tasks, or <strong>sum</strong> / <strong>average</strong> a number or currency field — a budget per area, hours per month.</li>
+            <li><i class="bi bi-check-circle-fill"></i> Give a widget <strong>fixed filters</strong>, so it always shows the same slice of your work.</li>
+          </ul>
+          <div class="tip"><i class="bi bi-lightbulb"></i><div>Which fields the builder offers is up to you: it uses the fields marked <em>filterable</em> in Settings → Fields → Field properties (<a href="#fields">chapter 9</a>).</div></div>
+          <div class="next"><a href="#filters">Next: Filters, tabs and favorites <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 05 -->
+        <article class="chapter" id="filters">
+          <div class="kicker"><span class="num">05</span> · Finding things</div>
+          <h2>Filters, tabs and favorites</h2>
+          <p class="lead">Narrow the work down to what matters now, keep several slices open side by side, and come back to them in one click.</p>
+
+          <h3><i class="bi bi-funnel"></i> Filters</h3>
+          <p>The sidebar has a filter for each <em>filterable</em> field: status, priority, area, project, section, tags, people, custom fields and more — you choose which, and in which order. Tick values to keep only those tasks, or use <strong>NOT</strong> to leave them out. The active filters show as chips above the tasks.</p>
+          <p><strong>Group</strong> sorts the Task List and the Kanban into groups by any field, and remembers the groups you folded away.</p>
+
+          <h3><i class="bi bi-bookmark"></i> Presets</h3>
+          <p>Save a combination of filters — and a sort, ascending or descending — as a <strong>preset</strong>, and apply it again later. A preset can also open in a <strong>new tab</strong>.</p>
+
+          <h3><i class="bi bi-window-stack"></i> Task tabs</h3>
+          <p>Work on several things at once without losing your filters. A tab opens from:</p>
+          <ul class="plain">
+            <li>the <strong>+</strong> next to the view's title — the current view with its filters;</li>
+            <li>a project's, section's or contact's task count, in Projects and Contacts;</li>
+            <li>a preset's <strong>New tab</strong>, or a favorite;</li>
+            <li>the <strong>search box</strong>: results get a tab of their own, which follows as you type and closes when you clear it. Search looks in task codes, titles, descriptions, tags, people and text fields.</li>
+          </ul>
+          <p>Each tab keeps its own view, filters, grouping and sort, and its own history: ← / → (or <kbd>Alt</kbd>+<kbd>←</kbd> / <kbd>→</kbd>, or your mouse's back and forward buttons) walk through the views it showed. The main tab keeps your usual filters untouched.</p>
+
+          <h3><i class="bi bi-star"></i> Favorites</h3>
+          <p>The ☆ <strong>Favorites</strong> menu saves the page you are on under a name — the view, plus its filters, grouping and sort — and opens it again in the same tab or in a new one. Rename and delete them from the same menu.</p>
+          <div class="next"><a href="#bulk">Next: Many tasks at once <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 06 -->
+        <article class="chapter" id="bulk">
+          <div class="kicker"><span class="num">06</span> · Bulk edits</div>
+          <h2>Many tasks at once</h2>
+          <p class="lead">Moving ten tasks to another project, or giving a whole group a new due date, takes one form, not ten.</p>
+
+          <ol class="steps">
+            <li><span>In the <strong>Task List</strong>, tick the tasks you want. The header checkbox selects every task shown; a group's checkbox selects that group only.</span></li>
+            <li><span>Open <strong>Actions</strong> → <strong>Edit Selected…</strong>. The task sheet opens with the selected tasks listed in the middle (× leaves one out) and the fields they share on the right.</span></li>
+            <li><span>Each field shows the value the tasks have in common, or <em>Mixed — keep</em> when they differ. Change only what you want to change; the rest stays as each task has it.</span></li>
+            <li><span>The <strong>eraser</strong> beside a field empties it on every task. For tags and people, a value you add is added to every task, one you remove is removed from all.</span></li>
+            <li><span><strong>Apply</strong> lists the changes for you to confirm, then saves them all in one go.</span></li>
+          </ol>
+          <div class="tip"><i class="bi bi-shield-check"></i><div>A bulk edit that would leave a required field empty is refused, so your rules hold for every task. <strong>Delete Selected</strong>, in the same menu, removes the selected tasks.</div></div>
+          <div class="next"><a href="#desk">Next: The desk <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 07 -->
+        <article class="chapter" id="desk">
+          <div class="kicker"><span class="num">07</span> · Desktop</div>
+          <h2>The desk</h2>
+          <p class="lead">A view like no list: your projects lie as folders on a desk. Open one, take out the tasks you are working on, stick a note beside them — the way you would on a real desk.</p>
+
+          <a class="shot-link" href="../assets/screens/desktop.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/desktop.webp" width="1440" height="880" loading="lazy" alt="The desk: project folders, one open into columns of tasks by section">
+              <figcaption><strong>The desk.</strong> A folder opens into its sections; tasks taken out lie loose on the desk.</figcaption>
+            </figure>
+          </a>
+
+          <div class="mini-grid">
+            <div class="card"><h4><i class="bi bi-arrows-move"></i> Pan and zoom</h4><p>Drag the desk around, zoom with the wheel or the buttons. The closer you zoom, the more each task shows.</p></div>
+            <div class="card"><h4><i class="bi bi-folder2-open"></i> Folders</h4><p>One per project. Open a folder and it becomes a sheet with one column per section.</p></div>
+            <div class="card"><h4><i class="bi bi-box-arrow-up-right"></i> Tasks on the desk</h4><p>Drag a task out to focus on it, or find one with <strong>Add a task</strong>. Send it back with ↩, or drop it on its folder.</p></div>
+            <div class="card"><h4><i class="bi bi-sticky"></i> Sticky notes</h4><p>Notes in a colour from the palette, and one font for all of them: handwriting, sans serif, serif or monospace.</p></div>
+            <div class="card"><h4><i class="bi bi-folder-check"></i> Which projects</h4><p><strong>Projects</strong> puts folders on the desk or away — all, none, or only the ones you filter — and <strong>Tidy up</strong> arranges them.</p></div>
+            <div class="card"><h4><i class="bi bi-arrow-repeat"></i> Routines board</h4><p>Show your open routines on the desk, and tick their steps right there.</p></div>
+          </div>
+
+          <h3><i class="bi bi-save"></i> Saved desks</h3>
+          <p>Give a desk a name and it saves itself as you go — its title shows when it was last saved. Keep several desks (<em>This week</em>, <em>Q4 launch</em>) and switch between them from <strong>Saved desks</strong>; <strong>New desk</strong> starts a fresh one. <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>Z</kbd> and <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>Y</kbd> undo and redo your changes. <strong>Hide completed</strong>, on by default, keeps finished tasks out of the way.</p>
+          <div class="next"><a href="#routines">Next: Routines <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 08 -->
+        <article class="chapter" id="routines">
+          <div class="kicker"><span class="num">08</span> · Routines</div>
+          <h2>Routines: checklists that come back</h2>
+          <p class="lead">The things you do again and again — a morning recap, a weekly report, the monthly invoices — written once, and back on the day they are due.</p>
+
+          <h3><i class="bi bi-calendar-week"></i> Schedules</h3>
+          <p>A routine comes back every day, every working day (Monday to Friday), every weekend day, on the days of the week you choose, every week, or on a day of the month every N months. Give it a start and, if you like, an end date.</p>
+
+          <h3><i class="bi bi-list-check"></i> How an occurrence works</h3>
+          <ul class="plain">
+            <li>Each time the routine comes round, NEXUS creates an <strong>occurrence</strong>: a task with one step per item of the checklist, due on its day (a weekly one, on the Sunday of its week).</li>
+            <li>Tick the steps as you go; the occurrence shows its percentage, and ticking the last step completes it.</li>
+            <li>An occurrence stays open until you complete or archive it. Left open past its day, it shows as overdue in the Calendar.</li>
+            <li>Each occurrence keeps its comments, and the routine keeps the history of every occurrence.</li>
+            <li>A step can carry fields of its own — another project, a higher priority — on top of those the routine gives every task.</li>
+          </ul>
+
+          <h3><i class="bi bi-pause-circle"></i> Pause, change, end</h3>
+          <p>Create and edit routines in the task sheet, like a task, with a routine block for the schedule and the steps. A change applies to the occurrences still to come. <strong>Pause</strong> a routine for the holidays — nothing is created until you resume it — or <strong>End</strong> it when it has served its purpose.</p>
+
+          <h3><i class="bi bi-eye"></i> Where routines show</h3>
+          <ul class="check-list">
+            <li><i class="bi bi-check-circle-fill"></i> <strong>Routines</strong> view: the open occurrences as cards, then every routine with its history.</li>
+            <li><i class="bi bi-check-circle-fill"></i> <strong>Calendar</strong>: a ↻ icon on the days a routine falls on — future days as a preview — and today's open routines among today's tasks.</li>
+            <li><i class="bi bi-check-circle-fill"></i> <strong>Desktop</strong>: the routines board, with steps you can tick.</li>
+          </ul>
+          <div class="tip"><i class="bi bi-lightbulb"></i><div>Routines stay out of the task lists, the Kanban and the dashboard, so your project work is not buried under daily checklists.</div></div>
+          <div class="next"><a href="#fields">Next: Fields you shape <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 09 -->
+        <article class="chapter" id="fields">
+          <div class="kicker"><span class="num">09</span> · Fields</div>
+          <h2>Fields you shape</h2>
+          <p class="lead">NEXUS adapts to how you work, not the other way round. Every profile has its own projects, values, fields and rules.</p>
+
+          <h3><i class="bi bi-folder"></i> Projects and sections</h3>
+          <p>In the <strong>Projects</strong> view, create projects with an icon and a colour, and split each into sections — <em>Discovery</em>, <em>Build</em>, <em>Launch</em>. A task belongs to one project and, optionally, one of its sections.</p>
+
+          <h3><i class="bi bi-palette"></i> Your own values</h3>
+          <p>Settings → Fields → <strong>Standard fields</strong> holds the values of status, priority, area, activity type and resource type. Rename them, add your own, reorder them, and give each an icon and a colour. A status can be flagged as <em>completed</em>, so NEXUS knows which tasks are done.</p>
+
+          <h3><i class="bi bi-input-cursor-text"></i> Custom fields</h3>
+          <p>Settings → Fields → <strong>Custom fields</strong> adds the fields your work needs, shown under <em>Additional details</em> in the task sheet:</p>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Type</th><th>Example</th></tr></thead>
+              <tbody>
+                <tr><td>Text, Markdown</td><td>A ticket number; acceptance criteria</td></tr>
+                <tr><td>Number, currency</td><td>Estimated hours; a budget in EUR</td></tr>
+                <tr><td>Single or multiple choice</td><td>Channel: Web, Email, Event</td></tr>
+                <tr><td>Checkbox</td><td>Approved</td></tr>
+                <tr><td>Date, date and time</td><td>Kick-off; a meeting slot</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3><i class="bi bi-person-lines-fill"></i> Contacts</h3>
+          <p>The <strong>People</strong> of a task are contacts — name, company, email, role — picked with a type-ahead in the task sheet, or created there on the fly. Manage them in the <strong>Contacts</strong> view, with a default company for new ones.</p>
+
+          <h3><i class="bi bi-ui-checks-grid"></i> Filterable and required</h3>
+          <p>Settings → Fields → <strong>Field properties</strong> decides two things for every field:</p>
+          <ul class="plain">
+            <li><strong>Filterable</strong>: the field gets a filter in the sidebar — in the order you set — and becomes available to the Widget Builder and to grouping.</li>
+            <li><strong>Required</strong>: a task cannot be saved without it, in the app as from the command line.</li>
+          </ul>
+          <div class="next"><a href="#profiles">Next: Profiles <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 10 -->
+        <article class="chapter" id="profiles">
+          <div class="kicker"><span class="num">10</span> · Profiles</div>
+          <h2>Profiles: one database each</h2>
+          <p class="lead">Keep work and home apart, or give each client their own space. Every profile is a separate database, with its own tasks and its own setup.</p>
+
+          <p>Switch profiles from the switcher at the top right; the app reloads onto the other database in a moment. Manage them in Settings → Profiles: rename, pick an icon, remove.</p>
+
+          <h3><i class="bi bi-node-plus"></i> Start from…</h3>
+          <p>A new profile does not have to start from scratch:</p>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Start from</th><th>The new profile gets</th></tr></thead>
+              <tbody>
+                <tr><td>Default configuration</td><td>The built-in values, no custom fields</td></tr>
+                <tr><td>The active profile's configuration</td><td>Its values, custom fields, settings and projects — no tasks</td></tr>
+                <tr><td>A configuration file…</td><td>A setup exported earlier, from this computer or another</td></tr>
+                <tr><td>A copy of a database file…</td><td>A full copy of another NEXUS database — tasks, projects, contacts and setup</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Settings → Profiles → <strong>Configuration</strong> exports a profile's setup — values, custom fields, settings, dashboard widgets, presets and, if you like, projects — to share it, or to keep two profiles aligned.</p>
+          <div class="next"><a href="#data">Next: Your data and backups <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 11 -->
+        <article class="chapter" id="data">
+          <div class="kicker"><span class="num">11</span> · Your data</div>
+          <h2>Your data, and backups that are safe to sync</h2>
+          <p class="lead">Your tasks are a SQLite file on your computer — not on our servers, because there are none. NEXUS makes backups of that file the safe way.</p>
+
+          <h3><i class="bi bi-hdd"></i> Local first</h3>
+          <p>Each profile's database sits in the app's data folder, on your disk. No account, no telemetry, nothing leaves your computer unless you send it somewhere.</p>
+          <div class="tip warn"><i class="bi bi-exclamation-triangle"></i><div><strong>Do not put the live database in Dropbox, OneDrive or iCloud.</strong> Sync clients can damage a database that is open. Let NEXUS publish snapshots there instead — written once, never changed, exactly what sync clients handle well.</div></div>
+
+          <h3><i class="bi bi-cloud-arrow-up"></i> Backups to a folder</h3>
+          <p>Settings → Profiles → Backups → <strong>Local backup</strong>:</p>
+          <ul class="plain">
+            <li><strong>Folder</strong> — any folder, a cloud folder included.</li>
+            <li><strong>Every (minutes)</strong> — how often to take a snapshot; one more is taken when you quit. Nothing is published when nothing changed.</li>
+            <li><strong>Keep per device</strong> — how many snapshots to keep from each computer.</li>
+            <li><strong>Back up now</strong>, and the list of snapshots with <strong>Restore</strong>.</li>
+          </ul>
+
+          <h3><i class="bi bi-google"></i> Backups to Google Drive</h3>
+          <p>In the <strong>Google Drive</strong> sub-tab, <em>Connect</em> signs in to Google in your browser, and the profile's snapshots go to a folder of its own on your Drive — no Drive app needed, alongside the folder above or instead of it. NEXUS sees only the files it created there, nothing else in your Drive. Restore or download a snapshot from the same panel; <em>Disconnect</em> leaves the files where they are.</p>
+
+          <h3><i class="bi bi-laptop"></i> Two computers, one profile</h3>
+          <p>When another computer has published a newer snapshot — in the folder or on Drive — NEXUS asks at startup: <strong>load the backup</strong>, or <strong>keep the current version</strong> (which then becomes the newest one for the other computer).</p>
+
+          <h3><i class="bi bi-arrow-counterclockwise"></i> Restoring is reversible</h3>
+          <p>Before a restore replaces your data, NEXUS publishes the current state as a snapshot. Changed your mind? Restore that one.</p>
+
+          <h3><i class="bi bi-arrow-left-right"></i> Export everything</h3>
+          <p>Settings → Data → Export &amp; import writes the whole profile — tasks, comments, relations and attached files — to one JSON file, and imports it back. No lock-in.</p>
+          <div class="next"><a href="#cli">Next: Command line and AI agents <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 12 -->
+        <article class="chapter" id="cli">
+          <div class="kicker"><span class="num">12</span> · CLI &amp; AI</div>
+          <h2>The command line, and AI agents</h2>
+          <p class="lead">The <code>nexus</code> command ships with the app and works on the same databases. Anything you do in one shows up in the other — the open app refreshes itself when the command line writes.</p>
+
+          <h3><i class="bi bi-terminal"></i> What it does</h3>
+          <p>Tasks, comments, relations, attachments, projects, contacts, fields, routines, desks, favorites, profiles, backups, export and import: every change you can make in the app, you can make from the terminal. Output is a readable table, or JSON with <code>--json</code>.</p>
+          <pre class="code" aria-label="Command line examples"><span class="c"># what is in progress, as JSON</span>
+<span class="p">$</span> nexus task list --status <span class="s">"In Progress"</span> --json
+
+<span class="c"># a new task in a project, due Friday</span>
+<span class="p">$</span> nexus task add --title <span class="s">"Draft the Q4 objectives"</span> \
+    --project <span class="s">"Q4 planning"</span> --priority High --due 2026-10-30
+
+<span class="c"># one change, many tasks</span>
+<span class="p">$</span> nexus task bulk-update TASK-00012 TASK-00013 --status Done
+
+<span class="c"># the routines still to do today</span>
+<span class="p">$</span> nexus routine instances --open
+
+<span class="c"># a snapshot into your backup folder, now</span>
+<span class="p">$</span> nexus snapshot create</pre>
+          <ul class="plain">
+            <li>A task can be named by its code (<code>TASK-00042</code>) or by a piece of its title.</li>
+            <li><code>--profile &lt;name&gt;</code> runs one command on another profile, without switching.</li>
+            <li><code>nexus &lt;group&gt; &lt;command&gt; --help</code> lists every option.</li>
+          </ul>
+
+          <h3><i class="bi bi-robot"></i> Let an AI agent work with your tasks</h3>
+          <p>NEXUS comes with <strong>agent skills</strong> that teach an AI agent — Claude Code, the Claude Agent SDK and others — to drive the <code>nexus</code> command: find and update tasks, plan your week from your real work, set up a profile, take care of backups.</p>
+          <div class="mini-grid">
+            <div class="card"><h4><i class="bi bi-check2-all"></i> nexus-tasks</h4><p>Find, create, update and complete tasks; comments, relations, attachments, routines.</p></div>
+            <div class="card"><h4><i class="bi bi-gear-wide-connected"></i> nexus-setup</h4><p>Profiles, projects, values, custom and required fields, contacts, configurations.</p></div>
+            <div class="card"><h4><i class="bi bi-shield-check"></i> nexus-backup</h4><p>Snapshots, full export and import, moving to another computer.</p></div>
+            <div class="card"><h4><i class="bi bi-file-zip"></i> Get them</h4><p>Settings → CLI &amp; Agents → Agent skills → <strong>Download skills (.zip)</strong>: always the skills of your version.</p></div>
+          </div>
+          <div class="tip"><i class="bi bi-info-circle"></i><div>The agent works on your computer, through the same command you would type: your data still goes nowhere NEXUS did not already keep it. The app and the command line can be used at the same time.</div></div>
+          <div class="next"><a href="#settings">Next: Settings and shortcuts <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 13 -->
+        <article class="chapter" id="settings">
+          <div class="kicker"><span class="num">13</span> · Reference</div>
+          <h2>Settings and shortcuts</h2>
+          <p class="lead">⚙ opens Settings as a tab beside <em>Tasks</em>; close it to go back. Each tab is split into a few sub-tabs, so nothing is a long scroll.</p>
+
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Tab</th><th>What you set there</th></tr></thead>
+              <tbody>
+                <tr><td>Appearance</td><td>Dark, light or system theme; the first day of the week; the name your comments are signed with (per computer)</td></tr>
+                <tr><td>Fields</td><td>Standard fields (the values), custom fields, field properties (filterable and required)</td></tr>
+                <tr><td>Profiles</td><td>Your profiles; configuration export and import; backups to a folder and to Google Drive</td></tr>
+                <tr><td>Data</td><td>Full JSON export and import; the database's location, sample data, reset</td></tr>
+                <tr><td>CLI &amp; Agents</td><td>The agent skills to download; whether the <code>nexus</code> command is installed, and where</td></tr>
+                <tr><td>About</td><td>The version of NEXUS you are running</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3><i class="bi bi-keyboard"></i> Keyboard shortcuts</h3>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Keys</th><th>Where</th><th>Does</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>E</kbd></td><td>Task sheet</td><td>Edit the task</td></tr>
+                <tr><td><kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd></td><td>Task form</td><td>Save</td></tr>
+                <tr><td><kbd>Esc</kbd></td><td>Anywhere</td><td>Close the innermost popup, menu, edit, form or sheet</td></tr>
+                <tr><td><kbd>1</kbd> – <kbd>9</kbd></td><td>An open menu</td><td>Pick a value</td></tr>
+                <tr><td><kbd>Enter</kbd> · <kbd>↑</kbd> <kbd>↓</kbd></td><td>A pick list you type in</td><td>Pick the match · move through the matches</td></tr>
+                <tr><td><kbd>Alt</kbd> + <kbd>←</kbd> / <kbd>→</kbd></td><td>Task views</td><td>Back / forward through the views of a tab</td></tr>
+                <tr><td><kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Z</kbd> / <kbd>Y</kbd></td><td>Desktop</td><td>Undo / redo</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note">
+            <i class="bi bi-question-circle-fill"></i>
+            <div>Something missing from this guide? NEXUS is updated often: the <a href="../releases/">releases page</a> lists what changed in each version.</div>
+          </div>
+          <div class="next"><a href="#top">Back to the top <i class="bi bi-arrow-up"></i></a></div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span><i class="bi bi-c-circle"></i> <span id="year"></span> NEXUS. Made by <a href="https://organizer.solutions" target="_blank" rel="noopener noreferrer">ORGanizer.solutions</a>.</span>
+      <span><a href="../">NEXUS</a> · <a href="../releases/">Releases</a> · <a href="../privacy-policy.html">Privacy Policy</a> · <a href="../../">All products</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Table of contents: open beside the chapters on wide screens, folded on narrow ones;
+    // the chapter being read is highlighted.
+    (function () {
+      var toc = document.getElementById('toc');
+      var narrow = window.matchMedia('(max-width: 960px)');
+      function fit() { toc.open = !narrow.matches; }
+      fit();
+      if (narrow.addEventListener) narrow.addEventListener('change', fit);
+      toc.querySelector('summary').addEventListener('click', function (ev) {
+        if (!narrow.matches) ev.preventDefault();
+      });
+
+      var links = {};
+      toc.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        links[a.getAttribute('href').slice(1)] = a;
+        a.addEventListener('click', function () { if (narrow.matches) toc.open = false; });
+      });
+      var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+      function highlight() {
+        var line = window.innerHeight * 0.3;
+        var current = chapters[0];
+        chapters.forEach(function (c) { if (c.getBoundingClientRect().top <= line) current = c; });
+        if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = chapters[chapters.length - 1];
+        Object.keys(links).forEach(function (id) { links[id].classList.toggle('on', id === current.id); });
+      }
+      window.addEventListener('scroll', highlight, { passive: true });
+      window.addEventListener('resize', highlight);
+      highlight();
+    })();
+  </script>
+</body>
+</html>
