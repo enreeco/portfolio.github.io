@@ -5,7 +5,7 @@
     {
       "version": "0.6.3",
       "date": "2026-11-05T14:07:34.333Z",
-      "notes": "",
+      "notes": "- Routines: new schedules: working days, weekend days, chosen days of the week, and monthly every N months. Each occurrence is created once; one left open becomes overdue and the Calendar lists it under Overdue.\n- Task List → Actions → Edit Selected…: change many tasks at once in the task sheet, with only the fields they share; an eraser empties a field on every selected task; changes are confirmed and applied together. CLI: nexus task bulk-update.\n- Fix: a group's header checkbox selects that group's tasks only.",
       "assets": [
         {
           "name": "Nexus.Setup.0.6.3.exe",
@@ -48,7 +48,7 @@
     {
       "version": "0.6.2",
       "date": "2026-11-03T16:16:15.479Z",
-      "notes": "",
+      "notes": "- Routines are created and edited in the task sheet: a routine block (schedule, dates, steps) under the title replaces the separate routine dialog.\n- Task sheet: a note's edit box opens as tall as the note and grows while typing, up to half the pane.\n- Fixes: a highlighted value in a pick list stays on one line; \"Unsaved changes\" no longer shows when nothing changed.",
       "assets": [
         {
           "name": "Nexus.Setup.0.6.2.exe",
@@ -91,7 +91,7 @@
     {
       "version": "0.6.1",
       "date": "2026-11-03T09:47:47.562Z",
-      "notes": "",
+      "notes": "- Calendar: today's open routines are listed with the day's tasks (Today / Week and the month cell), outlined in green; a click opens the routine.\n- Pick-list search ranks the best matches first and shows the matching words in bold.",
       "assets": [
         {
           "name": "Nexus.Setup.0.6.1.exe",
@@ -134,7 +134,7 @@
     {
       "version": "0.6.0",
       "date": "2026-11-02T17:22:08.846Z",
-      "notes": "",
+      "notes": "- Google Drive backups per profile: snapshots go to the profile's own Drive folder (no Drive desktop app needed), with restore, download and the newer-backup check at startup. CLI: nexus snapshot drive.\n- New profiles can start from a copy of an existing Nexus database file (checked, then copied); each profile needs its own backup folder.\n- Task List: folded groups are remembered, each group has its own \"+ New Task\" pre-filled with the group's value, and a new task starts with the values of single-value filters.\n- Completed tasks are hidden in the list and the kanban unless \"Show completed\" is on or a filter asks for them.\n- Pick lists of more than three values filter as you type.\n- Desktop: a Projects popup chooses which projects lie on the desk (filter, All / None / Only these). CLI: nexus desk projects.\n- Monthly routines can start on a day of the month (\"every month from the 15th\").\n- Profiles: pick the icon from the icon popup. File dialogs open on the app window.",
       "assets": [
         {
           "name": "Nexus.Setup.0.6.0.exe",
@@ -177,7 +177,7 @@
     {
       "version": "0.5.1",
       "date": "2026-10-28T17:40:38.876Z",
-      "notes": "",
+      "notes": "- Links in descriptions, notes and resources open in the system browser (mailto: in the mail app) instead of replacing the app window; nexus://task links open the task in Nexus.",
       "assets": [
         {
           "name": "Nexus.Setup.0.5.1.exe",
@@ -220,7 +220,7 @@
     {
       "version": "0.5.0",
       "date": "2026-10-27T14:08:52.556Z",
-      "notes": "",
+      "notes": "- Routines: checklists that come back every day, weekday, Monday, week or month. Each period creates a task with one sub-task per step, kept as the routine's history; a Routines view lists open occurrences and routines (pause, resume, end, history), the Calendar shows each day's routines and the Desktop can show a routines board with tickable steps. CLI: nexus routine.\n- Settings are split into tabs and sub-tabs (Appearance, Fields, Profiles, Data, CLI & Agents, About), and remember the last one per profile.\n- Settings → CLI & Agents downloads the agent skills for the nexus CLI as a zip.\n- Date inputs get Today / Tomorrow / Next week buttons; the due date is a date only; new custom field types Date and Date and time.\n- Desktop: ten note colours, one font for all notes, deleting a note asks first; Add a task skips completed tasks while they are hidden; a task sent back no longer brings its put-away folder out.",
       "assets": [
         {
           "name": "Nexus.Setup.0.5.0.exe",
@@ -263,7 +263,7 @@
     {
       "version": "0.4.4",
       "date": "2026-10-27T07:49:08.408Z",
-      "notes": "",
+      "notes": "- Calendar: each day's tasks (Today, Week and the Month grid, \"+N more\" list included) are ordered by priority, highest first; tasks without a priority come last. Overdue stays sorted by due date.",
       "assets": [
         {
           "name": "Nexus.Setup.0.4.4.exe",
@@ -306,7 +306,7 @@
     {
       "version": "0.4.3",
       "date": "2026-10-26T17:13:12.906Z",
-      "notes": "",
+      "notes": "- Calendar: the Calendar item of the Views list shows how many open tasks are overdue or due today (hidden at zero).",
       "assets": [
         {
           "name": "Nexus.Setup.0.4.3.exe",
@@ -349,7 +349,7 @@
     {
       "version": "0.4.2",
       "date": "2026-10-26T14:46:28.533Z",
-      "notes": "",
+      "notes": "The first release published on this page, with installers for Windows, macOS (Apple Silicon) and Linux (AppImage, .deb) and the SHA-256 checksum of each file.\n- Nexus at this release: tasks in a list, kanban, calendar and dashboard (with a custom widget builder); projects and sections; dimensions, custom fields and contacts; filterable and required fields; task sub-tabs, Favorites and a Desktop view to lay tasks out; a two-column task sheet with in-place editing and Duplicate.\n- Data stays in a local SQLite database per profile; only immutable snapshots go to Dropbox / OneDrive / iCloud folders, and a newer backup on another device is offered at startup.\n- The nexus command line ships with every installer and drives the same databases, with installable agent skills for AI assistants.",
       "assets": [
         {
           "name": "Nexus.Setup.0.4.2.exe",
