@@ -1,7 +1,50 @@
 {
   "product": "Nexus",
-  "latest": "0.6.3",
+  "latest": "0.6.4",
   "releases": [
+    {
+      "version": "0.6.4",
+      "date": "2026-11-05T14:56:01.996Z",
+      "notes": "- Command line: nexus desk now changes the Desktop as the app does. place / return take tasks out onto the desk and send them back, note adds, edits and removes sticky notes (and sets their font), routines shows or hides the routines board, and new starts a new desk. Without a position, things go where nothing lies, in view.",
+      "assets": [
+        {
+          "name": "Nexus.Setup.0.6.4.exe",
+          "platform": "windows",
+          "label": "Windows installer (.exe)",
+          "arch": "x64",
+          "size": 112437545,
+          "sha256": "af7d4412fdb81adc4d03085581cd56daf3d665952e6fd97f332b5d1302b0291e",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.6.4/Nexus.Setup.0.6.4.exe"
+        },
+        {
+          "name": "Nexus-0.6.4-arm64.dmg",
+          "platform": "macos",
+          "label": "macOS, Apple Silicon (.dmg)",
+          "arch": "arm64",
+          "size": 124371731,
+          "sha256": "ad25255e70c62ffc6df02199470d68a4b547ab988a07a86a6bbe465504761798",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.6.4/Nexus-0.6.4-arm64.dmg"
+        },
+        {
+          "name": "Nexus-0.6.4.AppImage",
+          "platform": "linux",
+          "label": "Linux AppImage",
+          "arch": "x64",
+          "size": 129856655,
+          "sha256": "e943007724704797653791a43da5a98bb16d60b39fb77bff094c7924253416b7",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.6.4/Nexus-0.6.4.AppImage"
+        },
+        {
+          "name": "nexus-desktop_0.6.4_amd64.deb",
+          "platform": "linux",
+          "label": "Debian / Ubuntu (.deb)",
+          "arch": "x64",
+          "size": 101249188,
+          "sha256": "7fdc04663101c5696d601ccd1ce72f9be67bae047904039a46786b9c87cd8462",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.6.4/nexus-desktop_0.6.4_amd64.deb"
+        }
+      ]
+    },
     {
       "version": "0.6.3",
       "date": "2026-11-05T14:07:34.333Z",
