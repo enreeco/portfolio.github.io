@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEXUS · Local-first desktop task manager</title>
-  <meta name="description" content="NEXUS is a free, local-first desktop task manager for Windows, macOS and Linux: dashboard, calendar, task list, kanban and a desk for your projects, with your data in a SQLite file on your computer and a CLI for scripts and AI agents.">
+  <meta name="description" content="NEXUS is a free, local-first desktop task manager for Windows, macOS and Linux: dashboard, calendar, task list, kanban, routines and a desk for your projects, with your data in a SQLite file on your computer and a CLI for scripts and AI agents.">
   <meta property="og:title" content="NEXUS · Local-first desktop task manager">
   <meta property="og:description" content="Dashboard, calendar, task list, kanban and a desk for your projects. Your data stays on your computer. Windows, macOS and Linux.">
   <meta property="og:image" content="https://portfolio.organizer.solutions/nexus/assets/screens/kanban.webp">
@@ -24,6 +24,7 @@
         <a href="#tour">Tour</a>
         <a href="#cli">CLI &amp; AI</a>
         <a href="#data">Your data</a>
+        <a href="./guide/">Guide</a>
         <a href="#download">Download</a>
         <a href="./releases/">Releases</a>
         <a href="./privacy-policy.html">Privacy</a>
@@ -40,12 +41,16 @@
           <p class="sub">
             NEXUS is a local-first task manager: a dashboard, a calendar, a task list, a kanban
             board and a desk where your projects lie as folders. Everything is stored in a
-            SQLite file on your computer. No account, no cloud, no tracking.
+            SQLite file on your computer. No account, no server, no tracking.
           </p>
           <div class="cta-row">
             <a class="btn btn-primary" id="heroDownload" href="#download">
               <i class="bi bi-download"></i>
               <span id="heroDownloadText">Download NEXUS</span>
+            </a>
+            <a class="btn btn-ghost" href="./guide/">
+              <i class="bi bi-book"></i>
+              User guide
             </a>
             <a class="btn btn-ghost" href="./releases/">
               <i class="bi bi-clock-history"></i>
@@ -78,20 +83,24 @@
         <div class="section-head reveal">
           <div class="kicker"><i class="bi bi-stars"></i> Features</div>
           <h2>Everything to plan, track and deliver</h2>
-          <p>One window, many ways to look at the same work. Switch views in a click, keep several filtered tabs open, and save the pages you come back to.</p>
+          <p>One window, many ways to look at the same work. Switch views in a click, keep several filtered tabs open, and save the pages you come back to. Every feature, step by step, in the <a href="./guide/">user guide</a>.</p>
         </div>
         <div class="grid-3">
           <article class="card feature reveal">
             <h3><i class="bi bi-grid-1x2-fill"></i> Dashboard &amp; widgets</h3>
-            <p>Status, priority and area at a glance, a monthly timeline, and your own charts: group, stack, count or sum any field.</p>
+            <p>Status, priority and area at a glance, a monthly timeline, and your own charts: group and stack by any field, count tasks or sum a number field.</p>
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-kanban"></i> Task list &amp; kanban</h3>
-            <p>A sortable table with the columns you pick, and a drag-and-drop board grouped by status, priority, project or any field.</p>
+            <p>A sortable table with the columns you pick, and a board with one lane per status, priority, project or any field you group by.</p>
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-calendar3"></i> Calendar</h3>
             <p>Today, week and month views of what is due, overdue tasks first; drag a task to another day of the week to reschedule it.</p>
+          </article>
+          <article class="card feature reveal">
+            <h3><i class="bi bi-arrow-repeat"></i> Routines</h3>
+            <p>Checklists that come back every day, every working day, on chosen weekdays, weekly or monthly — each time as a task with its steps to tick.</p>
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-easel"></i> The desk</h3>
@@ -99,7 +108,7 @@
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-layout-sidebar-inset-reverse"></i> A task sheet that edits in place</h3>
-            <p>Properties, Markdown notes and comments, relations (blocks, depends, related) with a graph, files and links. Undo any change.</p>
+            <p>Properties, a Markdown description, notes, relations (blocks, depends, related) with a graph, files and links. Undo any edit.</p>
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-sliders"></i> Fields you shape</h3>
@@ -110,12 +119,20 @@
             <p>Filter by any field, with NOT. Save presets, open filtered views in tabs, go back and forth, and keep favorite pages one click away.</p>
           </article>
           <article class="card feature reveal">
+            <h3><i class="bi bi-ui-checks"></i> Many tasks at once</h3>
+            <p>Select tasks in the list and edit them together: one form for the fields they share, a confirmation of every change, then one save.</p>
+          </article>
+          <article class="card feature reveal">
+            <h3><i class="bi bi-people"></i> Contacts &amp; files</h3>
+            <p>The people on your tasks as contacts, with their tasks one click away; every attached file of a profile in one searchable list.</p>
+          </article>
+          <article class="card feature reveal">
             <h3><i class="bi bi-person-badge"></i> Profiles</h3>
             <p>One database per profile — work, home, a client — switched from the header. Start a new profile from another one's setup.</p>
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-moon-stars"></i> Made for long days</h3>
-            <p>Dark, light or system theme, keyboard shortcuts, and a fast search across titles, notes, tags and people, in a tab of its own.</p>
+            <p>Dark, light or system theme, keyboard shortcuts, and a fast search across titles, descriptions, tags, people and custom fields, in a tab of its own.</p>
           </article>
         </div>
       </div>
@@ -206,7 +223,7 @@
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-cloud-arrow-up"></i> Backups to your cloud folder</h3>
-            <p>Point NEXUS at Dropbox, OneDrive or iCloud: it publishes point-in-time snapshots there, and offers the newest one from your other computer.</p>
+            <p>Point NEXUS at a Dropbox, OneDrive or iCloud folder, or connect Google Drive: it publishes point-in-time snapshots there, and offers the newest one from your other computer.</p>
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-arrow-left-right"></i> Export everything</h3>
@@ -233,7 +250,7 @@
             <strong>Windows</strong>: <em>More info</em> → <em>Run anyway</em>.
             <strong>macOS</strong>: right-click NEXUS in Applications → <em>Open</em>, or run <code>xattr -cr /Applications/Nexus.app</code>.
             <strong>Linux</strong>: make the AppImage executable (<code>chmod +x</code>), or install the <code>.deb</code>.
-            The Windows installer and the <code>.deb</code> also put the <code>nexus</code> command on your PATH; no administrator rights are needed on Windows.
+            The Windows installer and the <code>.deb</code> also put the <code>nexus</code> command on your PATH (no administrator rights are needed on Windows); on macOS, install it from Settings → CLI &amp; Agents.
           </div>
         </div>
       </div>
@@ -243,7 +260,7 @@
   <footer>
     <div class="container">
       <span><i class="bi bi-c-circle"></i> <span id="year"></span> NEXUS. Made by <a href="https://organizer.solutions" target="_blank" rel="noopener noreferrer">ORGanizer.solutions</a>.</span>
-      <span><a href="./releases/">Releases</a> · <a href="./privacy-policy.html">Privacy Policy</a> · <a href="../">All products</a></span>
+      <span><a href="./guide/">Guide</a> · <a href="./releases/">Releases</a> · <a href="./privacy-policy.html">Privacy Policy</a> · <a href="../">All products</a></span>
     </div>
   </footer>
 
