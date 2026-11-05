@@ -91,18 +91,20 @@
             <li>
               <strong>What goes to your Drive.</strong> Snapshots of the profile's database — which
               contain everything you stored in that profile — are uploaded from your computer
-              straight to your Google Drive, where they are kept under Google's terms and privacy
-              policy. NEXUS lists them there to offer restores and downloads, and to tell you when
-              another of your computers has published a newer one.
+              straight to your own, personal Google Drive, where they are kept under Google's terms
+              and privacy policy. They stay in your Google account: nobody who makes NEXUS can see,
+              open or use them. NEXUS lists them there to offer restores and downloads, and to tell
+              you when another of your computers has published a newer one.
             </li>
             <li>
               <strong>The token service.</strong> To complete the sign-in, and later to renew the
               app's access, NEXUS sends the one-time code Google returns (and later the renewal
               token) to a small service we run at <code>nexus-proxy.organizer.solutions</code>, on
               Cloudflare. It adds the app's Google credentials and passes the request on to Google,
-              so that those credentials do not have to ship inside the app. It does not store the
-              codes or tokens, and it never receives your database, your backups or the contents
-              of your Drive. Cloudflare processes these requests, including your IP address, under
+              so that those credentials do not have to ship inside the app. It only relays: it
+              saves nothing — no codes, no tokens, no logs of them — and it never receives your
+              database, your backups or the contents of your Drive, so it cannot give anyone
+              access to them. Cloudflare processes these requests, including your IP address, under
               its own privacy policy.
             </li>
             <li>
