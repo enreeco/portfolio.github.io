@@ -349,7 +349,7 @@
     {
       "version": "0.4.2",
       "date": "2026-10-26T14:46:28.533Z",
-      "notes": "The first release published on this page, with installers for Windows, macOS (Apple Silicon) and Linux (AppImage, .deb) and the SHA-256 checksum of each file.\n- Nexus at this release: tasks in a list, kanban, calendar and dashboard (with a custom widget builder); projects and sections; dimensions, custom fields and contacts; filterable and required fields; task sub-tabs, Favorites and a Desktop view to lay tasks out; a two-column task sheet with in-place editing and Duplicate.\n- Data stays in a local SQLite database per profile; only immutable snapshots go to Dropbox / OneDrive / iCloud folders, and a newer backup on another device is offered at startup.\n- The nexus command line ships with every installer and drives the same databases, with installable agent skills for AI assistants.",
+      "notes": "- Tasks in a list, kanban, calendar and dashboard (with a custom widget builder); projects and sections; dimensions, custom fields and contacts; filterable and required fields; task sub-tabs, Favorites and a Desktop view to lay tasks out; a two-column task sheet with in-place editing and Duplicate.\n- Data stays in a local SQLite database per profile; only immutable snapshots go to Dropbox / OneDrive / iCloud folders, and a newer backup on another device is offered at startup.\n- The nexus command line drives the same databases as the app, with installable agent skills for AI assistants.",
       "assets": [
         {
           "name": "Nexus.Setup.0.4.2.exe",
