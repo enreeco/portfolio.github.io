@@ -1,7 +1,50 @@
 {
   "product": "Nexus",
-  "latest": "0.6.4",
+  "latest": "0.7.0",
   "releases": [
+    {
+      "version": "0.7.0",
+      "date": "2026-11-10T10:58:03.279Z",
+      "notes": "0.7.0:\n- Your data is now encrypted: every database and backup is encrypted with one key, kept by your computer's keychain. Without it nobody can read your tasks, not even from a backup in Dropbox, OneDrive, iCloud or on Google Drive.\n- The first start after updating asks you to set it up and shows your recovery code: keep it, it opens your backups on a new computer or after reinstalling the system. You confirm it by typing its highlighted group back. Your profiles are encrypted right away, tasks included.\n- On a computer without a keychain (Linux without a Secret Service), Nexus asks for a startup password instead, each time it starts; the recovery code resets it if you forget it.\n- Already use Nexus on another computer? Choose \"I already use Nexus on another computer\", pick the backup folder and type that computer's recovery code: both computers then share the same key and open each other's backups.\n- New Settings → Profiles → Encryption: how your key is kept, and a new recovery code when you need one.\n- Backups are now encrypted too (named ….enc.db). Old backups in your backup folder stay as they are, marked \"not encrypted\", with a button to delete them; on Google Drive the old ones are deleted once the first encrypted backup is there.\n- The nexus command works on the encrypted data through the app; while Nexus waits for its password it answers that Nexus is locked.\n- Two computers that each set up their own key can now share backups: when you restore or load a backup made on the other computer, Nexus asks for that computer's recovery code, then either unifies the keys (this computer switches to the other key, its own older backups still open, and one recovery code is left for both) or restores only that backup. Importing a database file from the other computer works the same way.\n- Computers with different keys no longer overwrite each other's key file in a shared backup folder: each key has its own nexus-vault-<keyId>.json.\n- Settings → CLI & Agents → Access now lets you choose the profile each approved folder works on, and Settings → Profiles shows which folders use nexus on each profile.\n- Settings is reorganized: General Settings (formerly Appearance, now also with *Start Nexus when you log in* under Startup), Profiles, Customization (formerly Fields), CLI & Agents, Data, About.\n\n0.6.5:\n- The nexus command now works through the app: it never opens your databases itself. Each folder needs your approval once: run nexus auth request there and allow it in the app (read only, or read and write). The token is saved in .nexus/ in that folder; nexus auth status shows what it may do and nexus auth logout gives the access up.\n- Each approved folder works on one profile. Deleting and changing many tasks at once can be refused, confirmed by you in a dialog each time, or approved on their own with full access for a few hours (within limits you set, after a snapshot).\n- New Settings → CLI & Agents → Access: the folders that can use nexus, their access level, full access and its limits, revoking, and the latest requests.\n- Profiles, imports, restores, the backup folder and schedule, Google Drive and field setup are now done in the app only; nexus refuses them and says so. Reading the setup (nexus field required, nexus snapshot config, …) still works.\n- Nexus starts at login in the background (tray only), so nexus always finds it; you can turn this off in Settings → CLI & Agents → Access. When the app is not running, the installed nexus command starts it.\n- Files stay on your side: nexus reads the files you give it and writes the ones you ask for (export --out, attachment save) itself.\n- The agent skills explain how to get access and where to do in the app what nexus no longer does.",
+      "assets": [
+        {
+          "name": "Nexus.Setup.0.7.0.exe",
+          "platform": "windows",
+          "label": "Windows installer (.exe)",
+          "arch": "x64",
+          "size": 112561391,
+          "sha256": "5ca6708b1eb9b8fdee3b573af70a4a47446c53c1d25a58a19fe181b4bbb5794c",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.0/Nexus.Setup.0.7.0.exe"
+        },
+        {
+          "name": "Nexus-0.7.0-arm64.dmg",
+          "platform": "macos",
+          "label": "macOS, Apple Silicon (.dmg)",
+          "arch": "arm64",
+          "size": 124513975,
+          "sha256": "da8a671e4fe1ec6f7f76d654ca9058795e8d90fca67e3e8e8d08a65b05fa415e",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.0/Nexus-0.7.0-arm64.dmg"
+        },
+        {
+          "name": "Nexus-0.7.0.AppImage",
+          "platform": "linux",
+          "label": "Linux AppImage",
+          "arch": "x64",
+          "size": 130090262,
+          "sha256": "ac59fcecd8220e505702184e3aadfd4f0a1f4fa426a1f1de28b03f06bfb82ddf",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.0/Nexus-0.7.0.AppImage"
+        },
+        {
+          "name": "nexus-desktop_0.7.0_amd64.deb",
+          "platform": "linux",
+          "label": "Debian / Ubuntu (.deb)",
+          "arch": "x64",
+          "size": 101444864,
+          "sha256": "728329383070d4312493a996156d5c23dc274a05e87e558424bd04047cdd74b8",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.0/nexus-desktop_0.7.0_amd64.deb"
+        }
+      ]
+    },
     {
       "version": "0.6.4",
       "date": "2026-11-05T14:56:01.996Z",
