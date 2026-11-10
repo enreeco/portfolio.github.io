@@ -114,7 +114,7 @@
         <h1>Getting the most out of <span class="grad">NEXUS</span></h1>
         <p class="sub">
           A tour of the app in thirteen short chapters: from your first profile to the desk,
-          routines, your own fields, backups and the <code>nexus</code> command line.
+          routines, your own fields, encryption and backups, and the <code>nexus</code> command line.
           Read it in order, or jump to the chapter you need.
         </p>
         <div class="guide-meta">
@@ -166,6 +166,15 @@
             </table>
           </div>
           <div class="tip warn"><i class="bi bi-shield-exclamation"></i><div>The installers are not code-signed yet, so your system asks before the first launch. <strong>Windows</strong>: <em>More info</em> → <em>Run anyway</em>. <strong>macOS</strong>: right-click NEXUS in Applications → <em>Open</em>. <strong>Linux</strong>: make the AppImage executable (<code>chmod +x</code>).</div></div>
+
+          <h3><i class="bi bi-key"></i> The first start: your recovery code</h3>
+          <p>Your tasks are encrypted (<a href="#encryption">chapter 11</a>), so the first start sets that up — once:</p>
+          <ol class="steps">
+            <li><span><strong>Set up encryption on this computer</strong> shows your <strong>recovery code</strong> (<code>NXRC-…</code>). Copy it into a password manager, or save it as a file and print it.</span></li>
+            <li><span>Type the <strong>highlighted group</strong> of the code back, to show it is saved — then <strong>I saved it — encrypt my data</strong>.</span></li>
+            <li><span>Already use NEXUS on another computer? Choose <strong>I already use NEXUS on another computer</strong> instead, pick its backup folder and type <em>its</em> recovery code: both computers then share one key.</span></li>
+          </ol>
+          <div class="tip"><i class="bi bi-info-circle"></i><div>On a Linux computer with no keychain, NEXUS also asks for a <strong>startup password</strong>, typed each time it starts. Windows, macOS and most Linux desktops keep the key in the system keychain: nothing to type.</div></div>
 
           <h3><i class="bi bi-person-plus"></i> Your first profile</h3>
           <ol class="steps">
@@ -299,7 +308,7 @@
             <li><i class="bi bi-check-circle-fill"></i> <strong>Count</strong> tasks, or <strong>sum</strong> / <strong>average</strong> a number or currency field — a budget per area, hours per month.</li>
             <li><i class="bi bi-check-circle-fill"></i> Give a widget <strong>fixed filters</strong>, so it always shows the same slice of your work.</li>
           </ul>
-          <div class="tip"><i class="bi bi-lightbulb"></i><div>Which fields the builder offers is up to you: it uses the fields marked <em>filterable</em> in Settings → Fields → Field properties (<a href="#fields">chapter 9</a>).</div></div>
+          <div class="tip"><i class="bi bi-lightbulb"></i><div>Which fields the builder offers is up to you: it uses the fields marked <em>filterable</em> in Settings → Customization → Field properties (<a href="#fields">chapter 9</a>).</div></div>
           <div class="next"><a href="#filters">Next: Filters, tabs and favorites <i class="bi bi-arrow-right"></i></a></div>
         </article>
 
@@ -417,10 +426,10 @@
           <p>In the <strong>Projects</strong> view, create projects with an icon and a colour, and split each into sections — <em>Discovery</em>, <em>Build</em>, <em>Launch</em>. A task belongs to one project and, optionally, one of its sections.</p>
 
           <h3><i class="bi bi-palette"></i> Your own values</h3>
-          <p>Settings → Fields → <strong>Standard fields</strong> holds the values of status, priority, area, activity type and resource type. Rename them, add your own, reorder them, and give each an icon and a colour. A status can be flagged as <em>completed</em>, so NEXUS knows which tasks are done.</p>
+          <p>Settings → Customization → <strong>Standard fields</strong> holds the values of status, priority, area, activity type and resource type. Rename them, add your own, reorder them, and give each an icon and a colour. A status can be flagged as <em>completed</em>, so NEXUS knows which tasks are done.</p>
 
           <h3><i class="bi bi-input-cursor-text"></i> Custom fields</h3>
-          <p>Settings → Fields → <strong>Custom fields</strong> adds the fields your work needs, shown under <em>Additional details</em> in the task sheet:</p>
+          <p>Settings → Customization → <strong>Custom fields</strong> adds the fields your work needs, shown under <em>Additional details</em> in the task sheet:</p>
           <div class="tbl-wrap">
             <table class="tbl">
               <thead><tr><th>Type</th><th>Example</th></tr></thead>
@@ -438,7 +447,7 @@
           <p>The <strong>People</strong> of a task are contacts — name, company, email, role — picked with a type-ahead in the task sheet, or created there on the fly. Manage them in the <strong>Contacts</strong> view, with a default company for new ones.</p>
 
           <h3><i class="bi bi-ui-checks-grid"></i> Filterable and required</h3>
-          <p>Settings → Fields → <strong>Field properties</strong> decides two things for every field:</p>
+          <p>Settings → Customization → <strong>Field properties</strong> decides two things for every field:</p>
           <ul class="plain">
             <li><strong>Filterable</strong>: the field gets a filter in the sidebar — in the order you set — and becomes available to the Widget Builder and to grouping.</li>
             <li><strong>Required</strong>: a task cannot be saved without it, in the app as from the command line.</li>
@@ -452,7 +461,7 @@
           <h2>Profiles: one database each</h2>
           <p class="lead">Keep work and home apart, or give each client their own space. Every profile is a separate database, with its own tasks and its own setup.</p>
 
-          <p>Switch profiles from the switcher at the top right; the app reloads onto the other database in a moment. Manage them in Settings → Profiles: rename, pick an icon, remove.</p>
+          <p>Switch profiles from the switcher at the top right; the app reloads onto the other database in a moment. Manage them in Settings → Profiles: rename, pick an icon, remove. Under each profile, a line tells which folders use the <code>nexus</code> command on it (<a href="#cli">chapter 12</a>).</p>
 
           <h3><i class="bi bi-node-plus"></i> Start from…</h3>
           <p>A new profile does not have to start from scratch:</p>
@@ -475,11 +484,27 @@
         <article class="chapter" id="data">
           <div class="kicker"><span class="num">11</span> · Your data</div>
           <h2>Your data, and backups that are safe to sync</h2>
-          <p class="lead">Your tasks are a SQLite file on your computer — not on our servers, because there are none. NEXUS makes backups of that file the safe way.</p>
+          <p class="lead">Your tasks are an encrypted SQLite file on your computer — not on our servers, because there are none. NEXUS makes backups of that file the safe way, encrypted too.</p>
 
           <h3><i class="bi bi-hdd"></i> Local first</h3>
           <p>Each profile's database sits in the app's data folder, on your disk. No account, no telemetry, nothing leaves your computer unless you send it somewhere.</p>
           <div class="tip warn"><i class="bi bi-exclamation-triangle"></i><div><strong>Do not put the live database in Dropbox, OneDrive or iCloud.</strong> Sync clients can damage a database that is open. Let NEXUS publish snapshots there instead — written once, never changed, exactly what sync clients handle well.</div></div>
+
+          <h3 id="encryption"><i class="bi bi-shield-lock"></i> Encrypted, with a recovery code</h3>
+          <p>Every profile's database, and every backup of it, is encrypted (SQLCipher, AES-256) with <strong>one key</strong> — the same for all your profiles and all your computers, so a backup made on one opens on the other. Without the key, a database or a backup is unreadable, even in a cloud folder or on Google Drive.</p>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Where the key is</th><th>What it means for you</th></tr></thead>
+              <tbody>
+                <tr><td>Your system's keychain</td><td>macOS Keychain, Windows, the Linux Secret Service: NEXUS opens without asking anything</td></tr>
+                <tr><td>A startup password</td><td>Linux without a keychain: you type it when NEXUS starts; the <code>nexus</code> command says NEXUS is locked until then</td></tr>
+                <tr><td>Your recovery code</td><td>The copy you keep: it opens the key on a new computer, after reinstalling the system, or if you forget the startup password</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Settings → Profiles → <strong>Encryption</strong> shows how the key is kept on this computer, and makes a <strong>new recovery code</strong> when you need one (the old code stops working; the key and your data stay the same).</p>
+          <div class="tip warn"><i class="bi bi-exclamation-triangle"></i><div><strong>Keep the recovery code.</strong> NEXUS cannot recover it for you: without the code and without this computer, an encrypted backup cannot be opened by anyone — you included.</div></div>
+          <p>A database from a version before encryption is encrypted the first time it opens, tasks included. Its old backups are left as they were, marked <em>not encrypted</em>, with a button to delete them; on Google Drive the old ones are deleted once the first encrypted backup is there.</p>
 
           <h3><i class="bi bi-cloud-arrow-up"></i> Backups to a folder</h3>
           <p>Settings → Profiles → Backups → <strong>Local backup</strong>:</p>
@@ -494,13 +519,18 @@
           <p>In the <strong>Google Drive</strong> sub-tab, <em>Connect</em> signs in to Google in your browser, and the profile's snapshots go to a folder of its own on your Drive — no Drive app needed, alongside the folder above or instead of it. NEXUS sees only the files it created there, nothing else in your Drive. Restore or download a snapshot from the same panel; <em>Disconnect</em> leaves the files where they are.</p>
 
           <h3><i class="bi bi-laptop"></i> Two computers, one profile</h3>
-          <p>When another computer has published a newer snapshot — in the folder or on Drive — NEXUS asks at startup: <strong>load the backup</strong>, or <strong>keep the current version</strong> (which then becomes the newest one for the other computer).</p>
+          <p>When another computer has published a newer snapshot — in the folder or on Drive — NEXUS asks at startup: <strong>load the backup</strong>, or <strong>keep the current version</strong> (which then becomes the newest one for the other computer). Next to the backups NEXUS keeps the key file, <code>nexus-vault-….json</code>, wrapped with your recovery code: that is what a new computer opens with the code.</p>
+          <p>Set up the two computers separately, each with its own key? Restoring a backup of the other one then asks for <em>that</em> computer's recovery code, and offers:</p>
+          <ul class="plain">
+            <li><strong>Unify the keys</strong> — this computer switches to the other key: its databases are re-encrypted, its own older backups still open, and one recovery code is left for both.</li>
+            <li><strong>Only this backup</strong> — the backup is restored and re-encrypted with this computer's key; the two keys stay apart.</li>
+          </ul>
 
           <h3><i class="bi bi-arrow-counterclockwise"></i> Restoring is reversible</h3>
           <p>Before a restore replaces your data, NEXUS publishes the current state as a snapshot. Changed your mind? Restore that one.</p>
 
           <h3><i class="bi bi-arrow-left-right"></i> Export everything</h3>
-          <p>Settings → Data → Export &amp; import writes the whole profile — tasks, comments, relations and attached files — to one JSON file, and imports it back. No lock-in.</p>
+          <p>Settings → Data → Export &amp; import writes the whole profile — tasks, comments, relations and attached files — to one JSON file, and imports it back. No lock-in. The JSON file is <strong>not</strong> encrypted: keep it somewhere safe.</p>
           <div class="next"><a href="#cli">Next: Command line and AI agents <i class="bi bi-arrow-right"></i></a></div>
         </article>
 
@@ -508,10 +538,45 @@
         <article class="chapter" id="cli">
           <div class="kicker"><span class="num">12</span> · CLI &amp; AI</div>
           <h2>The command line, and AI agents</h2>
-          <p class="lead">The <code>nexus</code> command ships with the app and works on the same databases. Anything you do in one shows up in the other — the open app refreshes itself when the command line writes.</p>
+          <p class="lead">The <code>nexus</code> command ships with the app and works on your tasks <em>through</em> the app: it never opens a database itself. Each folder you approve gets its own access, on one profile — and the open app refreshes itself when the command line writes.</p>
+
+          <h3><i class="bi bi-person-check"></i> Approve a folder, once</h3>
+          <p>In the folder you — or your agent — work in:</p>
+          <pre class="code" aria-label="Approving a folder"><span class="c"># ask NEXUS for access: the app asks you to approve it</span>
+<span class="p">$</span> nexus auth request --name <span class="s">"Claude"</span>
+
+<span class="c"># the same, on a profile other than the active one</span>
+<span class="p">$</span> nexus auth request --profile <span class="s">"Work"</span> --name <span class="s">"Claude"</span>
+
+<span class="c"># what this folder may do, and on which profile</span>
+<span class="p">$</span> nexus auth status</pre>
+          <p>NEXUS shows who asks, from which folder, for which profile. Answer <strong>Allow read and write</strong> (ticked: <em>ask me before it deletes, or changes many tasks at once</em>), <strong>Allow read only</strong>, or <strong>Refuse</strong>. The approval is saved in a <code>.nexus/</code> folder there (with its own <code>.gitignore</code>; <code>--global</code> saves it for every folder of your user). <code>nexus auth logout</code> gives the access up. A folder without approval gets nothing.</p>
+
+          <h3><i class="bi bi-shield-check"></i> Access levels</h3>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Access</th><th>The folder may</th></tr></thead>
+              <tbody>
+                <tr><td>Read only</td><td>List, search, read and export</td></tr>
+                <tr><td>Read and write</td><td>Also add and change tasks, comments, projects, contacts, routines…; never delete</td></tr>
+                <tr><td>Read and write, ask before deleting</td><td>Deleting, or changing many tasks at once, waits for your <strong>Allow</strong> in the app</td></tr>
+                <tr><td>Full access</td><td>Deleting approved on its own, for a few hours and within limits you set (by default 25 per hour, 50 tasks per bulk update, 8 hours); a snapshot is taken first when the profile has a backup folder. Past the limits, NEXUS asks again</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Profiles, value lists, custom fields, filterable and required fields, imports, restores and backup settings are changed <strong>only in the app</strong>: the command refuses them, so an agent cannot reach them.</p>
+
+          <h3><i class="bi bi-sliders"></i> Settings → CLI &amp; Agents → Access</h3>
+          <ul class="plain">
+            <li>Every approved folder, with its path and when it was last used.</li>
+            <li><strong>Profile</strong> — the profile the folder works on: change it here, no new request needed.</li>
+            <li><strong>Access</strong> — the level above; <strong>Revoke</strong> takes it away.</li>
+            <li>The limits of full access, and the latest requests, live.</li>
+          </ul>
+          <div class="tip"><i class="bi bi-info-circle"></i><div>The command needs NEXUS running. Settings → General Settings → <strong>Startup</strong> → <em>Start Nexus when you log in, in the background</em> (on by default) keeps it ready in the tray; if it is not running, the installed command starts it in the background anyway.</div></div>
 
           <h3><i class="bi bi-terminal"></i> What it does</h3>
-          <p>Tasks, comments, relations, attachments, projects, contacts, fields, routines, desks, favorites, profiles, backups, export and import: every change you can make in the app, you can make from the terminal. Output is a readable table, or JSON with <code>--json</code>.</p>
+          <p>Tasks, comments, relations, attachments, projects, contacts, routines, desks, favorites, snapshots and exports — on the folder's profile. Output is a readable table, or JSON with <code>--json</code>.</p>
           <pre class="code" aria-label="Command line examples"><span class="c"># what is in progress, as JSON</span>
 <span class="p">$</span> nexus task list --status <span class="s">"In Progress"</span> --json
 
@@ -529,19 +594,19 @@
 <span class="p">$</span> nexus snapshot create</pre>
           <ul class="plain">
             <li>A task can be named by its code (<code>TASK-00042</code>) or by a piece of its title.</li>
-            <li><code>--profile &lt;name&gt;</code> runs one command on another profile, without switching.</li>
+            <li>A folder works on its own profile only: for another profile, approve another folder, or change it in Access.</li>
             <li><code>nexus &lt;group&gt; &lt;command&gt; --help</code> lists every option.</li>
           </ul>
 
           <h3><i class="bi bi-robot"></i> Let an AI agent work with your tasks</h3>
-          <p>NEXUS comes with <strong>agent skills</strong> that teach an AI agent — Claude Code, the Claude Agent SDK and others — to drive the <code>nexus</code> command: find and update tasks, plan your week from your real work, set up a profile, take care of backups.</p>
+          <p>NEXUS comes with <strong>agent skills</strong> that teach an AI agent — Claude Code, the Claude Agent SDK and others — to drive the <code>nexus</code> command: find and update tasks, plan your week from your real work, keep projects and contacts tidy, take snapshots.</p>
           <div class="mini-grid">
-            <div class="card"><h4><i class="bi bi-check2-all"></i> nexus-tasks</h4><p>Find, create, update and complete tasks; comments, relations, attachments, routines.</p></div>
-            <div class="card"><h4><i class="bi bi-gear-wide-connected"></i> nexus-setup</h4><p>Profiles, projects, values, custom and required fields, contacts, configurations.</p></div>
-            <div class="card"><h4><i class="bi bi-shield-check"></i> nexus-backup</h4><p>Snapshots, full export and import, moving to another computer.</p></div>
+            <div class="card"><h4><i class="bi bi-check2-all"></i> nexus-tasks</h4><p>Find, create, update and complete tasks; comments, relations, attachments, routines; asking for access.</p></div>
+            <div class="card"><h4><i class="bi bi-gear-wide-connected"></i> nexus-setup</h4><p>Reads the whole setup of a profile; changes projects, sections and contacts. The rest it leaves to you, in the app.</p></div>
+            <div class="card"><h4><i class="bi bi-shield-check"></i> nexus-backup</h4><p>Snapshots and full exports; restores and moving to another computer are done in the app.</p></div>
             <div class="card"><h4><i class="bi bi-file-zip"></i> Get them</h4><p>Settings → CLI &amp; Agents → Agent skills → <strong>Download skills (.zip)</strong>: always the skills of your version.</p></div>
           </div>
-          <div class="tip"><i class="bi bi-info-circle"></i><div>The agent works on your computer, through the same command you would type: your data still goes nowhere NEXUS did not already keep it. The app and the command line can be used at the same time.</div></div>
+          <div class="tip"><i class="bi bi-info-circle"></i><div>Give an agent its own folder and the access it needs — <em>ask before deleting</em> is a good start. It works on your computer, through the app, and only on the profile you chose: your data still goes nowhere NEXUS did not already keep it.</div></div>
           <div class="next"><a href="#settings">Next: Settings and shortcuts <i class="bi bi-arrow-right"></i></a></div>
         </article>
 
@@ -555,11 +620,11 @@
             <table class="tbl">
               <thead><tr><th>Tab</th><th>What you set there</th></tr></thead>
               <tbody>
-                <tr><td>Appearance</td><td>Dark, light or system theme; the first day of the week; the name your comments are signed with (per computer)</td></tr>
-                <tr><td>Fields</td><td>Standard fields (the values), custom fields, field properties (filterable and required)</td></tr>
-                <tr><td>Profiles</td><td>Your profiles; configuration export and import; backups to a folder and to Google Drive</td></tr>
+                <tr><td>General Settings</td><td>Dark, light or system theme; the first day of the week; the name your comments are signed with (per computer); starting NEXUS when you log in</td></tr>
+                <tr><td>Profiles</td><td>Your profiles (and which folders use <code>nexus</code> on each); configuration export and import; backups to a folder and to Google Drive; encryption and a new recovery code</td></tr>
+                <tr><td>Customization</td><td>Standard fields (the values), custom fields, field properties (filterable and required)</td></tr>
+                <tr><td>CLI &amp; Agents</td><td>The agent skills to download; whether the <code>nexus</code> command is installed, and where; Access: the approved folders, their profile and access, full-access limits, recent requests</td></tr>
                 <tr><td>Data</td><td>Full JSON export and import; the database's location, sample data, reset</td></tr>
-                <tr><td>CLI &amp; Agents</td><td>The agent skills to download; whether the <code>nexus</code> command is installed, and where</td></tr>
                 <tr><td>About</td><td>The version of NEXUS you are running</td></tr>
               </tbody>
             </table>

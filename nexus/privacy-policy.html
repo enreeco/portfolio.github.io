@@ -31,7 +31,7 @@
       <div class="container">
         <article class="card legal">
           <h1>Privacy Policy</h1>
-          <p class="muted">Last updated: November 5, 2026</p>
+          <p class="muted">Last updated: November 10, 2026</p>
           <p>
             This policy explains how the NEXUS desktop application for Windows, macOS and Linux
             ("NEXUS", "the app"), including its <code>nexus</code> command-line tool, handles your
@@ -45,10 +45,15 @@
             NEXUS stores what you enter — tasks, projects and sections, comments, relations,
             contacts, custom fields, attached files, settings — in SQLite database files on your
             computer, one per profile, inside the app's data folder or a location you choose.
+            These databases, and the backups NEXUS makes of them, are encrypted with a key kept
+            on your computer (section 10).
             A small <code>config.json</code> in the same data folder lists your profiles and app
             settings, such as the name your comments are signed with. If you connect Google Drive
             (section 4), the data folder also holds a <code>gdrive-tokens.json</code> file with the
-            access it was given (on macOS and Linux, readable only by your user account).
+            access it was given. <code>key.json</code> keeps the encryption key, protected by your
+            system's keychain or by your startup password, and <code>cli-clients.json</code> lists
+            the folders you allowed to use the <code>nexus</code> command (section 7). On macOS and
+            Linux these files are readable only by your user account.
           </p>
 
           <h2>2. No account, no tracking</h2>
@@ -62,7 +67,9 @@
 
           <h2>3. Backups to a folder you choose</h2>
           <p>
-            If you set a backup folder, NEXUS writes copies (snapshots) of your database into it.
+            If you set a backup folder, NEXUS writes encrypted copies (snapshots) of your database
+            into it, with a key file (<code>nexus-vault-….json</code>) that only your recovery
+            code opens.
             When that folder is synchronised by a service such as Dropbox, OneDrive or iCloud
             Drive, the copies are uploaded by that service, under its own terms and privacy
             policy. NEXUS does not talk to those services itself, and you can turn these backups
@@ -89,8 +96,9 @@
               kept, on your computer.
             </li>
             <li>
-              <strong>What goes to your Drive.</strong> Snapshots of the profile's database — which
-              contain everything you stored in that profile — are uploaded from your computer
+              <strong>What goes to your Drive.</strong> Encrypted snapshots of the profile's
+              database — which contain everything you stored in that profile — and the key file
+              that only your recovery code opens are uploaded from your computer
               straight to your own, personal Google Drive, where they are kept under Google's terms
               and privacy policy. They stay in your Google account: nobody who makes NEXUS can see,
               open or use them. NEXUS lists them there to offer restores and downloads, and to tell
@@ -136,8 +144,13 @@
           <h2>7. AI agents and the command line</h2>
           <p>
             The <code>nexus</code> command and the agent skills that come with NEXUS work on your
-            computer, on the same databases as the app. If you let an AI agent use them, what the
-            agent reads from NEXUS is handled by that agent and its provider, under their terms and
+            computer, through the app: the command never opens your databases itself. A folder
+            can use it only after you approve it in the app, on the one profile and with the
+            access you choose (read only, read and write, or with your confirmation before
+            deleting); you can change or revoke that access in Settings → CLI &amp; Agents →
+            Access. The approval is a token saved in a <code>.nexus</code> folder there; NEXUS
+            keeps only a fingerprint of it. If you let an AI agent use the command, what the agent
+            reads from NEXUS is handled by that agent and its provider, under their terms and
             privacy policy — NEXUS does not send it anywhere itself.
           </p>
 
@@ -159,11 +172,22 @@
 
           <h2>10. Security</h2>
           <p>
-            Your data is as safe as your computer and your accounts: keep your system up to date,
-            protect your user account and your Google account, and be careful where you share
-            exports and backups, which contain your data unencrypted. The Google Drive access file
-            lives in your user account's data folder: anyone who can use that account can use it
-            too.
+            Your databases and their backups are encrypted (SQLCipher, AES-256) with one key per
+            person. On your computer the key is kept by the system's keychain (macOS Keychain,
+            Windows, the Linux Secret Service) or, where there is none, protected by a startup
+            password you choose. A recovery code, shown to you once, opens it on another computer;
+            we never see the key or the code, and cannot recover either for you. A backup is
+            therefore unreadable in a cloud folder or on Google Drive without your recovery code
+            or your computer.
+          </p>
+          <p>
+            Encryption protects your data outside your computer, and on a lost disk of a locked
+            account; it does not protect it from programs running under your own user account,
+            which the keychain serves too. Keep your system up to date, protect your user account
+            and your Google account, and keep your recovery code safe. Full JSON exports are not
+            encrypted: be careful where you share them. The Google Drive access file and the
+            <code>nexus</code> approvals live in your user account's data folder and project
+            folders: anyone who can use that account can use them too.
           </p>
 
           <h2>11. Children</h2>

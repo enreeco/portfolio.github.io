@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEXUS · Local-first desktop task manager</title>
-  <meta name="description" content="NEXUS is a free, local-first desktop task manager for Windows, macOS and Linux: dashboard, calendar, task list, kanban, routines and a desk for your projects, with your data in a SQLite file on your computer and a CLI for scripts and AI agents.">
+  <meta name="description" content="NEXUS is a free, local-first desktop task manager for Windows, macOS and Linux: dashboard, calendar, task list, kanban, routines and a desk for your projects, with your data encrypted in a SQLite file on your computer and a CLI for scripts and AI agents.">
   <meta property="og:title" content="NEXUS · Local-first desktop task manager">
   <meta property="og:description" content="Dashboard, calendar, task list, kanban and a desk for your projects. Your data stays on your computer. Windows, macOS and Linux.">
   <meta property="og:image" content="https://portfolio.organizer.solutions/nexus/assets/screens/kanban.webp">
@@ -61,6 +61,7 @@
             <span class="badge-free">Free</span>
             <span id="heroVersion"><i class="bi bi-tag"></i> Latest version</span>
             <span><i class="bi bi-wifi-off"></i> Works offline</span>
+            <span><i class="bi bi-shield-lock"></i> Encrypted</span>
             <span><i class="bi bi-terminal"></i> CLI included</span>
             <span class="hint">
               <button type="button" class="hint-btn" aria-describedby="signTip"><i class="bi bi-shield-exclamation"></i> Not code-signed</button>
@@ -184,17 +185,21 @@
           <div class="kicker"><i class="bi bi-terminal"></i> CLI &amp; AI agents</div>
           <h2>A command line, built in</h2>
           <p class="muted">
-            The <code>nexus</code> command ships with the app and works on the same database:
-            add, find, update and complete tasks, manage projects, fields and backups, with
+            The <code>nexus</code> command ships with the app and works through it: add, find,
+            update and complete tasks, manage projects and contacts, take snapshots, with
             readable tables or JSON. No Node.js needed.
           </p>
           <ul class="check-list">
             <li><i class="bi bi-check-circle-fill"></i> Script your routines: bulk-create tasks from a file, export, report.</li>
             <li><i class="bi bi-check-circle-fill"></i> Let an AI agent (Claude Code, the Claude Agent SDK, others) plan your week from your real tasks — ready-made agent skills included.</li>
+            <li><i class="bi bi-check-circle-fill"></i> You decide who gets in: each folder asks once, and you allow it on one profile — read only, read and write, or with your confirmation before anything is deleted. Profiles, restores and field setup stay in the app.</li>
             <li><i class="bi bi-check-circle-fill"></i> Changes made from the command line show up in the app as they happen.</li>
           </ul>
         </div>
-        <pre class="code reveal" aria-label="Command line examples"><span class="c"># what is in progress, as JSON</span>
+        <pre class="code reveal" aria-label="Command line examples"><span class="c"># once per folder: the app asks you to approve it</span>
+<span class="p">$</span> nexus auth request --name <span class="s">"Claude"</span>
+
+<span class="c"># what is in progress, as JSON</span>
 <span class="p">$</span> nexus task list --status <span class="s">"In Progress"</span> --json
 
 <span class="c"># a new task in a project, due Friday</span>
@@ -214,16 +219,16 @@
         <div class="section-head reveal">
           <div class="kicker"><i class="bi bi-shield-lock"></i> Your data</div>
           <h2>Local-first, and safe to sync</h2>
-          <p>Your tasks are a file on your computer — not on our servers, because there are none.</p>
+          <p>Your tasks are an encrypted file on your computer — not on our servers, because there are none.</p>
         </div>
         <div class="grid-3">
           <article class="card feature reveal">
-            <h3><i class="bi bi-hdd"></i> A SQLite database you own</h3>
-            <p>Each profile is one SQLite file on your disk. No account, no sign-in, no telemetry; NEXUS works fully offline.</p>
+            <h3><i class="bi bi-shield-lock"></i> Encrypted, and yours</h3>
+            <p>Each profile is one SQLite file on your disk, encrypted with a key your system's keychain keeps — and a recovery code only you hold. No account, no telemetry; NEXUS works fully offline.</p>
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-cloud-arrow-up"></i> Backups to your cloud folder</h3>
-            <p>Point NEXUS at a Dropbox, OneDrive or iCloud folder, or connect Google Drive: it publishes point-in-time snapshots there, and offers the newest one from your other computer.</p>
+            <p>Point NEXUS at a Dropbox, OneDrive or iCloud folder, or connect Google Drive: it publishes encrypted point-in-time snapshots there, and offers the newest one from your other computer.</p>
           </article>
           <article class="card feature reveal">
             <h3><i class="bi bi-arrow-left-right"></i> Export everything</h3>
