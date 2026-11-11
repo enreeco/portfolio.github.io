@@ -1,7 +1,50 @@
 {
   "product": "Nexus",
-  "latest": "0.7.0",
+  "latest": "0.7.3",
   "releases": [
+    {
+      "version": "0.7.3",
+      "date": "2026-11-11T10:04:43.748Z",
+      "notes": "0.7.3:\n- Calendar: a completed routine no longer counts as active. The ↻ number on a day counts only the routines still to do; the completed ones stay in the day's list, at the bottom, greyed and marked \"done\". A day whose routines are all completed shows a grey ✓ without a number.\n- Journal: a briefing's and a debrief's sections are now tabs (the first one open), in the Journal view and in the Calendar's popup; the debrief's *Nexus activity* is its last tab. The source's notes (missing mail, warnings) are folded behind a \"N notes from the source\" toggle, closed by default.\n- Journal: when editing a debrief, the activity of a timesheet row is picked by typing, like the pick lists of the task sheet.\n- Journal: the Calendar's briefing / debrief popup is larger, and your own note on a briefing or a debrief can now be added and changed right there.\n\n0.7.2:\n- New **Journal**: a morning **briefing** and an end-of-day **debrief** for each day, sent by your AI agents (with access to your calendar, mail or other tools) in Nexus's own nexus-journal/1 format. Nexus shows what they say and links it to your tasks by id; hours, meetings and mail stay in the Journal, never in the tasks.\n- The Calendar marks the days that have them: ☀ *Briefing* and ☾ the hours of the debrief on each day (a dot and the hours in the month grid). A click opens the day's popup with the summary, the agenda, the tasks to tackle with the agent's advice, the timesheet.\n- New **Journal** view (Views → Journal): a day's briefing and debrief side by side, what Nexus itself saw that day (tasks created, completed, commented), and per week or month the hours you worked by activity, by task or by day, with CSV export. A mini calendar marks the days with entries. Files can also be imported from there.\n- A debrief can be corrected: its summary and each timesheet row (activity, description, linked tasks, hours), rows added or removed, and *Restore original*. A new import from the agent never overwrites your corrections: it waits until you choose *Use the new one* or *Keep mine*. Every entry can also take your own note.\n- The task sheet lists the days the task appears in the Journal, with the hours logged on it.\n- New Settings → Journal: what timesheet hours are booked on — task fields chained, up to three (by default Project › Section, picked from a list of their values), or free text —; today's briefing in a popup when Nexus opens (off by default); the sources the entries came from (rename, delete their entries).\n- Settings now lists its sections in a menu on the left.\n- New nexus journal commands: import, list, get, timesheet (hours by activity, task or day; --csv), activities, edit, restore, pending, note, delete, sources, source-rename, source-delete, schema (the format as a JSON Schema).\n- New agent skill **nexus-journal** (Settings → CLI & Agents → Agent skills): how an agent writes and sends a briefing or a debrief, and reads the hours back.\n\n0.7.1:\n- Fixed: your list of profiles could disappear if Nexus read its settings file (config.json) at the very moment another program was writing it, or if the file was damaged. Nexus now reads it again, never overwrites a file it cannot read, and keeps a damaged one aside as config.json.unreadable-… instead of losing it.",
+      "assets": [
+        {
+          "name": "Nexus.Setup.0.7.3.exe",
+          "platform": "windows",
+          "label": "Windows installer (.exe)",
+          "arch": "x64",
+          "size": 112602179,
+          "sha256": "68b301fcaa18a5e9eabc1df4fe49c00fec9f69c57a653eb42e3274608be835e8",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.3/Nexus.Setup.0.7.3.exe"
+        },
+        {
+          "name": "Nexus-0.7.3-arm64.dmg",
+          "platform": "macos",
+          "label": "macOS, Apple Silicon (.dmg)",
+          "arch": "arm64",
+          "size": 124572996,
+          "sha256": "5f465a2f37c52602dde337bd2ac7d40788cf402a1a429568591948e527bb5e7e",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.3/Nexus-0.7.3-arm64.dmg"
+        },
+        {
+          "name": "Nexus-0.7.3.AppImage",
+          "platform": "linux",
+          "label": "Linux AppImage",
+          "arch": "x64",
+          "size": 130143596,
+          "sha256": "b95d470433bd9411b0380aa3be6234111a84420fd63790e285fa7550a5f30ca1",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.3/Nexus-0.7.3.AppImage"
+        },
+        {
+          "name": "nexus-desktop_0.7.3_amd64.deb",
+          "platform": "linux",
+          "label": "Debian / Ubuntu (.deb)",
+          "arch": "x64",
+          "size": 101489248,
+          "sha256": "d5b2fffdcd0a8fbf651ffe3e839c437197abf84d10197146e1181671032f420b",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.3/nexus-desktop_0.7.3_amd64.deb"
+        }
+      ]
+    },
     {
       "version": "0.7.0",
       "date": "2026-11-10T10:58:03.279Z",
