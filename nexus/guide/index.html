@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEXUS · User guide</title>
-  <meta name="description" content="The NEXUS user guide, chapter by chapter: tasks and the task sheet, the views, filters and tabs, the desk, routines, your own fields, profiles, backups and the nexus command line for scripts and AI agents.">
+  <meta name="description" content="The NEXUS user guide, chapter by chapter: tasks and the task sheet, the views, filters and tabs, the desk, routines, the journal (briefing, debrief and timesheet), your own fields, profiles, backups and the nexus command line for scripts and AI agents.">
   <meta property="og:title" content="NEXUS · User guide">
-  <meta property="og:description" content="Everything NEXUS does, chapter by chapter: tasks, views, the desk, routines, fields, profiles, backups and the CLI.">
+  <meta property="og:description" content="Everything NEXUS does, chapter by chapter: tasks, views, the desk, routines, the journal, fields, profiles, backups and the CLI.">
   <meta property="og:image" content="https://portfolio.organizer.solutions/nexus/assets/screens/task.webp">
   <link rel="icon" href="../assets/icon.png">
   <link rel="stylesheet" href="../../assets/vendor/bootstrap-icons-1.31.1/bootstrap-icons.min.css">
@@ -113,8 +113,8 @@
         <div class="kicker"><i class="bi bi-book"></i> User guide</div>
         <h1>Getting the most out of <span class="grad">NEXUS</span></h1>
         <p class="sub">
-          A tour of the app in thirteen short chapters: from your first profile to the desk,
-          routines, your own fields, encryption and backups, and the <code>nexus</code> command line.
+          A tour of the app in fourteen short chapters: from your first profile to the desk,
+          routines, the journal of your days, your own fields, encryption and backups, and the <code>nexus</code> command line.
           Read it in order, or jump to the chapter you need.
         </p>
         <div class="guide-meta">
@@ -137,11 +137,12 @@
           <li><a href="#bulk"><span class="n">06</span> Many tasks at once</a></li>
           <li><a href="#desk"><span class="n">07</span> The desk</a></li>
           <li><a href="#routines"><span class="n">08</span> Routines</a></li>
-          <li><a href="#fields"><span class="n">09</span> Fields you shape</a></li>
-          <li><a href="#profiles"><span class="n">10</span> Profiles</a></li>
-          <li><a href="#data"><span class="n">11</span> Your data and backups</a></li>
-          <li><a href="#cli"><span class="n">12</span> Command line and AI agents</a></li>
-          <li><a href="#settings"><span class="n">13</span> Settings and shortcuts</a></li>
+          <li><a href="#journal"><span class="n">09</span> Journal: briefing and debrief</a></li>
+          <li><a href="#fields"><span class="n">10</span> Fields you shape</a></li>
+          <li><a href="#profiles"><span class="n">11</span> Profiles</a></li>
+          <li><a href="#data"><span class="n">12</span> Your data and backups</a></li>
+          <li><a href="#cli"><span class="n">13</span> Command line and AI agents</a></li>
+          <li><a href="#settings"><span class="n">14</span> Settings and shortcuts</a></li>
         </ol>
       </details>
 
@@ -255,6 +256,7 @@
                 <tr><td><i class="bi bi-grid-1x2-fill"></i> Dashboard</td><td>Totals, a monthly timeline and charts by any field — plus your own widgets (<a href="#dashboard">chapter 4</a>).</td></tr>
                 <tr><td><i class="bi bi-calendar3"></i> Calendar</td><td>What is due: overdue first, then today, tomorrow and the days after, or a month grid. Drag a task to another day to reschedule it.</td></tr>
                 <tr><td><i class="bi bi-arrow-repeat"></i> Routines</td><td>Your recurring checklists and their history (<a href="#routines">chapter 8</a>).</td></tr>
+                <tr><td><i class="bi bi-journal-text"></i> Journal</td><td>The briefing and the debrief your AI agents send for each day, and the hours you worked by week and month (<a href="#journal">chapter 9</a>).</td></tr>
                 <tr><td><i class="bi bi-list-ul"></i> Task List</td><td>A sortable table with the columns you choose (drag a header to move it), grouped by any field, with selection and bulk edits.</td></tr>
                 <tr><td><i class="bi bi-kanban"></i> Kanban</td><td>A board with one lane per value of status, priority, project or any field; a task with several tags or people shows in each of their lanes.</td></tr>
                 <tr><td><i class="bi bi-easel"></i> Desktop</td><td>Projects as folders on a desk you pan and zoom (<a href="#desk">chapter 7</a>).</td></tr>
@@ -278,7 +280,8 @@
             <li><strong>Overdue</strong> is always relative to today, in red, with how many days late each task is.</li>
             <li>Within a day, tasks are ordered by priority, as your priority list orders them.</li>
             <li>The Calendar item in the Views list carries a red badge: how many open tasks are overdue or due today.</li>
-            <li>Days a routine falls on carry a ↻ icon; today's open routines are listed among today's tasks, outlined in green.</li>
+            <li>Days a routine falls on carry a ↻ icon with how many are still to do (a completed one is listed when you click it, but not counted); today's open routines are listed among today's tasks, outlined in green.</li>
+            <li>Days with a <strong>briefing</strong> or a <strong>debrief</strong> carry ☀ and ☾ chips — the debrief's with the hours worked: a click opens the day's journal (<a href="#journal">chapter 9</a>).</li>
           </ul>
 
           <h3><i class="bi bi-check2-square"></i> Completed tasks</h3>
@@ -409,16 +412,78 @@
           <h3><i class="bi bi-eye"></i> Where routines show</h3>
           <ul class="check-list">
             <li><i class="bi bi-check-circle-fill"></i> <strong>Routines</strong> view: the open occurrences as cards, then every routine with its history.</li>
-            <li><i class="bi bi-check-circle-fill"></i> <strong>Calendar</strong>: a ↻ icon on the days a routine falls on — future days as a preview — and today's open routines among today's tasks.</li>
+            <li><i class="bi bi-check-circle-fill"></i> <strong>Calendar</strong>: a ↻ icon on the days a routine falls on — future days as a preview —, counting the ones still to do (a grey ✓ when all are done), and today's open routines among today's tasks.</li>
             <li><i class="bi bi-check-circle-fill"></i> <strong>Desktop</strong>: the routines board, with steps you can tick.</li>
           </ul>
           <div class="tip"><i class="bi bi-lightbulb"></i><div>Routines stay out of the task lists, the Kanban and the dashboard, so your project work is not buried under daily checklists.</div></div>
-          <div class="next"><a href="#fields">Next: Fields you shape <i class="bi bi-arrow-right"></i></a></div>
+          <div class="next"><a href="#journal">Next: Journal <i class="bi bi-arrow-right"></i></a></div>
         </article>
 
         <!-- 09 -->
+        <article class="chapter" id="journal">
+          <div class="kicker"><span class="num">09</span> · Journal</div>
+          <h2>Journal: your day, before and after</h2>
+          <p class="lead">Let an AI agent that reads your calendar and mail write you a <strong>briefing</strong> every morning — what the day holds — and a <strong>debrief</strong> every evening — what you did, and for how long. NEXUS keeps them day by day, next to your tasks.</p>
+
+          <a class="shot-link" href="../assets/screens/journal-popup.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/journal-popup.webp" width="1440" height="880" loading="lazy" alt="The briefing of a day opened from the Calendar, with its sections as tabs">
+              <figcaption><strong>A day's briefing</strong>, opened from its ☀ chip in the Calendar: the summary, your note, and the agent's sections as tabs.</figcaption>
+            </figure>
+          </a>
+
+          <h3><i class="bi bi-robot"></i> Where it comes from</h3>
+          <p>NEXUS does not read your mail or calendar itself: an agent you run does, and sends the result with <code>nexus journal import</code> in NEXUS's own format, <code>nexus-journal/1</code>. The <strong>nexus-journal</strong> skill teaches the agent the format (<a href="#cli">chapter 13</a>). A briefing usually brings the agenda, the mail that matters, the tasks to tackle with its advice and the actions it recommends; a debrief, the <strong>timesheet</strong> of the day, the meetings held and the mail sent. Tasks are linked by their code (<code>TASK-00042</code>): click one to open it.</p>
+          <ul class="plain">
+            <li>One briefing and one debrief per day and per source; a new one from the same agent replaces it.</li>
+            <li>Nothing is copied into your tasks: hours, meetings and mail stay in the journal.</li>
+            <li>The agent's notes about its sources — a mailbox it could not read — sit behind a <em>notes from the source</em> button, closed until you open it.</li>
+            <li>Write your own <strong>note</strong> on a briefing or a debrief, right in the popup.</li>
+          </ul>
+
+          <h3><i class="bi bi-calendar3"></i> In the Calendar and in the Journal view</h3>
+          <p>The Calendar marks every day that has them: ☀ <em>Briefing</em> and ☾ with the hours of the debrief (a dot and the hours in the month grid). A click opens the day, with <em>Briefing</em> and <em>Debrief</em> tabs. <strong>Open in Journal</strong> takes you to the <strong>Journal</strong> view: the day's briefing and debrief side by side — plus what NEXUS itself saw that day: the tasks created, completed and commented — and a small calendar to move through your history.</p>
+          <a class="shot-link" href="../assets/screens/journal-day.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/journal-day.webp" width="1440" height="880" loading="lazy" alt="The Journal view of a day: briefing and debrief side by side">
+              <figcaption><strong>Journal view.</strong> The briefing and the debrief of a day side by side; the mini calendar marks the days with a briefing and the hours of each debrief.</figcaption>
+            </figure>
+          </a>
+
+          <h3><i class="bi bi-clock-history"></i> The timesheet, and what you worked on</h3>
+          <p>Each row of a debrief's timesheet has its hours and an <strong>activity</strong> — what the hours are booked on. By default the activity is the task's <strong>project › section</strong>: a row linked to one task takes that task's values, so the agent only needs to send the task and the hours. In <strong>Settings → Journal</strong> choose up to three task fields (project, section, area, activity type, your list fields), or free text.</p>
+          <p>Switch the Journal to <strong>Week</strong> or <strong>Month</strong> to see the hours by activity — down to the level you choose —, by task or by day, with the totals, and <strong>Export CSV</strong> for your timesheet system.</p>
+          <a class="shot-link" href="../assets/screens/journal-week.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/journal-week.webp" width="1440" height="880" loading="lazy" alt="The hours of a week by project and section">
+              <figcaption><strong>The week.</strong> Hours by project › section and by day, with the totals; below, the days of the week.</figcaption>
+            </figure>
+          </a>
+
+          <h3><i class="bi bi-pencil-square"></i> Correct a debrief</h3>
+          <p>The agent's estimate is a starting point. <strong>Edit</strong> a debrief to change its summary and each row of the timesheet — the activity (type to find it, as in the task sheet), the description, the linked tasks, the hours —, add or remove rows. A value the agent sent that NEXUS does not know is flagged until you pick one.</p>
+          <a class="shot-link" href="../assets/screens/journal-edit.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/journal-edit.webp" width="1440" height="880" loading="lazy" alt="Editing a debrief: the activity is picked by typing">
+              <figcaption><strong>Editing a debrief.</strong> Each row's activity is picked from your projects and sections by typing.</figcaption>
+            </figure>
+          </a>
+          <ul class="plain">
+            <li><strong>Restore original</strong> drops your corrections and goes back to what the agent sent.</li>
+            <li>Your corrections are never overwritten: if the agent sends the day again, the new version waits until you choose <em>Use the new one</em> or <em>Keep mine</em>.</li>
+            <li>The task sheet lists the days a task appears in the journal, with the hours logged on it.</li>
+          </ul>
+          <div class="tip"><i class="bi bi-lightbulb"></i><div>Turn on <strong>Show today's briefing when NEXUS opens</strong> (Settings → Journal → Briefing): the first time NEXUS opens in the day, the briefing is there to read.</div></div>
+          <div class="next"><a href="#fields">Next: Fields you shape <i class="bi bi-arrow-right"></i></a></div>
+        </article>
+
+        <!-- 10 -->
         <article class="chapter" id="fields">
-          <div class="kicker"><span class="num">09</span> · Fields</div>
+          <div class="kicker"><span class="num">10</span> · Fields</div>
           <h2>Fields you shape</h2>
           <p class="lead">NEXUS adapts to how you work, not the other way round. Every profile has its own projects, values, fields and rules.</p>
 
@@ -455,9 +520,9 @@
           <div class="next"><a href="#profiles">Next: Profiles <i class="bi bi-arrow-right"></i></a></div>
         </article>
 
-        <!-- 10 -->
+        <!-- 11 -->
         <article class="chapter" id="profiles">
-          <div class="kicker"><span class="num">10</span> · Profiles</div>
+          <div class="kicker"><span class="num">11</span> · Profiles</div>
           <h2>Profiles: one database each</h2>
           <p class="lead">Keep work and home apart, or give each client their own space. Every profile is a separate database, with its own tasks and its own setup.</p>
 
@@ -480,9 +545,9 @@
           <div class="next"><a href="#data">Next: Your data and backups <i class="bi bi-arrow-right"></i></a></div>
         </article>
 
-        <!-- 11 -->
+        <!-- 12 -->
         <article class="chapter" id="data">
-          <div class="kicker"><span class="num">11</span> · Your data</div>
+          <div class="kicker"><span class="num">12</span> · Your data</div>
           <h2>Your data, and backups that are safe to sync</h2>
           <p class="lead">Your tasks are an encrypted SQLite file on your computer — not on our servers, because there are none. NEXUS makes backups of that file the safe way, encrypted too.</p>
 
@@ -534,9 +599,9 @@
           <div class="next"><a href="#cli">Next: Command line and AI agents <i class="bi bi-arrow-right"></i></a></div>
         </article>
 
-        <!-- 12 -->
+        <!-- 13 -->
         <article class="chapter" id="cli">
-          <div class="kicker"><span class="num">12</span> · CLI &amp; AI</div>
+          <div class="kicker"><span class="num">13</span> · CLI &amp; AI</div>
           <h2>The command line, and AI agents</h2>
           <p class="lead">The <code>nexus</code> command ships with the app and works on your tasks <em>through</em> the app: it never opens a database itself. Each folder you approve gets its own access, on one profile — and the open app refreshes itself when the command line writes.</p>
 
@@ -576,7 +641,7 @@
           <div class="tip"><i class="bi bi-info-circle"></i><div>The command needs NEXUS running. Settings → General Settings → <strong>Startup</strong> → <em>Start Nexus when you log in, in the background</em> (on by default) keeps it ready in the tray; if it is not running, the installed command starts it in the background anyway.</div></div>
 
           <h3><i class="bi bi-terminal"></i> What it does</h3>
-          <p>Tasks, comments, relations, attachments, projects, contacts, routines, desks, favorites, snapshots and exports — on the folder's profile. Output is a readable table, or JSON with <code>--json</code>.</p>
+          <p>Tasks, comments, relations, attachments, projects, contacts, routines, the journal, desks, favorites, snapshots and exports — on the folder's profile. Output is a readable table, or JSON with <code>--json</code>.</p>
           <pre class="code" aria-label="Command line examples"><span class="c"># what is in progress, as JSON</span>
 <span class="p">$</span> nexus task list --status <span class="s">"In Progress"</span> --json
 
@@ -589,6 +654,10 @@
 
 <span class="c"># the routines still to do today</span>
 <span class="p">$</span> nexus routine instances --open
+
+<span class="c"># the day's debrief from your agent, and this month's hours as CSV</span>
+<span class="p">$</span> nexus journal import debrief.json
+<span class="p">$</span> nexus journal timesheet --from 2026-11-01 --csv
 
 <span class="c"># a snapshot into your backup folder, now</span>
 <span class="p">$</span> nexus snapshot create</pre>
@@ -603,6 +672,7 @@
           <div class="mini-grid">
             <div class="card"><h4><i class="bi bi-check2-all"></i> nexus-tasks</h4><p>Find, create, update and complete tasks; comments, relations, attachments, routines; asking for access.</p></div>
             <div class="card"><h4><i class="bi bi-gear-wide-connected"></i> nexus-setup</h4><p>Reads the whole setup of a profile; changes projects, sections and contacts. The rest it leaves to you, in the app.</p></div>
+            <div class="card"><h4><i class="bi bi-journal-text"></i> nexus-journal</h4><p>Writes and sends the day's briefing and debrief; reads back the hours worked by activity, task or day.</p></div>
             <div class="card"><h4><i class="bi bi-shield-check"></i> nexus-backup</h4><p>Snapshots and full exports; restores and moving to another computer are done in the app.</p></div>
             <div class="card"><h4><i class="bi bi-file-zip"></i> Get them</h4><p>Settings → CLI &amp; Agents → Agent skills → <strong>Download skills (.zip)</strong>: always the skills of your version.</p></div>
           </div>
@@ -610,11 +680,11 @@
           <div class="next"><a href="#settings">Next: Settings and shortcuts <i class="bi bi-arrow-right"></i></a></div>
         </article>
 
-        <!-- 13 -->
+        <!-- 14 -->
         <article class="chapter" id="settings">
-          <div class="kicker"><span class="num">13</span> · Reference</div>
+          <div class="kicker"><span class="num">14</span> · Reference</div>
           <h2>Settings and shortcuts</h2>
-          <p class="lead">⚙ opens Settings as a tab beside <em>Tasks</em>; close it to go back. Each tab is split into a few sub-tabs, so nothing is a long scroll.</p>
+          <p class="lead">⚙ opens Settings as a tab beside <em>Tasks</em>; close it to go back. Its sections are a menu on the left, each split into a few sub-tabs, so nothing is a long scroll.</p>
 
           <div class="tbl-wrap">
             <table class="tbl">
@@ -623,6 +693,7 @@
                 <tr><td>General Settings</td><td>Dark, light or system theme; the first day of the week; the name your comments are signed with (per computer); starting NEXUS when you log in</td></tr>
                 <tr><td>Profiles</td><td>Your profiles (and which folders use <code>nexus</code> on each); configuration export and import; backups to a folder and to Google Drive; encryption and a new recovery code</td></tr>
                 <tr><td>Customization</td><td>Standard fields (the values), custom fields, field properties (filterable and required)</td></tr>
+                <tr><td>Journal</td><td>What timesheet hours are booked on (task fields or free text); today's briefing when NEXUS opens; the agents your entries came from (rename, delete)</td></tr>
                 <tr><td>CLI &amp; Agents</td><td>The agent skills to download; whether the <code>nexus</code> command is installed, and where; Access: the approved folders, their profile and access, full-access limits, recent requests</td></tr>
                 <tr><td>Data</td><td>Full JSON export and import; the database's location, sample data, reset</td></tr>
                 <tr><td>About</td><td>The version of NEXUS you are running</td></tr>
