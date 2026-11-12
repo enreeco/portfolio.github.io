@@ -1,7 +1,50 @@
 {
   "product": "Nexus",
-  "latest": "0.7.3",
+  "latest": "0.7.5",
   "releases": [
+    {
+      "version": "0.7.5",
+      "date": "2026-11-12T12:11:32.412Z",
+      "notes": "0.7.5:\n- Fix: when config.json is being rewritten by another program at the moment Nexus reads it (more likely on a busy computer), Nexus now waits for the write to finish instead of taking the file for empty, so the profile list is never read as empty by mistake. A config.json that is really broken is still detected after a short wait, and does not slow Nexus down again until it changes.\n\n0.7.4:\n- Journal: a day without a debrief can now get its timesheet straight from the app. *Create a timesheet* (in the Journal view's empty day, next to a day's briefing, or in the Calendar's popup of a day with only a briefing) opens the timesheet rows alone; *Create* saves them as that day's debrief, from the source nexus.\n- New nexus journal update <day> <file>: changes an existing journal entry with only the parts given (summary, notices, sections by id; \"remove\": true deletes a section) and never creates one, so an agent can complete the timesheet you started in the app without replacing it.\n- New nexus journal create <day> [file]: creates the debrief of a day that has none (an empty timesheet, or a document); refused when the day already has a debrief.\n- nexus journal import now warns when it adds a second debrief to a day, since the hours of both are counted.\n- The nexus-journal agent skill checks for an existing debrief of the day and updates it instead of importing a new one.",
+      "assets": [
+        {
+          "name": "Nexus.Setup.0.7.5.exe",
+          "platform": "windows",
+          "label": "Windows installer (.exe)",
+          "arch": "x64",
+          "size": 112605415,
+          "sha256": "ab76f626ccddf9922b0a3a30c3e160885aac98558b86b25560d261f310beddc4",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.5/Nexus.Setup.0.7.5.exe"
+        },
+        {
+          "name": "Nexus-0.7.5-arm64.dmg",
+          "platform": "macos",
+          "label": "macOS, Apple Silicon (.dmg)",
+          "arch": "arm64",
+          "size": 124574044,
+          "sha256": "dbc33e698afabcfef3d4608b276de09f394acec70e95d4d4eabb720c00e0323f",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.5/Nexus-0.7.5-arm64.dmg"
+        },
+        {
+          "name": "Nexus-0.7.5.AppImage",
+          "platform": "linux",
+          "label": "Linux AppImage",
+          "arch": "x64",
+          "size": 130147725,
+          "sha256": "e2e340e16424873ea331add2d4e90dce0a70358089325400638a7ef28927b46f",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.5/Nexus-0.7.5.AppImage"
+        },
+        {
+          "name": "nexus-desktop_0.7.5_amd64.deb",
+          "platform": "linux",
+          "label": "Debian / Ubuntu (.deb)",
+          "arch": "x64",
+          "size": 101492488,
+          "sha256": "1a6cceafd1c6598d1fc3d7a6c080878424314cd49c873c9fa530387ab80e3779",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.5/nexus-desktop_0.7.5_amd64.deb"
+        }
+      ]
+    },
     {
       "version": "0.7.3",
       "date": "2026-11-11T10:04:43.748Z",
