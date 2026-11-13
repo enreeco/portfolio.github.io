@@ -183,13 +183,15 @@
       <div class="container grid-2">
         <div class="reveal">
           <div class="kicker"><i class="bi bi-terminal"></i> CLI &amp; AI agents</div>
-          <h2>A command line, built in</h2>
+          <h2>A command line, built in — and a terminal for your agents</h2>
           <p class="muted">
             The <code>nexus</code> command ships with the app and works through it: add, find,
             update and complete tasks, manage projects and contacts, take snapshots, with
             readable tables or JSON. No Node.js needed.
           </p>
           <ul class="check-list">
+            <li><i class="bi bi-check-circle-fill"></i> <span><strong>A terminal inside NEXUS.</strong> Open it at the bottom of any page with <kbd>Ctrl</kbd>+<kbd>`</kbd> and run your AI agent there, in the folder you choose: the views above update as it works.</span></li>
+            <li><i class="bi bi-check-circle-fill"></i> <span><strong>Agents can show you their work.</strong> <code>nexus ui</code> opens a task, a view, a day of the calendar or a tab with live filters in the window — and prepares new tasks for you to check before they are saved.</span></li>
             <li><i class="bi bi-check-circle-fill"></i> Script your routines: bulk-create tasks from a file, export, report.</li>
             <li><i class="bi bi-check-circle-fill"></i> Let an AI agent (Claude Code, the Claude Agent SDK, others) plan your week from your real tasks — ready-made agent skills included.</li>
             <li><i class="bi bi-check-circle-fill"></i> You decide who gets in: each folder asks once, and you allow it on one profile — read only, read and write, or with your confirmation before anything is deleted. Profiles, restores and field setup stay in the app.</li>
@@ -209,8 +211,20 @@
 <span class="c"># done</span>
 <span class="p">$</span> nexus task complete TASK-00042
 
+<span class="c"># show it in the app: a tab with live filters</span>
+<span class="p">$</span> nexus ui tab --filter priority=Critical --view kanban
+
 <span class="c"># a snapshot into your cloud folder, now</span>
 <span class="p">$</span> nexus snapshot create</pre>
+      </div>
+      <div class="container cli-shot">
+        <a class="shot-link reveal" href="./assets/screens/terminal.webp" target="_blank" rel="noopener">
+          <figure class="shot">
+            <div class="bar"><span></span><span></span><span></span></div>
+            <img src="./assets/screens/terminal.webp" width="1440" height="880" loading="lazy" alt="The Terminal panel at the bottom of NEXUS: an AI agent lists tasks, adds one and opens a Top priority tab, shown live in the kanban above">
+            <figcaption><strong>The Terminal panel.</strong> An AI agent plans the week with <code>nexus</code> below, and opens the result in a live tab above.</figcaption>
+          </figure>
+        </a>
       </div>
     </section>
 

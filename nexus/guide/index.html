@@ -49,7 +49,6 @@
     .chapter .code { margin: 0.6rem 0 1rem; }
     .chapter .check-list { margin: 0.4rem 0 1rem; }
 
-    kbd { font-family: var(--mono); font-size: 0.78rem; padding: 0.08rem 0.4rem; border-radius: 5px; border: 1px solid var(--border-2); border-bottom-width: 2px; background: var(--card-2); color: var(--text); white-space: nowrap; }
 
     .tip { display: flex; gap: 0.7rem; align-items: flex-start; margin: 0.4rem 0 1rem; padding: 0.8rem 1rem; border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.25); background: rgba(0, 212, 255, 0.05); font-size: 0.93rem; color: #cfe9f5; max-width: 74ch; }
     .tip i { color: var(--cyan); margin-top: 0.15rem; }
@@ -673,10 +672,53 @@
             <div class="card"><h4><i class="bi bi-check2-all"></i> nexus-tasks</h4><p>Find, create, update and complete tasks; comments, relations, attachments, routines; asking for access.</p></div>
             <div class="card"><h4><i class="bi bi-gear-wide-connected"></i> nexus-setup</h4><p>Reads the whole setup of a profile; changes projects, sections and contacts. The rest it leaves to you, in the app.</p></div>
             <div class="card"><h4><i class="bi bi-journal-text"></i> nexus-journal</h4><p>Writes and sends the day's briefing and debrief; reads back the hours worked by activity, task or day.</p></div>
+            <div class="card"><h4><i class="bi bi-cursor"></i> nexus-ui</h4><p>Shows you things in the window: a task, a view, a calendar day, a tab with live filters, a new task ready for you to check.</p></div>
             <div class="card"><h4><i class="bi bi-shield-check"></i> nexus-backup</h4><p>Snapshots and full exports; restores and moving to another computer are done in the app.</p></div>
             <div class="card"><h4><i class="bi bi-file-zip"></i> Get them</h4><p>Settings → CLI &amp; Agents → Agent skills → <strong>Download skills (.zip)</strong>: always the skills of your version.</p></div>
           </div>
           <div class="tip"><i class="bi bi-info-circle"></i><div>Give an agent its own folder and the access it needs — <em>ask before deleting</em> is a good start. It works on your computer, through the app, and only on the profile you chose: your data still goes nowhere NEXUS did not already keep it.</div></div>
+
+          <h3 id="terminal"><i class="bi bi-window-dock"></i> Run your agents inside NEXUS: the Terminal panel</h3>
+          <p>NEXUS has your computer's own terminal built in, docked at the bottom of the window as in a code editor. Run your agent there — Claude Code or any other — and watch the views above change as it works: a task it adds or updates shows up at once.</p>
+          <a class="shot-link" href="../assets/screens/terminal.webp" target="_blank" rel="noopener">
+            <figure class="shot">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <img src="../assets/screens/terminal.webp" width="1440" height="880" loading="lazy" alt="The Terminal panel at the bottom of NEXUS: an AI agent lists tasks, adds one and opens a Top priority tab, shown live in the kanban above">
+              <figcaption><strong>An agent in the Terminal panel.</strong> It reads the tasks in progress, adds the launch email and opens a <em>Top priority</em> tab — all visible above as it happens.</figcaption>
+            </figure>
+          </a>
+          <ul class="plain">
+            <li><strong>Open and hide it from any page</strong> — the <i class="bi bi-terminal"></i> button in the header, <kbd>Ctrl</kbd>+<kbd>`</kbd> (<kbd>⌘</kbd>+<kbd>`</kbd> on a Mac; the key left of <kbd>1</kbd>, on any keyboard layout), or <em>Open Terminal</em> in the tray menu. Drag its top edge to make it taller or shorter.</li>
+            <li><strong>Tabs</strong> — <strong>+</strong> opens another terminal, × closes one. Run an agent in one and your own commands in another.</li>
+            <li><strong>Where it starts</strong> — in the folder you set in Settings → CLI &amp; Agents → <strong>Terminal</strong> (your agent's folder, for example; empty means your home folder), with your usual shell unless you pick another there.</li>
+            <li><strong>It keeps running</strong> — hiding the panel, or going to the Widget Builder and back, leaves the shells and the agents in them running; their output is still there when you come back. Closing a tab, or quitting NEXUS, ends them.</li>
+            <li><strong><code>nexus</code> is always there</strong> — in the installed app the panel finds the <code>nexus</code> command even where it is not on your PATH (the Linux AppImage too). Approve the folder once, as above.</li>
+            <li><strong>Copy and paste</strong> with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> / <kbd>V</kbd> (<kbd>⌘</kbd>+<kbd>C</kbd> / <kbd>V</kbd> on a Mac). Links printed in the terminal open in your browser.</li>
+          </ul>
+          <div class="tip"><i class="bi bi-info-circle"></i><div>A task sheet or another popup opens in the space above the panel, so the terminal stays readable while you look at what the agent did.</div></div>
+
+          <h3 id="nexus-ui"><i class="bi bi-cursor"></i> Let the agent show you things: <code>nexus ui</code></h3>
+          <p><code>nexus ui</code> makes the NEXUS window show something, as a click would — it changes no data, so even a folder with read-only access may use it. An agent uses it to point you at what it found or did.</p>
+          <pre class="code" aria-label="nexus ui examples"><span class="c"># open a task — by code, id or the nexus:// link "Copy link" gives</span>
+<span class="p">$</span> nexus ui open-task TASK-00042
+
+<span class="c"># the new-task form, filled in: you check it and click Create</span>
+<span class="p">$</span> nexus ui new-task --title <span class="s">"Draft the launch email"</span> --due tomorrow --set priority=High
+
+<span class="c"># a view, or a day / week / month of the calendar</span>
+<span class="p">$</span> nexus ui view kanban
+<span class="p">$</span> nexus ui calendar 2026-12-04 --scope week
+
+<span class="c"># a new tab with live filters, next to All tasks</span>
+<span class="p">$</span> nexus ui tab --filter <span class="s">"status=In Progress"</span> --not priority=Low --due this-month
+
+<span class="c"># what the window shows right now</span>
+<span class="p">$</span> nexus ui status</pre>
+          <ul class="plain">
+            <li>Values are written as the app shows them — <em>In Progress</em>, a project's name, a contact's name. A value the profile does not have is refused, with the list of the ones it has.</li>
+            <li>The window has to show the folder's profile; otherwise the command says which profile to switch to.</li>
+            <li>A task you are filling in is never replaced: the command waits until you save or close it.</li>
+          </ul>
           <div class="next"><a href="#settings">Next: Settings and shortcuts <i class="bi bi-arrow-right"></i></a></div>
         </article>
 
@@ -694,7 +736,7 @@
                 <tr><td>Profiles</td><td>Your profiles (and which folders use <code>nexus</code> on each); configuration export and import; backups to a folder and to Google Drive; encryption and a new recovery code</td></tr>
                 <tr><td>Customization</td><td>Standard fields (the values), custom fields, field properties (filterable and required)</td></tr>
                 <tr><td>Journal</td><td>What timesheet hours are booked on (task fields or free text); today's briefing when NEXUS opens; the agents your entries came from (rename, delete)</td></tr>
-                <tr><td>CLI &amp; Agents</td><td>The agent skills to download; whether the <code>nexus</code> command is installed, and where; Access: the approved folders, their profile and access, full-access limits, recent requests</td></tr>
+                <tr><td>CLI &amp; Agents</td><td>The agent skills to download; whether the <code>nexus</code> command is installed, and where; Access: the approved folders, their profile and access, full-access limits, recent requests; Terminal: the folder new terminals start in, and the shell</td></tr>
                 <tr><td>Data</td><td>Full JSON export and import; the database's location, sample data, reset</td></tr>
                 <tr><td>About</td><td>The version of NEXUS you are running</td></tr>
               </tbody>
@@ -713,6 +755,8 @@
                 <tr><td><kbd>Enter</kbd> · <kbd>↑</kbd> <kbd>↓</kbd></td><td>A pick list you type in</td><td>Pick the match · move through the matches</td></tr>
                 <tr><td><kbd>Alt</kbd> + <kbd>←</kbd> / <kbd>→</kbd></td><td>Task views</td><td>Back / forward through the views of a tab</td></tr>
                 <tr><td><kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Z</kbd> / <kbd>Y</kbd></td><td>Desktop</td><td>Undo / redo</td></tr>
+                <tr><td><kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>`</kbd></td><td>Anywhere</td><td>Show / hide the Terminal panel</td></tr>
+                <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> / <kbd>W</kbd> (<kbd>⌘</kbd>+<kbd>T</kbd> / <kbd>W</kbd>)</td><td>Terminal panel</td><td>New terminal tab / close the tab</td></tr>
               </tbody>
             </table>
           </div>
