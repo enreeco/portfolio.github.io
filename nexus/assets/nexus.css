@@ -363,3 +363,9 @@ footer a { color: var(--muted); }
   .topbar .container { flex-direction: column; align-items: flex-start; }
   .assets .hide-sm { display: none; }
 }
+
+/* Keys (the guide's shortcuts, the CLI section of the home page) */
+kbd { font-family: var(--mono); font-size: 0.78rem; padding: 0.08rem 0.4rem; border-radius: 5px; border: 1px solid var(--border-2); border-bottom-width: 2px; background: var(--card-2); color: var(--text); white-space: nowrap; }
+
+/* The Terminal panel screenshot under the CLI section of the home page */
+.cli-shot { margin-top: 2.5rem; }
