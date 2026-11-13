@@ -1,7 +1,50 @@
 {
   "product": "Nexus",
-  "latest": "0.7.6",
+  "latest": "0.7.7",
   "releases": [
+    {
+      "version": "0.7.7",
+      "date": "2026-11-13T22:56:07.093Z",
+      "notes": "- New: Nexus tells you when a newer version is out. At startup (and twice a day while it runs) it looks on the Nexus download site; a dialog shows what changed since your version and offers to download the update for your computer, verify it and start it: on Windows the setup runs, on macOS the disk image opens (drag Nexus to Applications), the Linux AppImage replaces itself and restarts, the .deb opens in your software center. *Later* asks again next time, *Skip this version* waits for the next one.\n- Settings → About → Updates: *Check for updates* now, and a switch to turn the startup check off.",
+      "assets": [
+        {
+          "name": "Nexus.Setup.0.7.7.exe",
+          "platform": "windows",
+          "label": "Windows installer (.exe)",
+          "arch": "x64",
+          "size": 114617943,
+          "sha256": "18fc68189247e97252358bd452b8eefa894043805c03def19de240b3e2e1a0b8",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.7/Nexus.Setup.0.7.7.exe"
+        },
+        {
+          "name": "Nexus-0.7.7-arm64.dmg",
+          "platform": "macos",
+          "label": "macOS, Apple Silicon (.dmg)",
+          "arch": "arm64",
+          "size": 125788252,
+          "sha256": "819cf0e343e72ae209c58b0474e9b9105d00dbb1e73751d9ffb4f2165d6a9ed9",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.7/Nexus-0.7.7-arm64.dmg"
+        },
+        {
+          "name": "Nexus-0.7.7.AppImage",
+          "platform": "linux",
+          "label": "Linux AppImage",
+          "arch": "x64",
+          "size": 131451206,
+          "sha256": "94b096826d8a6af71b51fbd38d0b808dcfc41de1a15847aea09326c755e8a2d2",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.7/Nexus-0.7.7.AppImage"
+        },
+        {
+          "name": "nexus-desktop_0.7.7_amd64.deb",
+          "platform": "linux",
+          "label": "Debian / Ubuntu (.deb)",
+          "arch": "x64",
+          "size": 102415028,
+          "sha256": "04157184f16cfa57ce3aa3ec5d3b41b9d0ac2fd5ff7a352a8d74a7369796e02f",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.7/nexus-desktop_0.7.7_amd64.deb"
+        }
+      ]
+    },
     {
       "version": "0.7.6",
       "date": "2026-11-13T17:58:20.818Z",
