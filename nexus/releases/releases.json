@@ -1,7 +1,50 @@
 {
   "product": "Nexus",
-  "latest": "0.7.5",
+  "latest": "0.7.6",
   "releases": [
+    {
+      "version": "0.7.6",
+      "date": "2026-11-13T17:58:20.818Z",
+      "notes": "- New: a **Terminal** panel at the bottom of the window, as in VS Code. Run your AI agents and the nexus command there while the task views above update by themselves. Open or hide it from any page with the terminal button in the header, with Ctrl+ (⌘+ on a Mac — the key left of 1), or from the tray icon's *Open Terminal*; drag its top edge to resize it.\n- Terminals open in tabs (+ for a new one, Ctrl+Shift+T / ⌘T), start in a default folder you choose in Settings → CLI & Agents → Terminal (your home folder if none), and use your usual shell unless you set another there. Hiding the panel, or going to the Widget Builder and back, keeps them running with their output.\n- In the installed app, nexus always works in the Terminal panel, even where it is not on your PATH (for example the AppImage). Links printed in the terminal open in your browser; copy / paste with Ctrl+Shift+C / V (⌘C / ⌘V on a Mac).\n- New: nexus ui lets you (or your AI agent) drive the app window from the command line, without changing any data: nexus ui open-task TASK-00012 (or a nexus://task/… link) shows a task, nexus ui new-task --title … --set priority=High opens the new-task form filled in for you to check and save, nexus ui view calendar switches view, nexus ui calendar 2026-12-04 --scope week jumps the Calendar to a day, week or month, and nexus ui tab --filter \"status=In Progress\" --not priority=Low --due this-month opens a new tab with live filters. nexus ui status tells what the window shows. Folders with read-only access may use them too.\n- New agent skill nexus-ui (Settings → CLI & Agents → Agent skills) that teaches agents these commands.",
+      "assets": [
+        {
+          "name": "Nexus.Setup.0.7.6.exe",
+          "platform": "windows",
+          "label": "Windows installer (.exe)",
+          "arch": "x64",
+          "size": 114569760,
+          "sha256": "4d340ecd0d7a535641afd252f2b020bcb743c3057b9141a4c268a9b5dcbbacac",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.6/Nexus.Setup.0.7.6.exe"
+        },
+        {
+          "name": "Nexus-0.7.6-arm64.dmg",
+          "platform": "macos",
+          "label": "macOS, Apple Silicon (.dmg)",
+          "arch": "arm64",
+          "size": 125772075,
+          "sha256": "eb08c6c3e638d9b40639420a40f16499c764af8432579a1129232df1eac44a0f",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.6/Nexus-0.7.6-arm64.dmg"
+        },
+        {
+          "name": "Nexus-0.7.6.AppImage",
+          "platform": "linux",
+          "label": "Linux AppImage",
+          "arch": "x64",
+          "size": 131402011,
+          "sha256": "1421f0423bd1ab2e782f50f310c9c7b4bd06ed7f3cd4dbb1dc693d07e383a2af",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.6/Nexus-0.7.6.AppImage"
+        },
+        {
+          "name": "nexus-desktop_0.7.6_amd64.deb",
+          "platform": "linux",
+          "label": "Debian / Ubuntu (.deb)",
+          "arch": "x64",
+          "size": 102374696,
+          "sha256": "1bd176d577edf2cb7d82ab53dbb2467c4b65275e3f24861da6ec947a447f06e8",
+          "url": "https://github.com/enreeco/portfolio.github.io/releases/download/nexus-v0.7.6/nexus-desktop_0.7.6_amd64.deb"
+        }
+      ]
+    },
     {
       "version": "0.7.5",
       "date": "2026-11-12T12:11:32.412Z",
